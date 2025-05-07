@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import cable from './assets/cable.svg'
+import board from './assets/Digitech1v5.svg'
 import './App.css'
 
 function App() {
@@ -8,26 +8,39 @@ function App() {
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+      <header>
+        <img id="logo" src="src\assets\Logo_FH.png" alt="Logo of the FH Campus Wien" />
+      </header>
+      <div id="content">
+        <h1>Digitech Board Simulation</h1>
+        <div id="sidebar">
+          <div>
+            <h2>cables</h2>
+            <div id="cables">
+              <img src={cable} alt="" />
+            </div>
+
+          </div>
+          <div>
+            <h2>jumper</h2>
+
+          </div>
+          <div>
+            <h2>show:</h2>
+            <input type="radio" id="info" name="show" />
+            <label htmlFor="info">info</label><br />
+            <input type="radio" id="info" name="color" />
+            <label htmlFor="info">color</label>
+          </div>
+          <div>
+            <h2>reset</h2>
+          </div>
+        </div>
+        <div>
+          <img src={board} alt="" />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+
     </>
   )
 }

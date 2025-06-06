@@ -43,6 +43,7 @@ h2 {
 }
 
 #cables {
+  border: 2px solid red;
   display: flex;
   flex-direction: column;
   align-items: flex-end; /* Bilder am rechten Rand ausrichten */

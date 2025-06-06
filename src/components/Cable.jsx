@@ -1,8 +1,11 @@
-import cable from "../assets/cable.svg";
+import {defaultCable, blackCable, cyanCable, blueCable, greenCable, greyCable, pinkCable, redCable, yellowCable} from "../assets/asset_exports.js";
 import {useState} from "react";
 
 export default function Cable() {
-    const [cableSelect, setCableSelect] = useState([false, false, false]);
+    const [cableSelect, setCableSelect] = useState([false, false, false, false, false, false, false, false, false]);
+
+    // Array for cable SVGs
+    const cableImages =  [defaultCable, blackCable, cyanCable, blueCable, greenCable, greyCable, pinkCable, redCable, yellowCable];
 
     const toggleCable = (index) => {
         if (cableSelect[index]) {
@@ -20,7 +23,7 @@ export default function Cable() {
             {cableSelect.map((initStateValue, initStateIndex) => {return (<img
                 key={initStateIndex}
                 className={`single-cable ${initStateValue ? "selected" : ""}`}
-                src={cable}
+                src={cableImages[initStateIndex]}
                 alt=""
                 onClick={() => {toggleCable(initStateIndex)}}
             />)})}

@@ -1,11 +1,11 @@
-import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 
 export default function Board() {
   const containerRef = useRef(null);
   const selectedNodeRef = useRef(null); // currently selected node
   const connectionsRef = useRef([]); // list of [start, end] pairs
 
-  let count = 0;
+  //let count = 0;
 
   useEffect(() => {
     let svgElement;
@@ -51,7 +51,7 @@ export default function Board() {
 
   return (
     <div>
-      <div ref={containerRef} />
+      <div ref={containerRef} className={"vectorized-board"}/>
     </div>
   );
 }

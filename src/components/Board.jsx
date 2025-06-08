@@ -4,14 +4,25 @@ export default function Board() {
   const containerRef = useRef(null);
   const selectedNodeRef = useRef(null); // currently selected node
   const connectionsRef = useRef([]); // list of [start, end] pairs
+  const usedNodesRef = useRef(new Set()) // list of nodes that are currently in use and therefore unclickable
 
-  //let count = 0;
+  let count = 0;
 
   useEffect(() => {
     let svgElement;
 
     const handleNodeClick = (id) => {
       console.log("Clicked:", id);
+      if (usedNodesRef.current.has(id)) {
+        if (selectedNodeRef.current === id) {
+          console.log("Removed ", usedNodesRef)
+          usedNodesRef.current.delete(id);
+          selectedNodeRef.current = null;
+        }
+        return;
+      }
+
+      usedNodesRef.current.add(id);
 
       if (selectedNodeRef.current === null) {
         console.log("node set");
@@ -25,6 +36,19 @@ export default function Board() {
       }
     };
 
+    const handleLineClick = (lineId) => {
+      console.log("Line clicked: ", lineId)
+      const svg = containerRef.current.querySelector("svg");
+      const [line, fromId, toId] = lineId.split("-");
+      document.getElementById(lineId)?.remove()
+      document.getElementById(`v_line-${fromId}-${toId}`)?.remove()
+      usedNodesRef.current.delete(fromId);
+      usedNodesRef.current.delete(toId);
+      // TODO: remove connection from array
+
+      console.log("Lines removed")
+    }
+
     const drawLineBetween = (fromId, toId) => {
       const svg = containerRef.current.querySelector("svg");
       const from = svg.querySelector(`#${fromId}`);
@@ -37,15 +61,42 @@ export default function Board() {
       const x2 = parseFloat(to.getAttribute("cx"));
       const y2 = parseFloat(to.getAttribute("cy"));
 
-      const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
-      line.setAttribute("x1", x1);
-      line.setAttribute("y1", y1);
-      line.setAttribute("x2", x2);
-      line.setAttribute("y2", y2);
-      line.setAttribute("class", "cable-red");
+      const visibleLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      visibleLine.setAttribute("x1", x1);
+      visibleLine.setAttribute("y1", y1);
+      visibleLine.setAttribute("x2", x2);
+      visibleLine.setAttribute("y2", y2);
+      visibleLine.setAttribute("class", "cable-red");
+      const visibleLineId = `v_line-${fromId}-${toId}`
+      visibleLine.setAttribute("id", visibleLineId)
+
+      const invisibleLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      invisibleLine.setAttribute("x1", x1);
+      invisibleLine.setAttribute("y1", y1);
+      invisibleLine.setAttribute("x2", x2);
+      invisibleLine.setAttribute("y2", y2);
+      invisibleLine.setAttribute("class", "cable-red-invisible");
+      const invisibleLineId = `i_line-${fromId}-${toId}`
+      invisibleLine.setAttribute("id", invisibleLineId)
 
       // put lines at the top level of the SVG for visibility
-      svg.appendChild(line);
+      svg.appendChild(invisibleLine);
+      svg.appendChild(visibleLine);
+    };
+
+
+
+    const handleClick = (event) => {
+      const line = event.target.closest("line[id]")
+      if (line) {
+        handleLineClick(line.id)
+        return;
+      }
+
+      const circle = event.target.closest("circle[id]");
+      if (circle) {
+        handleNodeClick(circle.id);
+      }
     };
 
 
@@ -59,13 +110,7 @@ export default function Board() {
         containerRef.current.innerHTML = svg;
         svgElement = containerRef.current;
 
-        const handleClick = (event) => {
-          const circle = event.target.closest("circle[id]");
-          if (circle) {
-            handleNodeClick(circle.id);
-            
-          }
-        };
+
         svgElement.addEventListener("click", handleClick);
 
         // Cleanup
@@ -77,7 +122,7 @@ export default function Board() {
 
   return (
     <div>
-      <div ref={containerRef} className={"vectorized-board"}/>
+      <div ref={containerRef} className={"vectorized-board"} />
     </div>
   );
 }

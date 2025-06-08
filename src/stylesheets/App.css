@@ -1,6 +1,7 @@
 body {
   margin: 0;
   padding: 0;
+  overflow: hidden;
 }
 
 
@@ -35,12 +36,6 @@ h2 {
   font-size: larger;
 }
 
-#board-image {
-  display: block;
-  width: 80%;
-  height: 80%;
-  margin: auto;
-}
 
 #cables {
   display: flex;

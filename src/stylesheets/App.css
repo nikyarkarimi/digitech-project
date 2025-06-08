@@ -92,3 +92,8 @@ h2 {
 .cls-2 {
   cursor: pointer;
 }
+
+.cable-red {
+  stroke: red;
+  stroke-width: 1.5;
+}

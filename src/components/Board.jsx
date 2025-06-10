@@ -1,21 +1,43 @@
 import { useRef, useEffect } from "react";
+import { useCable } from "../contexts/CableContext.jsx";
 
 export default function Board() {
   const containerRef = useRef(null);
-  const selectedNodeRef = useRef(null); // currently selected node
-  const connectionsRef = useRef([]); // list of [start, end] pairs
-  const usedNodesRef = useRef(new Set()) // list of nodes that are currently in use and therefore unclickable
+  const selectedNodeRef = useRef(null);
+  const connectionsRef = useRef([]);
+  const usedNodesRef = useRef(new Set());
 
-  let count = 0;
+  // read current state from Context
+  const { selectedCableIndex } = useCable();
+
+  // Ref for selected cable
+  const selectedCableRef = useRef(selectedCableIndex);
+
+  // when selectedCableIndex changes selectedCableRef should be updated
+  useEffect(() => {
+    selectedCableRef.current = selectedCableIndex;
+  }, [selectedCableIndex]);
+
+  const colorClasses = [
+    "cable-default", "cable-black", "cable-cyan", "cable-blue",
+    "cable-green", "cable-brown", "cable-pink", "cable-red", "cable-yellow"
+  ];
+
+  // get color from current Ref
+  const getColorClass = () => {
+    const idx = selectedCableRef.current;
+    if (typeof idx === "number" && idx >= 0 && idx < colorClasses.length) {
+      return colorClasses[idx];
+    }
+    //return "cable-default";
+  };
 
   useEffect(() => {
     let svgElement;
 
     const handleNodeClick = (id) => {
-      console.log("Clicked:", id);
       if (usedNodesRef.current.has(id)) {
         if (selectedNodeRef.current === id) {
-          console.log("Removed ", usedNodesRef)
           usedNodesRef.current.delete(id);
           selectedNodeRef.current = null;
         }
@@ -25,35 +47,33 @@ export default function Board() {
       usedNodesRef.current.add(id);
 
       if (selectedNodeRef.current === null) {
-        console.log("node set");
         selectedNodeRef.current = id;
       } else {
-        console.log("New connection set!");
-        connectionsRef.current.push([selectedNodeRef.current, id]);
-        drawLineBetween(selectedNodeRef.current, id);
+        const fromId = selectedNodeRef.current;
+        const toId = id;
+
+        const colorClass = getColorClass(); // Aktuelle Farbe sicher lesen
+        console.log("Zeichne Verbindung mit Farbe (stabil):", colorClass);
+
+        drawLineBetween(fromId, toId, colorClass);
+        connectionsRef.current.push([fromId, toId]);
         selectedNodeRef.current = null;
-        console.log("All connections:", connectionsRef.current);
       }
     };
 
     const handleLineClick = (lineId) => {
-      console.log("Line clicked: ", lineId)
-      const svg = containerRef.current.querySelector("svg");
-      const [line, fromId, toId] = lineId.split("-");
-      document.getElementById(lineId)?.remove()
-      document.getElementById(`v_line-${fromId}-${toId}`)?.remove()
+      const [_, fromId, toId] = lineId.split("-");
+      document.getElementById(lineId)?.remove();
+      document.getElementById(`v_line-${fromId}-${toId}`)?.remove();
       usedNodesRef.current.delete(fromId);
       usedNodesRef.current.delete(toId);
-      // TODO: remove connection from array
+    };
 
-      console.log("Lines removed")
-    }
-
-    const drawLineBetween = (fromId, toId) => {
+    // Zeichne Linie mit übergebener CSS-Klasse
+    const drawLineBetween = (fromId, toId, colorClass) => {
       const svg = containerRef.current.querySelector("svg");
       const from = svg.querySelector(`#${fromId}`);
       const to = svg.querySelector(`#${toId}`);
-
       if (!from || !to) return;
 
       const x1 = parseFloat(from.getAttribute("cx"));
@@ -66,30 +86,25 @@ export default function Board() {
       visibleLine.setAttribute("y1", y1);
       visibleLine.setAttribute("x2", x2);
       visibleLine.setAttribute("y2", y2);
-      visibleLine.setAttribute("class", "cable-red");
-      const visibleLineId = `v_line-${fromId}-${toId}`
-      visibleLine.setAttribute("id", visibleLineId)
+      visibleLine.setAttribute("class", colorClass);
+      visibleLine.setAttribute("id", `v_line-${fromId}-${toId}`);
 
       const invisibleLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
       invisibleLine.setAttribute("x1", x1);
       invisibleLine.setAttribute("y1", y1);
       invisibleLine.setAttribute("x2", x2);
       invisibleLine.setAttribute("y2", y2);
-      invisibleLine.setAttribute("class", "cable-red-invisible");
-      const invisibleLineId = `i_line-${fromId}-${toId}`
-      invisibleLine.setAttribute("id", invisibleLineId)
+      invisibleLine.setAttribute("class", colorClass + "-invisible");
+      invisibleLine.setAttribute("id", `i_line-${fromId}-${toId}`);
 
-      // put lines at the top level of the SVG for visibility
       svg.appendChild(invisibleLine);
       svg.appendChild(visibleLine);
     };
 
-
-
     const handleClick = (event) => {
-      const line = event.target.closest("line[id]")
+      const line = event.target.closest("line[id]");
       if (line) {
-        handleLineClick(line.id)
+        handleLineClick(line.id);
         return;
       }
 
@@ -99,30 +114,24 @@ export default function Board() {
       }
     };
 
-
     fetch("src/assets/Digitech.svg")
-      .then((res) => res.text())
-      .then((svg) => {
-        console.log("Baby we're onnn");
-        // this is the response from the previous block, svg being a variable name
-        if (!containerRef.current) return;
-        // injects svg as text into the HTML, allowing us to use functions like the query selector - now we can access the paths
-        containerRef.current.innerHTML = svg;
-        svgElement = containerRef.current;
+        .then((res) => res.text())
+        .then((svg) => {
+          if (!containerRef.current) return;
+          containerRef.current.innerHTML = svg;
+          svgElement = containerRef.current;
 
+          svgElement.addEventListener("click", handleClick);
 
-        svgElement.addEventListener("click", handleClick);
-
-        // Cleanup
-        return () => {
-          svgElement?.removeEventListener("click", handleClick);
-        };
-      });
-  }, []); // "[] as the second argument to useEffect means this only runs once when the component mounts.", says chat; so it won't run more than once, ever, no condition to rerun
+          return () => {
+            svgElement?.removeEventListener("click", handleClick);
+          };
+        });
+  }, []);
 
   return (
-    <div>
-      <div ref={containerRef} className={"vectorized-board"} />
-    </div>
+      <div>
+        <div ref={containerRef} className={"vectorized-board"} />
+      </div>
   );
 }

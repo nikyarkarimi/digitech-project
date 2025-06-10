@@ -1,32 +1,32 @@
-import {defaultCable, blackCable, cyanCable, blueCable, greenCable, brownCable, pinkCable, redCable, yellowCable} from "../assets/asset_exports.js";
-import {useState} from "react";
+import { defaultCable, blackCable, cyanCable, blueCable, greenCable, brownCable, pinkCable, redCable, yellowCable } from "../assets/asset_exports.js";
+import { useCable } from "../contexts/CableContext.jsx";
 
 export default function Cable() {
-    const [cableSelect, setCableSelect] = useState([false, false, false, false, false, false, false, false, false]);
+    const cableImages = [defaultCable, blackCable, cyanCable, blueCable, greenCable, brownCable, pinkCable, redCable, yellowCable];
 
-    // Array for cable SVGs
-    const cableImages =  [defaultCable, blackCable, cyanCable, blueCable, greenCable, brownCable, pinkCable, redCable, yellowCable];
+    const { selectedCableIndex, setSelectedCableIndex } = useCable();
 
     const toggleCable = (index) => {
-        if (cableSelect[index]) {
-            setCableSelect(cableSelect.map(() => false));
+        if (selectedCableIndex === index) {
+            setSelectedCableIndex(null); // unselect
         } else {
-            const newSelected = cableSelect.map(() => false);
-            newSelected[index] = !newSelected[index];
-            setCableSelect(newSelected);
+            console.log("Kabel ausgewählt Index:", index);
+            setSelectedCableIndex(index); // select
         }
-    }
+    };
+
 
     return (
         <div id="cables">
-            {/* Mapping the initialState indexes to the cable images for referencing in the stylesheet. */}
-            {cableSelect.map((initStateValue, initStateIndex) => {return (<img
-                key={initStateIndex}
-                className={`single-cable ${initStateValue ? "selected" : ""}`}
-                src={cableImages[initStateIndex]}
-                alt="cable"
-                onClick={() => {toggleCable(initStateIndex)}}
-            />)})}
+            {cableImages.map((img, idx) => (
+                <img
+                    key={idx}
+                    className={`single-cable ${selectedCableIndex === idx ? "selected" : ""}`}
+                    src={img}
+                    alt="cable"
+                    onClick={() => toggleCable(idx)}
+                />
+            ))}
         </div>
     );
 }

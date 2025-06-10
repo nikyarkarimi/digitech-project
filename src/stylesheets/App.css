@@ -107,3 +107,30 @@ h2 {
   stroke-width: 5;
   cursor: pointer;
 }
+
+.cable-default { stroke: #4b5059; stroke-width: 1.5; }
+.cable-default-invisible { stroke: #4b5059; opacity: 0; stroke-width: 5; cursor: pointer; }
+
+.cable-black { stroke: #000000; stroke-width: 1.5; }
+.cable-black-invisible { stroke: #000000; opacity: 0; stroke-width: 5; cursor: pointer; }
+
+.cable-cyan { stroke: #23b7b4; stroke-width: 1.5; }
+.cable-cyan-invisible { stroke: #23b7b4; opacity: 0; stroke-width: 5; cursor: pointer; }
+
+.cable-blue { stroke: #4653a4; stroke-width: 1.5; }
+.cable-blue-invisible { stroke: #4653a4; opacity: 0; stroke-width: 5; cursor: pointer; }
+
+.cable-green { stroke: #3cb54a; stroke-width: 1.5; }
+.cable-green-invisible { stroke: #3cb54a; opacity: 0; stroke-width: 5; cursor: pointer; }
+
+.cable-brown { stroke: #8B4513; stroke-width: 1.5; }
+.cable-brown-invisible { stroke: #8B4513; opacity: 0; stroke-width: 5; cursor: pointer; }
+
+.cable-pink { stroke: #ed3a95; stroke-width: 1.5; }
+.cable-pink-invisible { stroke: #ed3a95; opacity: 0; stroke-width: 5; cursor: pointer; }
+
+.cable-red { stroke: #b92840; stroke-width: 1.5; }
+.cable-red-invisible { stroke: #b92840; opacity: 0; stroke-width: 5; cursor: pointer; }
+
+.cable-yellow { stroke: #f99c25; stroke-width: 1.5; }
+.cable-yellow-invisible { stroke: #f99c25; opacity: 0; stroke-width: 5; cursor: pointer; }

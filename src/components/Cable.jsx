@@ -1,5 +1,6 @@
 import { defaultCable, blackCable, cyanCable, blueCable, greenCable, brownCable, pinkCable, redCable, yellowCable } from "../assets/asset_exports.js";
 import { useCable } from "../contexts/CableContext.jsx";
+import {useEffect} from "react";
 
 export default function Cable() {
     const cableImages = [defaultCable, blackCable, cyanCable, blueCable, greenCable, brownCable, pinkCable, redCable, yellowCable];
@@ -14,6 +15,13 @@ export default function Cable() {
             setSelectedCableIndex(index); // select
         }
     };
+
+    useEffect(()=> {
+        if (selectedCableIndex === null) {
+            setSelectedCableIndex(0)    // first cable
+        }
+    }, []);
+    
 
 
     return (

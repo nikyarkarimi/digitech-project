@@ -1,10 +1,8 @@
-// 1. Notwendige Hooks importieren
 import { createContext, useContext, useState } from "react";
 
-// 2. Erstelle einen neuen React Context
 const CableContext = createContext();
 
-// 3. Provider-Komponente, die Zustand und Setter bereitstellt
+// Provider Component
 export function CableProvider({ children }) {
     const [selectedCableIndex, setSelectedCableIndex] = useState(null);
 
@@ -15,7 +13,7 @@ export function CableProvider({ children }) {
     );
 }
 
-// 4. Custom Hook für einfachen Zugriff in anderen Komponenten
+// Custom Hook for easier access
 export function useCable() {
     return useContext(CableContext);
 }

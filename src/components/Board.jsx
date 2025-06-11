@@ -1,6 +1,13 @@
 import { useRef, useEffect } from "react";
 import { useCable } from "../contexts/CableContext.jsx";
 
+/**
+ * TODO Unsichtbare Kabel verhindern, wenn keine Kabel-Farbe ausgewählt wurde
+ *
+ * Tamaras Comments rein geben
+ * */
+
+
 export default function Board() {
   const containerRef = useRef(null);
   const selectedNodeRef = useRef(null);
@@ -29,7 +36,7 @@ export default function Board() {
     if (typeof idx === "number" && idx >= 0 && idx < colorClasses.length) {
       return colorClasses[idx];
     }
-    //return "cable-default";
+    return null;
   };
 
   useEffect(() => {
@@ -52,8 +59,15 @@ export default function Board() {
         const fromId = selectedNodeRef.current;
         const toId = id;
 
-        const colorClass = getColorClass(); // Aktuelle Farbe sicher lesen
-        console.log("Zeichne Verbindung mit Farbe (stabil):", colorClass);
+        const colorClass = getColorClass(); // Aktuelle Farbe lesen
+
+        if (!colorClass) {
+          console.warn("No valid cable color = no connection...");
+          usedNodesRef.current.delete(fromId); // optional: Knoten wieder freigeben
+          usedNodesRef.current.delete(toId);
+          selectedNodeRef.current = null;
+          return;
+        }
 
         drawLineBetween(fromId, toId, colorClass);
         connectionsRef.current.push([fromId, toId]);
@@ -67,6 +81,8 @@ export default function Board() {
       document.getElementById(`v_line-${fromId}-${toId}`)?.remove();
       usedNodesRef.current.delete(fromId);
       usedNodesRef.current.delete(toId);
+
+
     };
 
     // Zeichne Linie mit übergebener CSS-Klasse

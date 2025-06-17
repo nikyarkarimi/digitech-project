@@ -1,33 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="246.38mm" height="152.59mm"
-    viewBox="0 0 698.4 432.54">
+<svg xmlns="http://www.w3.org/2000/svg" width="246.38mm" height="152.59mm" viewBox="0 0 698.4 432.54">
     <defs>
-        <style>
-            .cls-1,.cls-2,.cls-3,.cls-4{stroke:#000;}.cls-1,.cls-2,.cls-3,.cls-4,.cls-5{stroke-miterlimit:10;}.cls-1,.cls-3,.cls-5{fill:none;}.cls-1,.cls-4,.cls-5{stroke-width:.5px;}.cls-6{font-size:5.07px;letter-spacing:-.07em;}.cls-6,.cls-7,.cls-8,.cls-9,.cls-10{fill:#231f20;font-family:OCRAExtended,
-            'OCR A
-            Extended';}.cls-7{font-size:5.51px;letter-spacing:-.07em;}.cls-8{font-size:8.22px;letter-spacing:-.05em;}.cls-11{fill:#c72026;}.cls-3{stroke-width:.25px;}.cls-9{letter-spacing:-.07em;}.cls-9,.cls-10{font-size:12px;}.cls-5{stroke:#231f20;}</style>
+        <style>.cls-1,.cls-2,.cls-3,.cls-4{stroke:#000;}.cls-1,.cls-2,.cls-3,.cls-4,.cls-5{stroke-miterlimit:10;}.cls-1,.cls-3,.cls-5{fill:none;}.cls-1,.cls-4,.cls-5{stroke-width:.5px;}.cls-6{font-size:5.07px;letter-spacing:-.07em;}.cls-6,.cls-7,.cls-8,.cls-9,.cls-10{fill:#231f20;font-family:OCRAExtended, 'OCR A Extended';}.cls-7{font-size:5.51px;letter-spacing:-.07em;}.cls-8{font-size:8.22px;letter-spacing:-.05em;}.cls-11{fill:#c72026;}.cls-3{stroke-width:.25px;}.cls-9{letter-spacing:-.07em;}.cls-9,.cls-10{font-size:12px;}.cls-5{stroke:#231f20;}</style>
     </defs>
     <g id="Static">
         <g id="Input">
             <g id="D">
-                <line class="cls-5" x1="50.72" y1="160.52" x2="50.72" y2="233.73" />
-                <line class="cls-5" x1="50.72" y1="107.51" x2="50.72" y2="127.48" />
-                <line class="cls-5" x1="46.96" y1="62.41" x2="53.23" y2="62.41" />
-                <line class="cls-5" x1="46.96" y1="270.81" x2="53.23" y2="270.81" />
-                <polyline class="cls-1" points="20.57 339.69 22.89 337.37 25.14 339.62" />
-                <line class="cls-1" x1="34.28" y1="107.51" x2="34.28" y2="180.84" />
-                <line class="cls-1" x1="34.28" y1="213.65" x2="34.28" y2="287.15" />
-                <line class="cls-1" x1="34.28" y1="319.97" x2="34.28" y2="363.73" />
-                <polyline class="cls-1" points="34.28 358.33 22.9 358.33 22.9 354.41" />
-                <rect class="cls-4" x="21" y="350.94" width="3.79" height="3.47" />
-                <rect class="cls-4" x="21" y="345.27" width="3.79" height="3.47" />
-                <line class="cls-1" x1="22.9" y1="337.63" x2="22.9" y2="345.15" />
-                <rect class="cls-1" x="30.31" y="74.69" width="7.95" height="32.81" />
-                <rect class="cls-1" x="46.75" y="74.69" width="7.95" height="32.81" />
-                <rect class="cls-1" x="46.75" y="127.71" width="7.95" height="32.81" />
-                <rect class="cls-1" x="46.82" y="233.73" width="7.95" height="32.81" />
-                <rect class="cls-1" x="30.31" y="180.84" width="7.95" height="32.81" />
-                <rect class="cls-1" x="30.31" y="287.15" width="7.95" height="32.81" />
+                <line class="cls-5" x1="50.72" y1="160.52" x2="50.72" y2="233.73"/>
+                <line class="cls-5" x1="50.72" y1="107.51" x2="50.72" y2="127.48"/>
+                <line class="cls-5" x1="46.96" y1="62.41" x2="53.23" y2="62.41"/>
+                <line class="cls-5" x1="46.96" y1="270.81" x2="53.23" y2="270.81"/>
+                <polyline class="cls-1" points="20.57 339.69 22.89 337.37 25.14 339.62"/>
+                <line class="cls-1" x1="34.28" y1="107.51" x2="34.28" y2="180.84"/>
+                <line class="cls-1" x1="34.28" y1="213.65" x2="34.28" y2="287.15"/>
+                <line class="cls-1" x1="34.28" y1="319.97" x2="34.28" y2="363.73"/>
+                <polyline class="cls-1" points="34.28 358.33 22.9 358.33 22.9 354.41"/>
+                <rect class="cls-4" x="21" y="350.94" width="3.79" height="3.47"/>
+                <rect class="cls-4" x="21" y="345.27" width="3.79" height="3.47"/>
+                <line class="cls-1" x1="22.9" y1="337.63" x2="22.9" y2="345.15"/>
+                <rect class="cls-1" x="30.31" y="74.69" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="46.75" y="74.69" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="46.75" y="127.71" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="46.82" y="233.73" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="30.31" y="180.84" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="30.31" y="287.15" width="7.95" height="32.81"/>
                 <g id="Font">
                     <text class="cls-8" transform="translate(17.88 336.16)">
                         <tspan x="0" y="0">5V</tspan>
@@ -35,28 +31,22 @@
                     <text class="cls-7" transform="translate(30.12 355.3) rotate(-90)">
                         <tspan x="0" y="0">R27</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(43.23 319.21) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(43.23 319.21) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X39</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(43.23 213.37) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(43.23 213.37) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X27</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(43.23 105.23) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(43.23 105.23) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X7</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(59.68 105.23) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(59.68 105.23) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X8</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(59.68 160.52) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(59.68 160.52) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X15</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(59.65 266.55) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(59.65 266.55) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X31</tspan>
                     </text>
                     <text class="cls-10" transform="translate(30.7 71.88)">
@@ -71,22 +61,22 @@
                 </g>
             </g>
             <g id="C">
-                <line class="cls-5" x1="83.67" y1="160.52" x2="83.67" y2="233.73" />
-                <line class="cls-5" x1="83.67" y1="107.51" x2="83.67" y2="127.48" />
-                <polyline class="cls-1" points="53.53 339.69 55.84 337.37 58.09 339.62" />
-                <line class="cls-1" x1="67.23" y1="107.51" x2="67.23" y2="180.84" />
-                <line class="cls-1" x1="67.23" y1="213.65" x2="67.23" y2="287.15" />
-                <line class="cls-1" x1="67.23" y1="319.97" x2="67.23" y2="363.73" />
-                <polyline class="cls-1" points="67.23 358.33 55.85 358.33 55.85 354.41" />
-                <rect class="cls-4" x="53.95" y="350.94" width="3.79" height="3.47" />
-                <rect class="cls-4" x="53.95" y="345.27" width="3.79" height="3.47" />
-                <line class="cls-1" x1="55.85" y1="337.63" x2="55.85" y2="345.15" />
-                <rect class="cls-1" x="63.24" y="74.69" width="7.95" height="32.81" />
-                <rect class="cls-1" x="79.64" y="74.69" width="7.95" height="32.81" />
-                <rect class="cls-1" x="79.64" y="127.71" width="7.95" height="32.81" />
-                <rect class="cls-1" x="79.64" y="233.73" width="7.95" height="32.81" />
-                <rect class="cls-1" x="63.25" y="180.84" width="7.95" height="32.81" />
-                <rect class="cls-1" x="63.19" y="287.15" width="7.95" height="32.81" />
+                <line class="cls-5" x1="83.67" y1="160.52" x2="83.67" y2="233.73"/>
+                <line class="cls-5" x1="83.67" y1="107.51" x2="83.67" y2="127.48"/>
+                <polyline class="cls-1" points="53.53 339.69 55.84 337.37 58.09 339.62"/>
+                <line class="cls-1" x1="67.23" y1="107.51" x2="67.23" y2="180.84"/>
+                <line class="cls-1" x1="67.23" y1="213.65" x2="67.23" y2="287.15"/>
+                <line class="cls-1" x1="67.23" y1="319.97" x2="67.23" y2="363.73"/>
+                <polyline class="cls-1" points="67.23 358.33 55.85 358.33 55.85 354.41"/>
+                <rect class="cls-4" x="53.95" y="350.94" width="3.79" height="3.47"/>
+                <rect class="cls-4" x="53.95" y="345.27" width="3.79" height="3.47"/>
+                <line class="cls-1" x1="55.85" y1="337.63" x2="55.85" y2="345.15"/>
+                <rect class="cls-1" x="63.24" y="74.69" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="79.64" y="74.69" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="79.64" y="127.71" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="79.64" y="233.73" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="63.25" y="180.84" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="63.19" y="287.15" width="7.95" height="32.81"/>
                 <g id="Typo">
                     <text class="cls-10" transform="translate(62.7 72.16)">
                         <tspan x="0" y="0">C</tspan>
@@ -103,57 +93,50 @@
                     <text class="cls-7" transform="translate(63.05 355.3) rotate(-90)">
                         <tspan x="0" y="0">R28</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(76.16 319.21) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(76.16 319.21) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">x40</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(76.16 213.37) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(76.16 213.37) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X28</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(76.16 105.23) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(76.16 105.23) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X9</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(92.61 107.05) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(92.61 107.05) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X10</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(92.61 160.52) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(92.61 160.52) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X16</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(92.58 266.55) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(92.58 266.55) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X32</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(124.87 266.55) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(124.87 266.55) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X33</tspan>
                     </text>
                 </g>
-                <line class="cls-5" x1="80.42" y1="62.55" x2="86.69" y2="62.55" />
-                <line class="cls-5" x1="80.42" y1="271.14" x2="86.69" y2="271.14" />
+                <line class="cls-5" x1="80.42" y1="62.55" x2="86.69" y2="62.55"/>
+                <line class="cls-5" x1="80.42" y1="271.14" x2="86.69" y2="271.14"/>
             </g>
             <g id="B">
-                <line class="cls-5" x1="116.24" y1="160.52" x2="116.24" y2="233.73" />
-                <line class="cls-5" x1="116.24" y1="107.51" x2="116.24" y2="127.48" />
-                <polyline class="cls-1" points="86.09 339.69 88.41 337.37 90.66 339.62" />
-                <line class="cls-1" x1="99.8" y1="107.51" x2="99.8" y2="180.84" />
-                <line class="cls-1" x1="99.8" y1="213.65" x2="99.8" y2="287.15" />
-                <line class="cls-1" x1="99.8" y1="319.97" x2="99.8" y2="363.73" />
-                <polyline class="cls-1" points="99.8 358.33 88.42 358.33 88.42 354.41" />
-                <rect class="cls-4" x="86.52" y="350.94" width="3.79" height="3.47" />
-                <rect class="cls-4" x="86.52" y="345.27" width="3.79" height="3.47" />
-                <line class="cls-1" x1="88.42" y1="337.63" x2="88.42" y2="345.15" />
-                <rect class="cls-1" x="95.8" y="74.69" width="7.95" height="32.81" />
-                <rect class="cls-1" x="112.21" y="74.69" width="7.95" height="32.81" />
-                <rect class="cls-1" x="112.21" y="127.71" width="7.95" height="32.81" />
-                <rect class="cls-1" x="112.21" y="233.73" width="7.95" height="32.81" />
-                <rect class="cls-1" x="95.82" y="180.84" width="7.95" height="32.81" />
-                <rect class="cls-1" x="95.76" y="287.15" width="7.95" height="32.81" />
-                <line class="cls-5" x1="112.99" y1="62.55" x2="119.26" y2="62.55" />
-                <line class="cls-5" x1="112.99" y1="271.14" x2="119.26" y2="271.14" />
+                <line class="cls-5" x1="116.24" y1="160.52" x2="116.24" y2="233.73"/>
+                <line class="cls-5" x1="116.24" y1="107.51" x2="116.24" y2="127.48"/>
+                <polyline class="cls-1" points="86.09 339.69 88.41 337.37 90.66 339.62"/>
+                <line class="cls-1" x1="99.8" y1="107.51" x2="99.8" y2="180.84"/>
+                <line class="cls-1" x1="99.8" y1="213.65" x2="99.8" y2="287.15"/>
+                <line class="cls-1" x1="99.8" y1="319.97" x2="99.8" y2="363.73"/>
+                <polyline class="cls-1" points="99.8 358.33 88.42 358.33 88.42 354.41"/>
+                <rect class="cls-4" x="86.52" y="350.94" width="3.79" height="3.47"/>
+                <rect class="cls-4" x="86.52" y="345.27" width="3.79" height="3.47"/>
+                <line class="cls-1" x1="88.42" y1="337.63" x2="88.42" y2="345.15"/>
+                <rect class="cls-1" x="95.8" y="74.69" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="112.21" y="74.69" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="112.21" y="127.71" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="112.21" y="233.73" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="95.82" y="180.84" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="95.76" y="287.15" width="7.95" height="32.81"/>
+                <line class="cls-5" x1="112.99" y1="62.55" x2="119.26" y2="62.55"/>
+                <line class="cls-5" x1="112.99" y1="271.14" x2="119.26" y2="271.14"/>
                 <g id="Typo-2">
                     <text class="cls-10" transform="translate(96.51 72.16)">
                         <tspan x="0" y="0">B</tspan>
@@ -170,53 +153,48 @@
                     <text class="cls-7" transform="translate(95.62 355.3) rotate(-90)">
                         <tspan x="0" y="0">R29</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(108.73 319.21) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(108.73 319.21) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">x41</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(108.73 213.37) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(108.73 213.37) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X29</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(125.18 107.05) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(125.18 107.05) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X12</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(108.75 107.05) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(108.75 107.05) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X11</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(125.18 160.52) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(125.18 160.52) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X17</tspan>
                     </text>
                 </g>
-                <rect class="cls-1" x="96.02" y="74.69" width="7.95" height="32.81" />
-                <rect class="cls-1" x="112.18" y="74.69" width="7.95" height="32.81" />
-                <rect class="cls-1" x="112.18" y="127.71" width="7.95" height="32.81" />
-                <rect class="cls-1" x="112.18" y="233.73" width="7.95" height="32.81" />
-                <rect class="cls-1" x="96.02" y="180.84" width="7.95" height="32.81" />
-                <rect class="cls-1" x="95.87" y="287.15" width="7.95" height="32.81" />
+                <rect class="cls-1" x="96.02" y="74.69" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="112.18" y="74.69" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="112.18" y="127.71" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="112.18" y="233.73" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="96.02" y="180.84" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="95.87" y="287.15" width="7.95" height="32.81"/>
             </g>
             <g id="A">
-                <line class="cls-5" x1="148.95" y1="160.52" x2="148.95" y2="233.73" />
-                <line class="cls-5" x1="148.95" y1="107.51" x2="148.95" y2="127.48" />
-                <polyline class="cls-1" points="118.81 339.69 121.13 337.37 123.38 339.62" />
-                <line class="cls-1" x1="132.51" y1="107.51" x2="132.51" y2="180.84" />
-                <line class="cls-1" x1="132.51" y1="213.65" x2="132.51" y2="287.15" />
-                <line class="cls-1" x1="132.51" y1="319.97" x2="132.51" y2="363.73" />
-                <polyline class="cls-1" points="132.51 358.33 121.13 358.33 121.13 354.41" />
-                <rect class="cls-4" x="119.24" y="350.94" width="3.79" height="3.47" />
-                <rect class="cls-4" x="119.24" y="345.27" width="3.79" height="3.47" />
-                <line class="cls-1" x1="121.13" y1="337.63" x2="121.13" y2="345.15" />
-                <rect class="cls-1" x="128.52" y="74.69" width="7.95" height="32.81" />
-                <rect class="cls-1" x="144.92" y="74.69" width="7.95" height="32.81" />
-                <rect class="cls-1" x="144.92" y="127.71" width="7.95" height="32.81" />
-                <rect class="cls-1" x="144.92" y="233.73" width="7.95" height="32.81" />
-                <rect class="cls-1" x="128.54" y="180.84" width="7.95" height="32.81" />
-                <rect class="cls-1" x="128.47" y="287.15" width="7.95" height="32.81" />
-                <line class="cls-5" x1="145.7" y1="62.55" x2="151.97" y2="62.55" />
-                <line class="cls-5" x1="145.7" y1="271.14" x2="151.97" y2="271.14" />
+                <line class="cls-5" x1="148.95" y1="160.52" x2="148.95" y2="233.73"/>
+                <line class="cls-5" x1="148.95" y1="107.51" x2="148.95" y2="127.48"/>
+                <polyline class="cls-1" points="118.81 339.69 121.13 337.37 123.38 339.62"/>
+                <line class="cls-1" x1="132.51" y1="107.51" x2="132.51" y2="180.84"/>
+                <line class="cls-1" x1="132.51" y1="213.65" x2="132.51" y2="287.15"/>
+                <line class="cls-1" x1="132.51" y1="319.97" x2="132.51" y2="363.73"/>
+                <polyline class="cls-1" points="132.51 358.33 121.13 358.33 121.13 354.41"/>
+                <rect class="cls-4" x="119.24" y="350.94" width="3.79" height="3.47"/>
+                <rect class="cls-4" x="119.24" y="345.27" width="3.79" height="3.47"/>
+                <line class="cls-1" x1="121.13" y1="337.63" x2="121.13" y2="345.15"/>
+                <rect class="cls-1" x="128.52" y="74.69" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="144.92" y="74.69" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="144.92" y="127.71" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="144.92" y="233.73" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="128.54" y="180.84" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="128.47" y="287.15" width="7.95" height="32.81"/>
+                <line class="cls-5" x1="145.7" y1="62.55" x2="151.97" y2="62.55"/>
+                <line class="cls-5" x1="145.7" y1="271.14" x2="151.97" y2="271.14"/>
                 <g id="Typo_copy">
                     <text class="cls-10" transform="translate(129.22 72.16)">
                         <tspan x="0" y="0">A</tspan>
@@ -233,39 +211,32 @@
                     <text class="cls-7" transform="translate(128.33 355.3) rotate(-90)">
                         <tspan x="0" y="0">R30</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(141.44 319.21) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(141.44 319.21) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">x42</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(141.44 213.37) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(141.44 213.37) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X30</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(157.89 107.05) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(157.89 107.05) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X14</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(141.46 107.05) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(141.46 107.05) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X13</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(157.89 160.52) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(157.89 160.52) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X18</tspan>
                     </text>
-                    <text class="cls-6"
-                        transform="translate(157.63 266.55) rotate(-90) scale(1.54 1)">
+                    <text class="cls-6" transform="translate(157.63 266.55) rotate(-90) scale(1.54 1)">
                         <tspan x="0" y="0">X34</tspan>
                     </text>
                 </g>
-                <rect class="cls-1" x="144.89" y="74.69" width="7.95" height="32.81" />
-                <rect class="cls-1" x="144.89" y="127.71" width="7.95" height="32.81" />
-                <rect class="cls-1" x="144.89" y="233.73" width="7.95" height="32.81" />
-                <rect class="cls-1" x="128.74" y="180.84" width="7.95" height="32.81" />
-                <rect class="cls-1" x="128.58" y="287.15" width="7.95" height="32.81" />
+                <rect class="cls-1" x="144.89" y="74.69" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="144.89" y="127.71" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="144.89" y="233.73" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="128.74" y="180.84" width="7.95" height="32.81"/>
+                <rect class="cls-1" x="128.58" y="287.15" width="7.95" height="32.81"/>
             </g>
-            <polyline class="cls-5"
-                points="14.1 401.38 14.1 58.26 160.02 58.26 160.02 418.54 32.11 418.54" />
+            <polyline class="cls-5" points="14.1 401.38 14.1 58.26 160.02 58.26 160.02 418.54 32.11 418.54"/>
             <text class="cls-9" transform="translate(31.18 409.17)">
                 <tspan x="0" y="0">D</tspan>
             </text>
@@ -280,106 +251,104 @@
             </text>
         </g>
         <g id="Gates">
-            <polyline class="cls-1" points="169.46 206.99 169.46 229.98 202.5 229.98 202.5 206.99" />
-            <line class="cls-1" x1="202.5" y1="202.28" x2="202.5" y2="174.01" />
-            <line class="cls-1" x1="185.53" y1="202.28" x2="185.53" y2="174.01" />
-            <line class="cls-1" x1="185.53" y1="170.04" x2="185.53" y2="164.87" />
-            <line class="cls-1" x1="185.53" y1="229.98" x2="185.53" y2="206.99" />
-            <line class="cls-1" x1="169.46" y1="202.28" x2="169.46" y2="174.01" />
-            <polyline class="cls-1" points="202.5 170.04 202.5 164.87 169.46 164.87 169.46 170.04" />
-            <line class="cls-1" x1="168.06" y1="171.95" x2="170.98" y2="171.95" />
-            <line class="cls-1" x1="201.21" y1="171.95" x2="204.14" y2="171.95" />
-            <line class="cls-1" x1="168.06" y1="204.54" x2="170.98" y2="204.54" />
-            <line class="cls-1" x1="201.21" y1="204.54" x2="204.14" y2="204.54" />
-            <line class="cls-1" x1="184.07" y1="171.95" x2="186.99" y2="171.95" />
-            <line class="cls-1" x1="184.07" y1="204.54" x2="186.99" y2="204.54" />
+            <polyline class="cls-1" points="169.46 206.99 169.46 229.98 202.5 229.98 202.5 206.99"/>
+            <line class="cls-1" x1="202.5" y1="202.28" x2="202.5" y2="174.01"/>
+            <line class="cls-1" x1="185.53" y1="202.28" x2="185.53" y2="174.01"/>
+            <line class="cls-1" x1="185.53" y1="170.04" x2="185.53" y2="164.87"/>
+            <line class="cls-1" x1="185.53" y1="229.98" x2="185.53" y2="206.99"/>
+            <line class="cls-1" x1="169.46" y1="202.28" x2="169.46" y2="174.01"/>
+            <polyline class="cls-1" points="202.5 170.04 202.5 164.87 169.46 164.87 169.46 170.04"/>
+            <line class="cls-1" x1="168.06" y1="171.95" x2="170.98" y2="171.95"/>
+            <line class="cls-1" x1="201.21" y1="171.95" x2="204.14" y2="171.95"/>
+            <line class="cls-1" x1="168.06" y1="204.54" x2="170.98" y2="204.54"/>
+            <line class="cls-1" x1="201.21" y1="204.54" x2="204.14" y2="204.54"/>
+            <line class="cls-1" x1="184.07" y1="171.95" x2="186.99" y2="171.95"/>
+            <line class="cls-1" x1="184.07" y1="204.54" x2="186.99" y2="204.54"/>
         </g>
         <g id="Gates-2">
-            <polyline class="cls-1" points="251.04 206.99 251.04 229.98 284.09 229.98 284.09 206.99" />
-            <line class="cls-1" x1="284.09" y1="202.28" x2="284.09" y2="174.01" />
-            <line class="cls-1" x1="267.12" y1="202.28" x2="267.12" y2="174.01" />
-            <line class="cls-1" x1="267.12" y1="170.04" x2="267.12" y2="164.87" />
-            <line class="cls-1" x1="267.12" y1="229.98" x2="267.12" y2="206.99" />
-            <line class="cls-1" x1="251.04" y1="202.28" x2="251.04" y2="174.01" />
-            <polyline class="cls-1" points="284.09 170.04 284.09 164.87 251.04 164.87 251.04 170.04" />
-            <line class="cls-1" x1="249.64" y1="171.95" x2="252.57" y2="171.95" />
-            <line class="cls-1" x1="282.8" y1="171.95" x2="285.72" y2="171.95" />
-            <line class="cls-1" x1="249.64" y1="204.54" x2="252.57" y2="204.54" />
-            <line class="cls-1" x1="282.8" y1="204.54" x2="285.72" y2="204.54" />
-            <line class="cls-1" x1="265.65" y1="171.95" x2="268.58" y2="171.95" />
-            <line class="cls-1" x1="265.65" y1="204.54" x2="268.58" y2="204.54" />
+            <polyline class="cls-1" points="251.04 206.99 251.04 229.98 284.09 229.98 284.09 206.99"/>
+            <line class="cls-1" x1="284.09" y1="202.28" x2="284.09" y2="174.01"/>
+            <line class="cls-1" x1="267.12" y1="202.28" x2="267.12" y2="174.01"/>
+            <line class="cls-1" x1="267.12" y1="170.04" x2="267.12" y2="164.87"/>
+            <line class="cls-1" x1="267.12" y1="229.98" x2="267.12" y2="206.99"/>
+            <line class="cls-1" x1="251.04" y1="202.28" x2="251.04" y2="174.01"/>
+            <polyline class="cls-1" points="284.09 170.04 284.09 164.87 251.04 164.87 251.04 170.04"/>
+            <line class="cls-1" x1="249.64" y1="171.95" x2="252.57" y2="171.95"/>
+            <line class="cls-1" x1="282.8" y1="171.95" x2="285.72" y2="171.95"/>
+            <line class="cls-1" x1="249.64" y1="204.54" x2="252.57" y2="204.54"/>
+            <line class="cls-1" x1="282.8" y1="204.54" x2="285.72" y2="204.54"/>
+            <line class="cls-1" x1="265.65" y1="171.95" x2="268.58" y2="171.95"/>
+            <line class="cls-1" x1="265.65" y1="204.54" x2="268.58" y2="204.54"/>
         </g>
-        <path
-            d="M237.58,218.49h-21.76v-51.03h6.73s.34,3.61,4.32,3.61,4.33-3.61,4.33-3.61h6.39v51.03Z" />
-        <rect class="cls-1" x="210.08" y="165.13" width="33.25" height="64.85" />
+        <path d="M237.58,218.49h-21.76v-51.03h6.73s.34,3.61,4.32,3.61,4.33-3.61,4.33-3.61h6.39v51.03Z"/>
+        <rect class="cls-1" x="210.08" y="165.13" width="33.25" height="64.85"/>
         <g id="pins">
-            <circle class="cls-3" cx="214.53" cy="168.82" r="2.95" />
-            <circle class="cls-3" cx="238.88" cy="168.82" r="2.95" />
-            <circle class="cls-3" cx="214.53" cy="177.2" r="2.95" />
-            <circle class="cls-3" cx="238.88" cy="177.2" r="2.95" />
-            <circle class="cls-3" cx="214.53" cy="185.15" r="2.95" />
-            <circle class="cls-3" cx="238.88" cy="185.15" r="2.95" />
-            <circle class="cls-3" cx="214.53" cy="193.53" r="2.95" />
-            <circle class="cls-3" cx="238.88" cy="193.53" r="2.95" />
-            <circle class="cls-3" cx="214.53" cy="201.48" r="2.95" />
-            <circle class="cls-3" cx="238.88" cy="201.48" r="2.95" />
-            <circle class="cls-3" cx="214.53" cy="209.86" r="2.95" />
-            <circle class="cls-3" cx="238.88" cy="209.86" r="2.95" />
-            <circle class="cls-3" cx="214.53" cy="217.91" r="2.95" />
-            <circle class="cls-3" cx="238.88" cy="217.91" r="2.95" />
-            <circle class="cls-3" cx="214.53" cy="226.29" r="2.95" />
-            <circle class="cls-3" cx="238.88" cy="226.29" r="2.95" />
+            <circle class="cls-3" cx="214.53" cy="168.82" r="2.95"/>
+            <circle class="cls-3" cx="238.88" cy="168.82" r="2.95"/>
+            <circle class="cls-3" cx="214.53" cy="177.2" r="2.95"/>
+            <circle class="cls-3" cx="238.88" cy="177.2" r="2.95"/>
+            <circle class="cls-3" cx="214.53" cy="185.15" r="2.95"/>
+            <circle class="cls-3" cx="238.88" cy="185.15" r="2.95"/>
+            <circle class="cls-3" cx="214.53" cy="193.53" r="2.95"/>
+            <circle class="cls-3" cx="238.88" cy="193.53" r="2.95"/>
+            <circle class="cls-3" cx="214.53" cy="201.48" r="2.95"/>
+            <circle class="cls-3" cx="238.88" cy="201.48" r="2.95"/>
+            <circle class="cls-3" cx="214.53" cy="209.86" r="2.95"/>
+            <circle class="cls-3" cx="238.88" cy="209.86" r="2.95"/>
+            <circle class="cls-3" cx="214.53" cy="217.91" r="2.95"/>
+            <circle class="cls-3" cx="238.88" cy="217.91" r="2.95"/>
+            <circle class="cls-3" cx="214.53" cy="226.29" r="2.95"/>
+            <circle class="cls-3" cx="238.88" cy="226.29" r="2.95"/>
         </g>
         <g id="Gates-3">
-            <polyline class="cls-1" points="169.46 313.12 169.46 336.11 202.5 336.11 202.5 313.12" />
-            <line class="cls-1" x1="202.5" y1="308.41" x2="202.5" y2="280.14" />
-            <line class="cls-1" x1="185.53" y1="308.41" x2="185.53" y2="280.14" />
-            <line class="cls-1" x1="185.53" y1="276.17" x2="185.53" y2="271.01" />
-            <line class="cls-1" x1="185.53" y1="336.11" x2="185.53" y2="313.12" />
-            <line class="cls-1" x1="169.46" y1="308.41" x2="169.46" y2="280.14" />
-            <polyline class="cls-1" points="202.5 276.17 202.5 271.01 169.46 271.01 169.46 276.17" />
-            <line class="cls-1" x1="168.06" y1="278.08" x2="170.98" y2="278.08" />
-            <line class="cls-1" x1="201.21" y1="278.08" x2="204.14" y2="278.08" />
-            <line class="cls-1" x1="168.06" y1="310.67" x2="170.98" y2="310.67" />
-            <line class="cls-1" x1="201.21" y1="310.67" x2="204.14" y2="310.67" />
-            <line class="cls-1" x1="184.07" y1="278.08" x2="186.99" y2="278.08" />
-            <line class="cls-1" x1="184.07" y1="310.67" x2="186.99" y2="310.67" />
+            <polyline class="cls-1" points="169.46 313.12 169.46 336.11 202.5 336.11 202.5 313.12"/>
+            <line class="cls-1" x1="202.5" y1="308.41" x2="202.5" y2="280.14"/>
+            <line class="cls-1" x1="185.53" y1="308.41" x2="185.53" y2="280.14"/>
+            <line class="cls-1" x1="185.53" y1="276.17" x2="185.53" y2="271.01"/>
+            <line class="cls-1" x1="185.53" y1="336.11" x2="185.53" y2="313.12"/>
+            <line class="cls-1" x1="169.46" y1="308.41" x2="169.46" y2="280.14"/>
+            <polyline class="cls-1" points="202.5 276.17 202.5 271.01 169.46 271.01 169.46 276.17"/>
+            <line class="cls-1" x1="168.06" y1="278.08" x2="170.98" y2="278.08"/>
+            <line class="cls-1" x1="201.21" y1="278.08" x2="204.14" y2="278.08"/>
+            <line class="cls-1" x1="168.06" y1="310.67" x2="170.98" y2="310.67"/>
+            <line class="cls-1" x1="201.21" y1="310.67" x2="204.14" y2="310.67"/>
+            <line class="cls-1" x1="184.07" y1="278.08" x2="186.99" y2="278.08"/>
+            <line class="cls-1" x1="184.07" y1="310.67" x2="186.99" y2="310.67"/>
         </g>
         <g id="Gates-4">
-            <polyline class="cls-1" points="251.04 313.12 251.04 336.11 284.09 336.11 284.09 313.12" />
-            <line class="cls-1" x1="284.09" y1="308.41" x2="284.09" y2="280.14" />
-            <line class="cls-1" x1="267.12" y1="308.41" x2="267.12" y2="280.14" />
-            <line class="cls-1" x1="267.12" y1="276.17" x2="267.12" y2="271.01" />
-            <line class="cls-1" x1="267.12" y1="336.11" x2="267.12" y2="313.12" />
-            <line class="cls-1" x1="251.04" y1="308.41" x2="251.04" y2="280.14" />
-            <polyline class="cls-1" points="284.09 276.17 284.09 271.01 251.04 271.01 251.04 276.17" />
-            <line class="cls-1" x1="249.64" y1="278.08" x2="252.57" y2="278.08" />
-            <line class="cls-1" x1="282.8" y1="278.08" x2="285.72" y2="278.08" />
-            <line class="cls-1" x1="249.64" y1="310.67" x2="252.57" y2="310.67" />
-            <line class="cls-1" x1="282.8" y1="310.67" x2="285.72" y2="310.67" />
-            <line class="cls-1" x1="265.65" y1="278.08" x2="268.58" y2="278.08" />
-            <line class="cls-1" x1="265.65" y1="310.67" x2="268.58" y2="310.67" />
+            <polyline class="cls-1" points="251.04 313.12 251.04 336.11 284.09 336.11 284.09 313.12"/>
+            <line class="cls-1" x1="284.09" y1="308.41" x2="284.09" y2="280.14"/>
+            <line class="cls-1" x1="267.12" y1="308.41" x2="267.12" y2="280.14"/>
+            <line class="cls-1" x1="267.12" y1="276.17" x2="267.12" y2="271.01"/>
+            <line class="cls-1" x1="267.12" y1="336.11" x2="267.12" y2="313.12"/>
+            <line class="cls-1" x1="251.04" y1="308.41" x2="251.04" y2="280.14"/>
+            <polyline class="cls-1" points="284.09 276.17 284.09 271.01 251.04 271.01 251.04 276.17"/>
+            <line class="cls-1" x1="249.64" y1="278.08" x2="252.57" y2="278.08"/>
+            <line class="cls-1" x1="282.8" y1="278.08" x2="285.72" y2="278.08"/>
+            <line class="cls-1" x1="249.64" y1="310.67" x2="252.57" y2="310.67"/>
+            <line class="cls-1" x1="282.8" y1="310.67" x2="285.72" y2="310.67"/>
+            <line class="cls-1" x1="265.65" y1="278.08" x2="268.58" y2="278.08"/>
+            <line class="cls-1" x1="265.65" y1="310.67" x2="268.58" y2="310.67"/>
         </g>
-        <path
-            d="M237.58,324.62h-21.76v-51.03h6.73s.34,3.61,4.32,3.61,4.33-3.61,4.33-3.61h6.39v51.03Z" />
-        <rect class="cls-1" x="210.08" y="271.26" width="33.25" height="64.85" />
+        <path d="M237.58,324.62h-21.76v-51.03h6.73s.34,3.61,4.32,3.61,4.33-3.61,4.33-3.61h6.39v51.03Z"/>
+        <rect class="cls-1" x="210.08" y="271.26" width="33.25" height="64.85"/>
         <g id="pins-2">
-            <circle class="cls-3" cx="214.53" cy="274.95" r="2.95" />
-            <circle class="cls-3" cx="238.88" cy="274.95" r="2.95" />
-            <circle class="cls-3" cx="214.53" cy="283.33" r="2.95" />
-            <circle class="cls-3" cx="238.88" cy="283.33" r="2.95" />
-            <circle class="cls-3" cx="214.53" cy="291.28" r="2.95" />
-            <circle class="cls-3" cx="238.88" cy="291.28" r="2.95" />
-            <circle class="cls-3" cx="214.53" cy="299.66" r="2.95" />
-            <circle class="cls-3" cx="238.88" cy="299.66" r="2.95" />
-            <circle class="cls-3" cx="214.53" cy="307.61" r="2.95" />
-            <circle class="cls-3" cx="238.88" cy="307.61" r="2.95" />
-            <circle class="cls-3" cx="214.53" cy="315.99" r="2.95" />
-            <circle class="cls-3" cx="238.88" cy="315.99" r="2.95" />
-            <circle class="cls-3" cx="214.53" cy="324.04" r="2.95" />
-            <circle class="cls-3" cx="238.88" cy="324.04" r="2.95" />
-            <circle class="cls-3" cx="214.53" cy="332.42" r="2.95" />
-            <circle class="cls-3" cx="238.88" cy="332.42" r="2.95" />
+            <circle class="cls-3" cx="214.53" cy="274.95" r="2.95"/>
+            <circle class="cls-3" cx="238.88" cy="274.95" r="2.95"/>
+            <circle class="cls-3" cx="214.53" cy="283.33" r="2.95"/>
+            <circle class="cls-3" cx="238.88" cy="283.33" r="2.95"/>
+            <circle class="cls-3" cx="214.53" cy="291.28" r="2.95"/>
+            <circle class="cls-3" cx="238.88" cy="291.28" r="2.95"/>
+            <circle class="cls-3" cx="214.53" cy="299.66" r="2.95"/>
+            <circle class="cls-3" cx="238.88" cy="299.66" r="2.95"/>
+            <circle class="cls-3" cx="214.53" cy="307.61" r="2.95"/>
+            <circle class="cls-3" cx="238.88" cy="307.61" r="2.95"/>
+            <circle class="cls-3" cx="214.53" cy="315.99" r="2.95"/>
+            <circle class="cls-3" cx="238.88" cy="315.99" r="2.95"/>
+            <circle class="cls-3" cx="214.53" cy="324.04" r="2.95"/>
+            <circle class="cls-3" cx="238.88" cy="324.04" r="2.95"/>
+            <circle class="cls-3" cx="214.53" cy="332.42" r="2.95"/>
+            <circle class="cls-3" cx="238.88" cy="332.42" r="2.95"/>
         </g>
         <text class="cls-9" transform="translate(216.67 240.61)">
             <tspan x="0" y="0">And</tspan>
@@ -392,314 +361,316 @@
         <g id="Positive">
             <g id="D-2">
                 <g id="D_Top">
-                    <circle id="in_pos_d_top_1" class="cls-2" cx="34.28" cy="78.96" r="2.46" />
-                    <circle id="in_pos_d_top_2" class="cls-2" cx="34.28" cy="87.01" r="2.46" />
-                    <circle id="in_pos_d_top_3" class="cls-2" cx="34.28" cy="95.06" r="2.46" />
-                    <circle id="in_pos_d_top_4" class="cls-2" cx="34.28" cy="103.11" r="2.46" />
+                    <circle id="in_pos_d_top_1" class="cls-2" cx="34.28" cy="78.96" r="2.46"/>
+                    <circle id="in_pos_d_top_2" class="cls-2" cx="34.28" cy="87.01" r="2.46"/>
+                    <circle id="in_pos_d_top_3" class="cls-2" cx="34.28" cy="95.06" r="2.46"/>
+                    <circle id="in_pos_d_top_4" class="cls-2" cx="34.28" cy="103.11" r="2.46"/>
                 </g>
                 <g id="D_Mid">
-                    <circle id="in_pos_d_mid_1" class="cls-2" cx="34.28" cy="184.99" r="2.46" />
-                    <circle id="in_pos_d_mid_2" class="cls-2" cx="34.28" cy="193.05" r="2.46" />
-                    <circle id="in_pos_d_mid_3" class="cls-2" cx="34.28" cy="201.1" r="2.46" />
-                    <circle id="in_pos_d_mid_4" class="cls-2" cx="34.28" cy="209.15" r="2.46" />
+                    <circle id="in_pos_d_mid_1" class="cls-2" cx="34.28" cy="184.99" r="2.46"/>
+                    <circle id="in_pos_d_mid_2" class="cls-2" cx="34.28" cy="193.05" r="2.46"/>
+                    <circle id="in_pos_d_mid_3" class="cls-2" cx="34.28" cy="201.1" r="2.46"/>
+                    <circle id="in_pos_d_mid_4" class="cls-2" cx="34.28" cy="209.15" r="2.46"/>
                 </g>
                 <g id="D_Bottom">
-                    <circle id="in_pos_d_bot_1" class="cls-2" cx="34.28" cy="291.18" r="2.46" />
-                    <circle id="in_pos_d_bot_2" class="cls-2" cx="34.28" cy="299.24" r="2.46" />
-                    <circle id="in_pos_d_bot_3" class="cls-2" cx="34.28" cy="307.29" r="2.46" />
-                    <circle id="in_pos_d_bot_4" class="cls-2" cx="34.28" cy="315.34" r="2.46" />
+                    <circle id="in_pos_d_bot_1" class="cls-2" cx="34.28" cy="291.18" r="2.46"/>
+                    <circle id="in_pos_d_bot_2" class="cls-2" cx="34.28" cy="299.24" r="2.46"/>
+                    <circle id="in_pos_d_bot_3" class="cls-2" cx="34.28" cy="307.29" r="2.46"/>
+                    <circle id="in_pos_d_bot_4" class="cls-2" cx="34.28" cy="315.34" r="2.46"/>
                 </g>
             </g>
             <g id="C-2">
                 <g id="C_Top">
-                    <circle id="in_pos_c_top_1" class="cls-2" cx="67.23" cy="78.96" r="2.46" />
-                    <circle id="in_pos_c_top_2" class="cls-2" cx="67.23" cy="87.01" r="2.46" />
-                    <circle id="in_pos_c_top_3" class="cls-2" cx="67.23" cy="95.06" r="2.46" />
-                    <circle id="in_pos_c_top_4" class="cls-2" cx="67.23" cy="103.11" r="2.46" />
+                    <circle id="in_pos_c_top_1" class="cls-2" cx="67.23" cy="78.96" r="2.46"/>
+                    <circle id="in_pos_c_top_2" class="cls-2" cx="67.23" cy="87.01" r="2.46"/>
+                    <circle id="in_pos_c_top_3" class="cls-2" cx="67.23" cy="95.06" r="2.46"/>
+                    <circle id="in_pos_c_top_4" class="cls-2" cx="67.23" cy="103.11" r="2.46"/>
                 </g>
                 <g id="C_Mid">
-                    <circle id="in_pos_c_mid_1" class="cls-2" cx="67.23" cy="184.99" r="2.46" />
-                    <circle id="in_pos_c_mid_2" class="cls-2" cx="67.23" cy="193.05" r="2.46" />
-                    <circle id="in_pos_c_mid_3" class="cls-2" cx="67.23" cy="201.1" r="2.46" />
-                    <circle id="in_pos_c_mid_4" class="cls-2" cx="67.23" cy="209.15" r="2.46" />
+                    <circle id="in_pos_c_mid_1" class="cls-2" cx="67.23" cy="184.99" r="2.46"/>
+                    <circle id="in_pos_c_mid_2" class="cls-2" cx="67.23" cy="193.05" r="2.46"/>
+                    <circle id="in_pos_c_mid_3" class="cls-2" cx="67.23" cy="201.1" r="2.46"/>
+                    <circle id="in_pos_c_mid_4" class="cls-2" cx="67.23" cy="209.15" r="2.46"/>
                 </g>
                 <g id="C_Bottom">
-                    <circle id="in_pos_c_bot_1" class="cls-2" cx="67.23" cy="291.18" r="2.46" />
-                    <circle id="in_pos_c_bot_2" class="cls-2" cx="67.23" cy="299.24" r="2.46" />
-                    <circle id="in_pos_c_bot_3" class="cls-2" cx="67.23" cy="307.29" r="2.46" />
-                    <circle id="in_pos_c_bot_4" class="cls-2" cx="67.23" cy="315.34" r="2.46" />
+                    <circle id="in_pos_c_bot_1" class="cls-2" cx="67.23" cy="291.18" r="2.46"/>
+                    <circle id="in_pos_c_bot_2" class="cls-2" cx="67.23" cy="299.24" r="2.46"/>
+                    <circle id="in_pos_c_bot_3" class="cls-2" cx="67.23" cy="307.29" r="2.46"/>
+                    <circle id="in_pos_c_bot_4" class="cls-2" cx="67.23" cy="315.34" r="2.46"/>
                 </g>
             </g>
             <g id="B-2">
                 <g id="B_Top">
-                    <circle id="in_pos_b_top_1" class="cls-2" cx="99.84" cy="87.01" r="2.46" />
-                    <circle id="in_pos_b_top_2" class="cls-2" cx="99.84" cy="78.96" r="2.46" />
-                    <circle id="in_pos_b_top_3" class="cls-2" cx="99.84" cy="95.06" r="2.46" />
-                    <circle id="in_pos_b_top_4" class="cls-2" cx="99.84" cy="103.11" r="2.46" />
+                    <circle id="in_pos_b_top_1" class="cls-2" cx="99.84" cy="87.01" r="2.46"/>
+                    <circle id="in_pos_b_top_2" class="cls-2" cx="99.84" cy="78.96" r="2.46"/>
+                    <circle id="in_pos_b_top_3" class="cls-2" cx="99.84" cy="95.06" r="2.46"/>
+                    <circle id="in_pos_b_top_4" class="cls-2" cx="99.84" cy="103.11" r="2.46"/>
                 </g>
                 <g id="B_Mid">
-                    <circle id="in_pos_b_mid_1" class="cls-2" cx="99.84" cy="184.99" r="2.46" />
-                    <circle id="in_pos_b_mid_2" class="cls-2" cx="99.84" cy="193.05" r="2.46" />
-                    <circle id="in_pos_b_mid_3" class="cls-2" cx="99.84" cy="201.1" r="2.46" />
-                    <circle id="in_pos_b_mid_4" class="cls-2" cx="99.84" cy="209.15" r="2.46" />
+                    <circle id="in_pos_b_mid_1" class="cls-2" cx="99.84" cy="184.99" r="2.46"/>
+                    <circle id="in_pos_b_mid_2" class="cls-2" cx="99.84" cy="193.05" r="2.46"/>
+                    <circle id="in_pos_b_mid_3" class="cls-2" cx="99.84" cy="201.1" r="2.46"/>
+                    <circle id="in_pos_b_mid_4" class="cls-2" cx="99.84" cy="209.15" r="2.46"/>
                 </g>
                 <g id="B_Bottom">
-                    <circle id="in_pos_b_bot_1" class="cls-2" cx="99.84" cy="291.18" r="2.46" />
-                    <circle id="in_pos_b_bot_2" class="cls-2" cx="99.84" cy="299.24" r="2.46" />
-                    <circle id="in_pos_b_bot_3" class="cls-2" cx="99.84" cy="307.29" r="2.46" />
-                    <circle id="in_pos_b_bot_4" class="cls-2" cx="99.84" cy="315.34" r="2.46" />
+                    <circle id="in_pos_b_bot_1" class="cls-2" cx="99.84" cy="291.18" r="2.46"/>
+                    <circle id="in_pos_b_bot_2" class="cls-2" cx="99.84" cy="299.24" r="2.46"/>
+                    <circle id="in_pos_b_bot_3" class="cls-2" cx="99.84" cy="307.29" r="2.46"/>
+                    <circle id="in_pos_b_bot_4" class="cls-2" cx="99.84" cy="315.34" r="2.46"/>
                 </g>
             </g>
             <g id="A-2">
                 <g id="A_Top">
-                    <circle id="in_pos_a_top_1" class="cls-2" cx="132.55" cy="78.96" r="2.46" />
-                    <circle id="in_pos_a_top_2" class="cls-2" cx="132.55" cy="87.01" r="2.46" />
-                    <circle id="in_pos_a_top_3" class="cls-2" cx="132.55" cy="95.06" r="2.46" />
-                    <circle id="in_pos_a_top_4" class="cls-2" cx="132.55" cy="103.11" r="2.46" />
+                    <circle id="in_pos_a_top_1" class="cls-2" cx="132.55" cy="78.96" r="2.46"/>
+                    <circle id="in_pos_a_top_2" class="cls-2" cx="132.55" cy="87.01" r="2.46"/>
+                    <circle id="in_pos_a_top_3" class="cls-2" cx="132.55" cy="95.06" r="2.46"/>
+                    <circle id="in_pos_a_top_4" class="cls-2" cx="132.55" cy="103.11" r="2.46"/>
                 </g>
                 <g id="A_Mid">
-                    <circle id="in_pos_a_mid_1" class="cls-2" cx="132.55" cy="193.05" r="2.46" />
-                    <circle id="in_pos_a_mid_2" class="cls-2" cx="132.55" cy="184.99" r="2.46" />
-                    <circle id="in_pos_a_mid_3" class="cls-2" cx="132.55" cy="201.1" r="2.46" />
-                    <circle id="in_pos_a_mid_4" class="cls-2" cx="132.55" cy="209.15" r="2.46" />
+                    <circle id="in_pos_a_mid_1" class="cls-2" cx="132.55" cy="193.05" r="2.46"/>
+                    <circle id="in_pos_a_mid_2" class="cls-2" cx="132.55" cy="184.99" r="2.46"/>
+                    <circle id="in_pos_a_mid_3" class="cls-2" cx="132.55" cy="201.1" r="2.46"/>
+                    <circle id="in_pos_a_mid_4" class="cls-2" cx="132.55" cy="209.15" r="2.46"/>
                 </g>
                 <g id="A_Bottom">
-                    <circle id="in_pos_a_bot_1" class="cls-2" cx="132.55" cy="291.18" r="2.46" />
-                    <circle id="in_pos_a_bot_2" class="cls-2" cx="132.55" cy="299.24" r="2.46" />
-                    <circle id="in_pos_a_bot_3" class="cls-2" cx="132.55" cy="307.29" r="2.46" />
-                    <circle id="in_pos_a_bot_4" class="cls-2" cx="132.55" cy="315.34" r="2.46" />
+                    <circle id="in_pos_a_bot_1" class="cls-2" cx="132.55" cy="291.18" r="2.46"/>
+                    <circle id="in_pos_a_bot_2" class="cls-2" cx="132.55" cy="299.24" r="2.46"/>
+                    <circle id="in_pos_a_bot_3" class="cls-2" cx="132.55" cy="307.29" r="2.46"/>
+                    <circle id="in_pos_a_bot_4" class="cls-2" cx="132.55" cy="315.34" r="2.46"/>
                 </g>
             </g>
         </g>
         <g id="Negative">
             <g id="D-3">
                 <g id="D_Top-2">
-                    <circle id="in_neg_d_top_1" class="cls-2" cx="50.72" cy="78.96" r="2.46" />
-                    <circle id="in_neg_d_top_2" class="cls-2" cx="50.72" cy="87.01" r="2.46" />
-                    <circle id="in_neg_d_top_3" class="cls-2" cx="50.72" cy="95.06" r="2.46" />
-                    <circle id="in_neg_d_top_4" class="cls-2" cx="50.72" cy="103.11" r="2.46" />
+                    <circle id="in_neg_d_top_1" class="cls-2" cx="50.72" cy="78.96" r="2.46"/>
+                    <circle id="in_neg_d_top_2" class="cls-2" cx="50.72" cy="87.01" r="2.46"/>
+                    <circle id="in_neg_d_top_3" class="cls-2" cx="50.72" cy="95.06" r="2.46"/>
+                    <circle id="in_neg_d_top_4" class="cls-2" cx="50.72" cy="103.11" r="2.46"/>
                 </g>
                 <g id="D_Middle">
-                    <circle id="in_neg_d_mid_1" class="cls-2" cx="50.72" cy="131.97" r="2.46" />
-                    <circle id="in_neg_d_mid_2" class="cls-2" cx="50.72" cy="140.03" r="2.46" />
-                    <circle id="in_neg_d_mid_3" class="cls-2" cx="50.72" cy="148.08" r="2.46" />
-                    <circle id="in_neg_d_mid_4" class="cls-2" cx="50.72" cy="156.13" r="2.46" />
+                    <circle id="in_neg_d_mid_1" class="cls-2" cx="50.72" cy="131.97" r="2.46"/>
+                    <circle id="in_neg_d_mid_2" class="cls-2" cx="50.72" cy="140.03" r="2.46"/>
+                    <circle id="in_neg_d_mid_3" class="cls-2" cx="50.72" cy="148.08" r="2.46"/>
+                    <circle id="in_neg_d_mid_4" class="cls-2" cx="50.72" cy="156.13" r="2.46"/>
                 </g>
                 <g id="D_Bottom-2">
-                    <circle id="in_neg_d_bot_1" class="cls-2" cx="50.72" cy="238.15" r="2.46" />
-                    <circle id="in_neg_d_bot_2" class="cls-2" cx="50.72" cy="246.2" r="2.46" />
-                    <circle id="in_neg_d_bot_3" class="cls-2" cx="50.72" cy="254.25" r="2.46" />
-                    <circle id="in_neg_d_bot_4" class="cls-2" cx="50.72" cy="262.31" r="2.46" />
+                    <circle id="in_neg_d_bot_1" class="cls-2" cx="50.72" cy="238.15" r="2.46"/>
+                    <circle id="in_neg_d_bot_2" class="cls-2" cx="50.72" cy="246.2" r="2.46"/>
+                    <circle id="in_neg_d_bot_3" class="cls-2" cx="50.72" cy="254.25" r="2.46"/>
+                    <circle id="in_neg_d_bot_4" class="cls-2" cx="50.72" cy="262.31" r="2.46"/>
                 </g>
             </g>
             <g id="C-3">
                 <g id="C_Top-2">
-                    <circle id="in_neg_c_mid_1" class="cls-2" cx="83.53" cy="78.96" r="2.46" />
-                    <circle id="in_neg_c_mid_2" class="cls-2" cx="83.53" cy="87.01" r="2.46" />
-                    <circle id="in_neg_c_mid_3" class="cls-2" cx="83.53" cy="95.06" r="2.46" />
-                    <circle id="in_neg_c_mid_4" class="cls-2" cx="83.53" cy="103.11" r="2.46" />
+                    <circle id="in_neg_c_mid_1" class="cls-2" cx="83.53" cy="78.96" r="2.46"/>
+                    <circle id="in_neg_c_mid_2" class="cls-2" cx="83.53" cy="87.01" r="2.46"/>
+                    <circle id="in_neg_c_mid_3" class="cls-2" cx="83.53" cy="95.06" r="2.46"/>
+                    <circle id="in_neg_c_mid_4" class="cls-2" cx="83.53" cy="103.11" r="2.46"/>
                 </g>
                 <g id="C_Middle">
-                    <circle id="in_neg_c_mid_1-2" class="cls-2" cx="83.53" cy="131.97" r="2.46" />
-                    <circle id="in_neg_c_mid_2-2" class="cls-2" cx="83.53" cy="140.03" r="2.46" />
-                    <circle id="in_neg_c_mid_3-2" class="cls-2" cx="83.53" cy="148.08" r="2.46" />
-                    <circle id="in_neg_c_mid_4-2" class="cls-2" cx="83.53" cy="156.13" r="2.46" />
+                    <circle id="in_neg_c_mid_1-2" class="cls-2" cx="83.53" cy="131.97" r="2.46"/>
+                    <circle id="in_neg_c_mid_2-2" class="cls-2" cx="83.53" cy="140.03" r="2.46"/>
+                    <circle id="in_neg_c_mid_3-2" class="cls-2" cx="83.53" cy="148.08" r="2.46"/>
+                    <circle id="in_neg_c_mid_4-2" class="cls-2" cx="83.53" cy="156.13" r="2.46"/>
                 </g>
                 <g id="C_Bottom-2">
-                    <circle id="in_neg_c_bot_1" class="cls-2" cx="83.53" cy="238.15" r="2.46" />
-                    <circle id="in_neg_c_bot_2" class="cls-2" cx="83.53" cy="246.2" r="2.46" />
-                    <circle id="in_neg_c_bot_3" class="cls-2" cx="83.53" cy="254.25" r="2.46" />
-                    <circle id="in_neg_c_bot_4" class="cls-2" cx="83.53" cy="262.31" r="2.46" />
+                    <circle id="in_neg_c_bot_1" class="cls-2" cx="83.53" cy="238.15" r="2.46"/>
+                    <circle id="in_neg_c_bot_2" class="cls-2" cx="83.53" cy="246.2" r="2.46"/>
+                    <circle id="in_neg_c_bot_3" class="cls-2" cx="83.53" cy="254.25" r="2.46"/>
+                    <circle id="in_neg_c_bot_4" class="cls-2" cx="83.53" cy="262.31" r="2.46"/>
                 </g>
             </g>
             <g id="B-3">
                 <g id="B_Top-2">
-                    <circle id="in_neg_b_top_1" class="cls-2" cx="116.15" cy="78.96" r="2.46" />
-                    <circle id="in_neg_b_top_2" class="cls-2" cx="116.15" cy="87.01" r="2.46" />
-                    <circle id="in_neg_b_top_3" class="cls-2" cx="116.15" cy="95.06" r="2.46" />
-                    <circle id="in_neg_b_top_4" class="cls-2" cx="116.15" cy="103.11" r="2.46" />
+                    <circle id="in_neg_b_top_1" class="cls-2" cx="116.15" cy="78.96" r="2.46"/>
+                    <circle id="in_neg_b_top_2" class="cls-2" cx="116.15" cy="87.01" r="2.46"/>
+                    <circle id="in_neg_b_top_3" class="cls-2" cx="116.15" cy="95.06" r="2.46"/>
+                    <circle id="in_neg_b_top_4" class="cls-2" cx="116.15" cy="103.11" r="2.46"/>
                 </g>
                 <g id="B_Mid-2">
-                    <circle id="in_neg_b_mid_1" class="cls-2" cx="116.15" cy="131.97" r="2.46" />
-                    <circle id="in_neg_b_mid_2" class="cls-2" cx="116.15" cy="140.03" r="2.46" />
-                    <circle id="in_neg_b_mid_3" class="cls-2" cx="116.15" cy="148.08" r="2.46" />
-                    <circle id="in_neg_b_mid_4" class="cls-2" cx="116.15" cy="156.13" r="2.46" />
+                    <circle id="in_neg_b_mid_1" class="cls-2" cx="116.15" cy="131.97" r="2.46"/>
+                    <circle id="in_neg_b_mid_2" class="cls-2" cx="116.15" cy="140.03" r="2.46"/>
+                    <circle id="in_neg_b_mid_3" class="cls-2" cx="116.15" cy="148.08" r="2.46"/>
+                    <circle id="in_neg_b_mid_4" class="cls-2" cx="116.15" cy="156.13" r="2.46"/>
                 </g>
                 <g id="B_Bot">
-                    <circle id="in_neg_b_bot_1" class="cls-2" cx="116.15" cy="238.15" r="2.46" />
-                    <circle id="in_neg_b_bot_2" class="cls-2" cx="116.15" cy="246.2" r="2.46" />
-                    <circle id="in_neg_b_bot_3" class="cls-2" cx="116.15" cy="254.25" r="2.46" />
-                    <circle id="in_neg_b_bot_4" class="cls-2" cx="116.15" cy="262.31" r="2.46" />
+                    <circle id="in_neg_b_bot_1" class="cls-2" cx="116.15" cy="238.15" r="2.46"/>
+                    <circle id="in_neg_b_bot_2" class="cls-2" cx="116.15" cy="246.2" r="2.46"/>
+                    <circle id="in_neg_b_bot_3" class="cls-2" cx="116.15" cy="254.25" r="2.46"/>
+                    <circle id="in_neg_b_bot_4" class="cls-2" cx="116.15" cy="262.31" r="2.46"/>
                 </g>
             </g>
             <g id="A-3">
                 <g id="A_Top-2">
-                    <circle id="in_neg_a_top_1" class="cls-2" cx="148.96" cy="78.96" r="2.46" />
-                    <circle id="in_neg_a_top_2" class="cls-2" cx="148.96" cy="87.01" r="2.46" />
-                    <circle id="in_neg_a_top_3" class="cls-2" cx="148.96" cy="95.06" r="2.46" />
-                    <circle id="in_neg_a_top_4" class="cls-2" cx="148.96" cy="103.11" r="2.46" />
+                    <circle id="in_neg_a_top_1" class="cls-2" cx="148.96" cy="78.96" r="2.46"/>
+                    <circle id="in_neg_a_top_2" class="cls-2" cx="148.96" cy="87.01" r="2.46"/>
+                    <circle id="in_neg_a_top_3" class="cls-2" cx="148.96" cy="95.06" r="2.46"/>
+                    <circle id="in_neg_a_top_4" class="cls-2" cx="148.96" cy="103.11" r="2.46"/>
                 </g>
                 <g id="A_Mid-2">
-                    <circle id="in_neg_a_mid_1" class="cls-2" cx="148.96" cy="131.97" r="2.46" />
-                    <circle id="in_neg_a_mid_2" class="cls-2" cx="148.96" cy="140.03" r="2.46" />
-                    <circle id="in_neg_a_mid_3" class="cls-2" cx="148.96" cy="148.08" r="2.46" />
-                    <circle id="in_neg_a_mid_4" class="cls-2" cx="148.96" cy="156.13" r="2.46" />
+                    <circle id="in_neg_a_mid_1" class="cls-2" cx="148.96" cy="131.97" r="2.46"/>
+                    <circle id="in_neg_a_mid_2" class="cls-2" cx="148.96" cy="140.03" r="2.46"/>
+                    <circle id="in_neg_a_mid_3" class="cls-2" cx="148.96" cy="148.08" r="2.46"/>
+                    <circle id="in_neg_a_mid_4" class="cls-2" cx="148.96" cy="156.13" r="2.46"/>
                 </g>
                 <g id="A_Bot">
-                    <circle id="in_neg_a_bot_1" class="cls-2" cx="148.96" cy="238.15" r="2.46" />
-                    <circle id="in_neg_a_bot_2" class="cls-2" cx="148.96" cy="246.2" r="2.46" />
-                    <circle id="in_neg_a_bot_3" class="cls-2" cx="148.96" cy="254.25" r="2.46" />
-                    <circle id="in_neg_a_bot_4" class="cls-2" cx="148.96" cy="262.31" r="2.46" />
+                    <circle id="in_neg_a_bot_1" class="cls-2" cx="148.96" cy="238.15" r="2.46"/>
+                    <circle id="in_neg_a_bot_2" class="cls-2" cx="148.96" cy="246.2" r="2.46"/>
+                    <circle id="in_neg_a_bot_3" class="cls-2" cx="148.96" cy="254.25" r="2.46"/>
+                    <circle id="in_neg_a_bot_4" class="cls-2" cx="148.96" cy="262.31" r="2.46"/>
                 </g>
             </g>
         </g>
-        <rect id="inputD" class="cls-11" x="29.01" y="363.73" width="10.54" height="29.81" />
-        <rect id="inputC" class="cls-11" x="61.96" y="363.73" width="10.54" height="29.81" />
-        <rect id="inputB" class="cls-11" x="94.47" y="363.73" width="10.54" height="29.81" />
-        <rect id="inputA" class="cls-11" x="127.29" y="363.73" width="10.54" height="29.81" />
+        <rect id="inputD" class="cls-11" x="29.01" y="363.73" width="10.54" height="29.81"/>
+        <rect id="inputC" class="cls-11" x="61.96" y="363.73" width="10.54" height="29.81"/>
+        <rect id="inputB" class="cls-11" x="94.47" y="363.73" width="10.54" height="29.81"/>
+        <rect id="inputA" class="cls-11" x="127.29" y="363.73" width="10.54" height="29.81"/>
     </g>
     <g id="Gates-5">
         <g id="AND">
             <g id="and_left">
-                <circle id="g_and_in_1_1" cx="181.41" cy="168.58" r="2.95" />
-                <circle id="g_and_in_1_2" cx="189.72" cy="168.58" r="2.95" />
-                <circle id="g_and_in_2_1" cx="181.41" cy="176.96" r="2.95" />
-                <circle id="g_and_in_2_2" cx="189.72" cy="176.96" r="2.95" />
-                <circle id="g_and_out_3_1" cx="181.41" cy="184.9" r="2.95" />
-                <circle id="g_and_out_3_2" cx="189.72" cy="184.9" r="2.95" />
-                <circle id="g_and_in_4_1" cx="181.41" cy="193.29" r="2.95" />
-                <circle id="g_and_in_4_2" cx="189.72" cy="193.29" r="2.95" />
-                <circle id="g_and_in_5_1" cx="181.41" cy="201.23" r="2.95" />
-                <circle id="g_and_in_5_2" cx="189.72" cy="201.23" r="2.95" />
-                <circle id="g_and_out_6_1" cx="181.41" cy="209.62" r="2.95" />
-                <circle id="g_and_out_6_2" cx="189.72" cy="209.62" r="2.95" />
-                <circle id="g_and_gnd_7_1" cx="181.41" cy="217.67" r="2.95" />
-                <circle id="g_and_gnd_7_2" cx="189.72" cy="217.67" r="2.95" />
-                <circle cx="181.41" cy="226.05" r="2.95" />
-                <circle cx="189.72" cy="226.05" r="2.95" />
+                <circle id="g_and_in_1_1" cx="181.41" cy="168.58" r="2.95"/>
+                <circle id="g_and_in_1_2" cx="189.72" cy="168.58" r="2.95"/>
+                <circle id="g_and_in_2_1" cx="181.41" cy="176.96" r="2.95"/>
+                <circle id="g_and_in_2_2" cx="189.72" cy="176.96" r="2.95"/>
+                <circle id="g_and_out_3_1" cx="181.41" cy="184.9" r="2.95"/>
+                <circle id="g_and_out_3_2" cx="189.72" cy="184.9" r="2.95"/>
+                <circle id="g_and_in_4_1" cx="181.41" cy="193.29" r="2.95"/>
+                <circle id="g_and_in_4_2" cx="189.72" cy="193.29" r="2.95"/>
+                <circle id="g_and_in_5_1" cx="181.41" cy="201.23" r="2.95"/>
+                <circle id="g_and_in_5_2" cx="189.72" cy="201.23" r="2.95"/>
+                <circle id="g_and_out_6_1" cx="181.41" cy="209.62" r="2.95"/>
+                <circle id="g_and_out_6_2" cx="189.72" cy="209.62" r="2.95"/>
+                <circle id="g_and_gnd_7_1" cx="181.41" cy="217.67" r="2.95"/>
+                <circle id="g_and_gnd_7_2" cx="189.72" cy="217.67" r="2.95"/>
+                <circle cx="181.41" cy="226.05" r="2.95"/>
+                <circle cx="189.72" cy="226.05" r="2.95"/>
             </g>
             <g id="gnd_vcc_left">
-                <circle id="g_and_gnd_1" cx="173.65" cy="168.58" r="2.95" />
-                <circle id="g_and_vcc_1" cx="198" cy="168.58" r="2.95" />
-                <circle id="g_and_gnd_2" cx="173.65" cy="176.96" r="2.95" />
-                <circle id="g_and_vcc_2" cx="198" cy="176.96" r="2.95" />
-                <circle id="g_and_gnd_3" cx="173.65" cy="184.91" r="2.95" />
-                <circle id="g_and_vcc_3" cx="198" cy="184.91" r="2.95" />
-                <circle id="g_and_gnd_4" cx="173.65" cy="193.29" r="2.95" />
-                <circle id="g_and_vcc_4" cx="198" cy="193.29" r="2.95" />
-                <circle id="g_and_gnd_5" cx="173.65" cy="201.24" r="2.95" />
-                <circle id="g_and_vcc_5" cx="198" cy="201.24" r="2.95" />
-                <circle id="g_and_gnd_6" cx="173.65" cy="209.62" r="2.95" />
-                <circle id="g_and_vcc_6" cx="198" cy="209.62" r="2.95" />
-                <circle id="g_and_gnd_7" cx="173.65" cy="217.67" r="2.95" />
-                <circle id="g_and_vcc_7" cx="198" cy="217.67" r="2.95" />
-                <circle cx="173.65" cy="226.05" r="2.95" />
-                <circle cx="198" cy="226.05" r="2.95" />
+                <circle id="g_and_gnd_1" cx="173.65" cy="168.58" r="2.95"/>
+                <circle id="g_and_vcc_1" cx="198" cy="168.58" r="2.95"/>
+                <circle id="g_and_gnd_2" cx="173.65" cy="176.96" r="2.95"/>
+                <circle id="g_and_vcc_2" cx="198" cy="176.96" r="2.95"/>
+                <circle id="g_and_gnd_3" cx="173.65" cy="184.91" r="2.95"/>
+                <circle id="g_and_vcc_3" cx="198" cy="184.91" r="2.95"/>
+                <circle id="g_and_gnd_4" cx="173.65" cy="193.29" r="2.95"/>
+                <circle id="g_and_vcc_4" cx="198" cy="193.29" r="2.95"/>
+                <circle id="g_and_gnd_5" cx="173.65" cy="201.24" r="2.95"/>
+                <circle id="g_and_vcc_5" cx="198" cy="201.24" r="2.95"/>
+                <circle id="g_and_gnd_6" cx="173.65" cy="209.62" r="2.95"/>
+                <circle id="g_and_vcc_6" cx="198" cy="209.62" r="2.95"/>
+                <circle id="g_and_gnd_7" cx="173.65" cy="217.67" r="2.95"/>
+                <circle id="g_and_vcc_7" cx="198" cy="217.67" r="2.95"/>
+                <circle cx="173.65" cy="226.05" r="2.95"/>
+                <circle cx="198" cy="226.05" r="2.95"/>
             </g>
             <g id="and_right">
-                <circle id="g_and_vcc_14_1" cx="262.99" cy="168.58" r="2.95" />
-                <circle id="g_and_vcc_14_2" cx="271.3" cy="168.58" r="2.95" />
-                <circle id="g_and_in_13_1" cx="262.99" cy="176.96" r="2.95" />
-                <circle id="g_and_in_13_2" cx="271.3" cy="176.96" r="2.95" />
-                <circle id="g_and_in_12_1" cx="262.99" cy="184.9" r="2.95" />
-                <circle id="g_and_in_12_2" cx="271.3" cy="184.9" r="2.95" />
-                <circle id="g_and_out_11_1" cx="262.99" cy="193.29" r="2.95" />
-                <circle id="g_and_out_11_2" cx="271.3" cy="193.29" r="2.95" />
-                <circle id="g_and_in_10_1" cx="262.99" cy="201.23" r="2.95" />
-                <circle id="g_and_in_10_2" cx="271.3" cy="201.23" r="2.95" />
-                <circle id="g_and_in_9_1" cx="262.99" cy="209.62" r="2.95" />
-                <circle id="g_and_in_9_2" cx="271.3" cy="209.62" r="2.95" />
-                <circle id="g_and_out_8_1" cx="262.99" cy="217.67" r="2.95" />
-                <circle id="g_and_out_8_2" cx="271.3" cy="217.67" r="2.95" />
-                <circle cx="262.99" cy="226.05" r="2.95" />
-                <circle cx="271.3" cy="226.05" r="2.95" />
+                <circle id="g_and_vcc_14_1" cx="262.99" cy="168.58" r="2.95"/>
+                <circle id="g_and_vcc_14_2" cx="271.3" cy="168.58" r="2.95"/>
+                <circle id="g_and_in_13_1" cx="262.99" cy="176.96" r="2.95"/>
+                <circle id="g_and_in_13_2" cx="271.3" cy="176.96" r="2.95"/>
+                <circle id="g_and_in_12_1" cx="262.99" cy="184.9" r="2.95"/>
+                <circle id="g_and_in_12_2" cx="271.3" cy="184.9" r="2.95"/>
+                <circle id="g_and_out_11_1" cx="262.99" cy="193.29" r="2.95"/>
+                <circle id="g_and_out_11_2" cx="271.3" cy="193.29" r="2.95"/>
+                <circle id="g_and_in_10_1" cx="262.99" cy="201.23" r="2.95"/>
+                <circle id="g_and_in_10_2" cx="271.3" cy="201.23" r="2.95"/>
+                <circle id="g_and_in_9_1" cx="262.99" cy="209.62" r="2.95"/>
+                <circle id="g_and_in_9_2" cx="271.3" cy="209.62" r="2.95"/>
+                <circle id="g_and_out_8_1" cx="262.99" cy="217.67" r="2.95"/>
+                <circle id="g_and_out_8_2" cx="271.3" cy="217.67" r="2.95"/>
+                <circle cx="262.99" cy="226.05" r="2.95"/>
+                <circle cx="271.3" cy="226.05" r="2.95"/>
             </g>
             <g id="gnd_vcc_right">
-                <circle id="g_and_gnd_14" cx="255.23" cy="168.58" r="2.95" />
-                <circle id="g_and_vcc_14" cx="279.58" cy="168.58" r="2.95" />
-                <circle id="g_and_gnd_13" cx="255.23" cy="176.96" r="2.95" />
-                <circle id="g_and_vcc_13" cx="279.58" cy="176.96" r="2.95" />
-                <circle id="g_and_gnd_12" cx="255.23" cy="184.91" r="2.95" />
-                <circle id="g_and_vcc_12" cx="279.58" cy="184.91" r="2.95" />
-                <circle id="g_and_gnd_11" cx="255.23" cy="193.29" r="2.95" />
-                <circle id="g_and_vcc_11" cx="279.58" cy="193.29" r="2.95" />
-                <circle id="g_and_gnd_10" cx="255.23" cy="201.24" r="2.95" />
-                <circle id="g_and_vcc_10" cx="279.58" cy="201.24" r="2.95" />
-                <circle id="g_and_gnd_9" cx="255.23" cy="209.62" r="2.95" />
-                <circle id="g_and_vcc_9" cx="279.58" cy="209.62" r="2.95" />
-                <circle id="g_and_gnd_8" cx="255.23" cy="217.67" r="2.95" />
-                <circle id="g_and_vcc_8" cx="279.58" cy="217.67" r="2.95" />
-                <circle cx="255.23" cy="226.05" r="2.95" />
-                <circle cx="279.58" cy="226.05" r="2.95" />
+                <circle id="g_and_gnd_14" cx="255.23" cy="168.58" r="2.95"/>
+                <circle id="g_and_vcc_14" cx="279.58" cy="168.58" r="2.95"/>
+                <circle id="g_and_gnd_13" cx="255.23" cy="176.96" r="2.95"/>
+                <circle id="g_and_vcc_13" cx="279.58" cy="176.96" r="2.95"/>
+                <circle id="g_and_gnd_12" cx="255.23" cy="184.91" r="2.95"/>
+                <circle id="g_and_vcc_12" cx="279.58" cy="184.91" r="2.95"/>
+                <circle id="g_and_gnd_11" cx="255.23" cy="193.29" r="2.95"/>
+                <circle id="g_and_vcc_11" cx="279.58" cy="193.29" r="2.95"/>
+                <circle id="g_and_gnd_10" cx="255.23" cy="201.24" r="2.95"/>
+                <circle id="g_and_vcc_10" cx="279.58" cy="201.24" r="2.95"/>
+                <circle id="g_and_gnd_9" cx="255.23" cy="209.62" r="2.95"/>
+                <circle id="g_and_vcc_9" cx="279.58" cy="209.62" r="2.95"/>
+                <circle id="g_and_gnd_8" cx="255.23" cy="217.67" r="2.95"/>
+                <circle id="g_and_vcc_8" cx="279.58" cy="217.67" r="2.95"/>
+                <circle cx="255.23" cy="226.05" r="2.95"/>
+                <circle cx="279.58" cy="226.05" r="2.95"/>
             </g>
         </g>
-        <circle id="g_and_in_1_1-2" cx="181.41" cy="274.71" r="2.95" />
-        <circle id="g_or_in_1_2" cx="189.72" cy="274.71" r="2.95" />
-        <circle id="g_or_in_2_1" cx="181.41" cy="283.09" r="2.95" />
-        <circle id="g_or_in_2_2" cx="189.72" cy="283.09" r="2.95" />
-        <circle id="g_or_out_3_1" cx="181.41" cy="291.04" r="2.95" />
-        <circle id="g_or_out_3_2" cx="189.72" cy="291.04" r="2.95" />
-        <circle id="g_or_in_4_1" cx="181.41" cy="299.42" r="2.95" />
-        <circle id="g_or_in_4_2" cx="189.72" cy="299.42" r="2.95" />
-        <circle id="g_or_in_5_1" cx="181.41" cy="307.37" r="2.95" />
-        <circle id="g_or_in_5_2" cx="189.72" cy="307.37" r="2.95" />
-        <circle id="g_or_out_6_1" cx="181.41" cy="315.75" r="2.95" />
-        <circle id="g_or_out_6_2" cx="189.72" cy="315.75" r="2.95" />
-        <circle id="g_or_gnd_7_1" cx="181.41" cy="323.8" r="2.95" />
-        <circle id="g_or_gnd_7_2" cx="189.72" cy="323.8" r="2.95" />
-        <circle cx="181.41" cy="332.18" r="2.95" />
-        <circle cx="189.72" cy="332.18" r="2.95" />
-        <g id="gnd_vcc_left-2">
-            <circle id="g_or_gnd_1" cx="173.65" cy="274.72" r="2.95" />
-            <circle id="g_or_vcc_1" cx="198" cy="274.72" r="2.95" />
-            <circle id="g_or_gnd_2" cx="173.65" cy="283.1" r="2.95" />
-            <circle id="g_or_vcc_2" cx="198" cy="283.1" r="2.95" />
-            <circle id="g_or_gnd_3" cx="173.65" cy="291.04" r="2.95" />
-            <circle id="g_or_vcc_3" cx="198" cy="291.04" r="2.95" />
-            <circle id="g_or_gnd_4" cx="173.65" cy="299.43" r="2.95" />
-            <circle id="g_or_vcc_4" cx="198" cy="299.43" r="2.95" />
-            <circle id="g_or_gnd_5" cx="173.65" cy="307.37" r="2.95" />
-            <circle id="g_or_vcc_5" cx="198" cy="307.37" r="2.95" />
-            <circle id="g_or_gnd_6" cx="173.65" cy="315.76" r="2.95" />
-            <circle id="g_or_vcc_6" cx="198" cy="315.76" r="2.95" />
-            <circle id="g_or_gnd_7" cx="173.65" cy="323.81" r="2.95" />
-            <circle id="g_or_vcc_7" cx="198" cy="323.81" r="2.95" />
-            <circle cx="173.65" cy="332.19" r="2.95" />
-            <circle cx="198" cy="332.19" r="2.95" />
-        </g>
-        <circle id="g_or_vcc_14_1" cx="262.99" cy="274.71" r="2.95" />
-        <circle id="g_or_vcc_14_2" cx="271.3" cy="274.71" r="2.95" />
-        <circle id="g_or_in_13_1" cx="262.99" cy="283.09" r="2.95" />
-        <circle id="g_or_in_13_2" cx="271.3" cy="283.09" r="2.95" />
-        <circle id="g_or_in_12_1" cx="262.99" cy="291.04" r="2.95" />
-        <circle id="g_or_in_12_2" cx="271.3" cy="291.04" r="2.95" />
-        <circle id="g_or_out_11_1" cx="262.99" cy="299.42" r="2.95" />
-        <circle id="g_or_out_11_2" cx="271.3" cy="299.42" r="2.95" />
-        <circle id="g_or_in_10_1" cx="262.99" cy="307.37" r="2.95" />
-        <circle id="g_or_in_10_2" cx="271.3" cy="307.37" r="2.95" />
-        <circle id="g_or_in_9_1" cx="262.99" cy="315.75" r="2.95" />
-        <circle id="g_or_in_9_2" cx="271.3" cy="315.75" r="2.95" />
-        <circle id="g_or_out_8_1" cx="262.99" cy="323.8" r="2.95" />
-        <circle id="g_or_out_8_2" cx="271.3" cy="323.8" r="2.95" />
-        <circle cx="262.99" cy="332.18" r="2.95" />
-        <circle cx="271.3" cy="332.18" r="2.95" />
-        <g id="gnd_vcc_right-2">
-            <circle id="g_or_gnd_14" cx="255.23" cy="274.72" r="2.95" />
-            <circle id="g_or_vcc_14" cx="279.58" cy="274.72" r="2.95" />
-            <circle id="g_or_gnd_13" cx="255.23" cy="283.1" r="2.95" />
-            <circle id="g_or_vcc_13" cx="279.58" cy="283.1" r="2.95" />
-            <circle id="g_or_gnd_12" cx="255.23" cy="291.04" r="2.95" />
-            <circle id="g_or_vcc_12" cx="279.58" cy="291.04" r="2.95" />
-            <circle id="g_or_gnd_11" cx="255.23" cy="299.43" r="2.95" />
-            <circle id="g_or_vcc_11" cx="279.58" cy="299.43" r="2.95" />
-            <circle id="g_or_gnd_10" cx="255.23" cy="307.37" r="2.95" />
-            <circle id="g_or_vcc_10" cx="279.58" cy="307.37" r="2.95" />
-            <circle id="g_or_gnd_9" cx="255.23" cy="315.76" r="2.95" />
-            <circle id="g_or_vcc_9" cx="279.58" cy="315.76" r="2.95" />
-            <circle id="g_or_gnd_8" cx="255.23" cy="323.81" r="2.95" />
-            <circle id="g_or_vcc_8" cx="279.58" cy="323.81" r="2.95" />
-            <circle cx="255.23" cy="332.19" r="2.95" />
-            <circle cx="279.58" cy="332.19" r="2.95" />
+        <g id="OR">
+            <circle id="g_or_in_1_1" cx="181.41" cy="274.71" r="2.95"/>
+            <circle id="g_or_in_1_2" cx="189.72" cy="274.71" r="2.95"/>
+            <circle id="g_or_in_2_1" cx="181.41" cy="283.09" r="2.95"/>
+            <circle id="g_or_in_2_2" cx="189.72" cy="283.09" r="2.95"/>
+            <circle id="g_or_out_3_1" cx="181.41" cy="291.04" r="2.95"/>
+            <circle id="g_or_out_3_2" cx="189.72" cy="291.04" r="2.95"/>
+            <circle id="g_or_in_4_1" cx="181.41" cy="299.42" r="2.95"/>
+            <circle id="g_or_in_4_2" cx="189.72" cy="299.42" r="2.95"/>
+            <circle id="g_or_in_5_1" cx="181.41" cy="307.37" r="2.95"/>
+            <circle id="g_or_in_5_2" cx="189.72" cy="307.37" r="2.95"/>
+            <circle id="g_or_out_6_1" cx="181.41" cy="315.75" r="2.95"/>
+            <circle id="g_or_out_6_2" cx="189.72" cy="315.75" r="2.95"/>
+            <circle id="g_or_gnd_7_1" cx="181.41" cy="323.8" r="2.95"/>
+            <circle id="g_or_gnd_7_2" cx="189.72" cy="323.8" r="2.95"/>
+            <circle cx="181.41" cy="332.18" r="2.95"/>
+            <circle cx="189.72" cy="332.18" r="2.95"/>
+            <g id="gnd_vcc_left-2">
+                <circle id="g_or_gnd_1" cx="173.65" cy="274.72" r="2.95"/>
+                <circle id="g_or_vcc_1" cx="198" cy="274.72" r="2.95"/>
+                <circle id="g_or_gnd_2" cx="173.65" cy="283.1" r="2.95"/>
+                <circle id="g_or_vcc_2" cx="198" cy="283.1" r="2.95"/>
+                <circle id="g_or_gnd_3" cx="173.65" cy="291.04" r="2.95"/>
+                <circle id="g_or_vcc_3" cx="198" cy="291.04" r="2.95"/>
+                <circle id="g_or_gnd_4" cx="173.65" cy="299.43" r="2.95"/>
+                <circle id="g_or_vcc_4" cx="198" cy="299.43" r="2.95"/>
+                <circle id="g_or_gnd_5" cx="173.65" cy="307.37" r="2.95"/>
+                <circle id="g_or_vcc_5" cx="198" cy="307.37" r="2.95"/>
+                <circle id="g_or_gnd_6" cx="173.65" cy="315.76" r="2.95"/>
+                <circle id="g_or_vcc_6" cx="198" cy="315.76" r="2.95"/>
+                <circle id="g_or_gnd_7" cx="173.65" cy="323.81" r="2.95"/>
+                <circle id="g_or_vcc_7" cx="198" cy="323.81" r="2.95"/>
+                <circle cx="173.65" cy="332.19" r="2.95"/>
+                <circle cx="198" cy="332.19" r="2.95"/>
+            </g>
+            <circle id="g_or_vcc_14_1" cx="262.99" cy="274.71" r="2.95"/>
+            <circle id="g_or_vcc_14_2" cx="271.3" cy="274.71" r="2.95"/>
+            <circle id="g_or_in_13_1" cx="262.99" cy="283.09" r="2.95"/>
+            <circle id="g_or_in_13_2" cx="271.3" cy="283.09" r="2.95"/>
+            <circle id="g_or_in_12_1" cx="262.99" cy="291.04" r="2.95"/>
+            <circle id="g_or_in_12_2" cx="271.3" cy="291.04" r="2.95"/>
+            <circle id="g_or_out_11_1" cx="262.99" cy="299.42" r="2.95"/>
+            <circle id="g_or_out_11_2" cx="271.3" cy="299.42" r="2.95"/>
+            <circle id="g_or_in_10_1" cx="262.99" cy="307.37" r="2.95"/>
+            <circle id="g_or_in_10_2" cx="271.3" cy="307.37" r="2.95"/>
+            <circle id="g_or_in_9_1" cx="262.99" cy="315.75" r="2.95"/>
+            <circle id="g_or_in_9_2" cx="271.3" cy="315.75" r="2.95"/>
+            <circle id="g_or_out_8_1" cx="262.99" cy="323.8" r="2.95"/>
+            <circle id="g_or_out_8_2" cx="271.3" cy="323.8" r="2.95"/>
+            <circle cx="262.99" cy="332.18" r="2.95"/>
+            <circle cx="271.3" cy="332.18" r="2.95"/>
+            <g id="gnd_vcc_right-2">
+                <circle id="g_or_gnd_14" cx="255.23" cy="274.72" r="2.95"/>
+                <circle id="g_or_vcc_14" cx="279.58" cy="274.72" r="2.95"/>
+                <circle id="g_or_gnd_13" cx="255.23" cy="283.1" r="2.95"/>
+                <circle id="g_or_vcc_13" cx="279.58" cy="283.1" r="2.95"/>
+                <circle id="g_or_gnd_12" cx="255.23" cy="291.04" r="2.95"/>
+                <circle id="g_or_vcc_12" cx="279.58" cy="291.04" r="2.95"/>
+                <circle id="g_or_gnd_11" cx="255.23" cy="299.43" r="2.95"/>
+                <circle id="g_or_vcc_11" cx="279.58" cy="299.43" r="2.95"/>
+                <circle id="g_or_gnd_10" cx="255.23" cy="307.37" r="2.95"/>
+                <circle id="g_or_vcc_10" cx="279.58" cy="307.37" r="2.95"/>
+                <circle id="g_or_gnd_9" cx="255.23" cy="315.76" r="2.95"/>
+                <circle id="g_or_vcc_9" cx="279.58" cy="315.76" r="2.95"/>
+                <circle id="g_or_gnd_8" cx="255.23" cy="323.81" r="2.95"/>
+                <circle id="g_or_vcc_8" cx="279.58" cy="323.81" r="2.95"/>
+                <circle cx="255.23" cy="332.19" r="2.95"/>
+                <circle cx="279.58" cy="332.19" r="2.95"/>
+            </g>
         </g>
     </g>
 </svg>

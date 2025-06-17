@@ -19,11 +19,61 @@ export default function Board() {
     ["inputD", false]
   ]))
 
+  // Nodes that are connected by design, like islands or same line on gate
+  // TODO: Move to different file OR figure out automatization (or both)
+  const nodeGroups = new Map([
+    ["and_1", ["g_and_in_1_1", "g_and_in_1_2"]],
+    ["and_2", ["g_and_in_2_1", "g_and_in_2_2"]],
+    ["and_3", ["g_and_out_3_1", "g_and_out_3_2"]],
+    ["and_4", ["g_and_in_4_1", "g_and_in_4_2"]],
+    ["and_5", ["g_and_in_5_1", "g_and_in_5_2"]],
+    ["and_6", ["g_and_out_6_1", "g_and_out_6_2"]],
+    ["and_7", ["g_and_gnd_7_1", "g_and_gnd_7_2"]],
+    ["and_8", ["g_and_in_8_1", "g_and_in_8_2"]],
+    ["and_9", ["g_and_in_9_1", "g_and_in_9_2"]],
+    ["and_10", ["g_and_out_10_1", "g_and_out_10_2"]],
+    ["and_11", ["g_and_in_11_1", "g_and_in_11_2"]],
+    ["and_12", ["g_and_in_12_1", "g_and_in_12_2"]],
+    ["and_13", ["g_and_out_13_1", "g_and_out_13_2"]],
+    ["and_14", ["g_and_vcc_14_1", "g_and_vcc_14_2"]],
+
+    ["or_1", ["g_or_in_1_1", "g_or_in_1_2"]],
+    ["or_2", ["g_or_in_2_1", "g_or_in_2_2"]],
+    ["or_3", ["g_or_out_3_1", "g_or_out_3_2"]],
+    ["or_4", ["g_or_in_4_1", "g_or_in_4_2"]],
+    ["or_5", ["g_or_in_5_1", "g_or_in_5_2"]],
+    ["or_6", ["g_or_out_6_1", "g_or_out_6_2"]],
+    ["or_7", ["g_or_gnd_7_1", "g_or_gnd_7_2"]],
+    ["or_8", ["g_or_in_8_1", "g_or_in_8_2"]],
+    ["or_9", ["g_or_in_9_1", "g_or_in_9_2"]],
+    ["or_10", ["g_or_out_10_1", "g_or_out_10_2"]],
+    ["or_11", ["g_or_in_11_1", "g_or_in_11_2"]],
+    ["or_12", ["g_or_in_12_1", "g_or_in_12_2"]],
+    ["or_13", ["g_or_out_13_1", "g_or_out_13_2"]],
+    ["or_14", ["g_or_vcc_14_1", "g_or_vcc_14_2"]]
+  ])
+
   // Fill with all the outs on init, add connections as we input lines?
   const dependenciesRef = useRef(new Map([
-    ["g_and_out_3_1", ["g_and_in_1_1", "g_and_in_2_1"]], // , "g_and_in_1_2", "g_and_in_2_2" out depends on all those ins
-    ["g_or_out_3_1", ["g_or_in_1_1", "g_or_in_2_1"]], // , "g_or_in_1_2", "g_or_in_2_2"
+    ["g_and_out_3_1", [nodeGroups.get("and_1"), nodeGroups.get("and_2")]],
+    ["g_and_out_3_2", [nodeGroups.get("and_1"), nodeGroups.get("and_2")]],
+    ["g_and_out_6_1", [nodeGroups.get("and_4"), nodeGroups.get("and_5")]],
+    ["g_and_out_6_2", [nodeGroups.get("and_4"), nodeGroups.get("and_5")]],
+    ["g_and_out_10_1", [nodeGroups.get("and_8"), nodeGroups.get("and_9")]],
+    ["g_and_out_10_2", [nodeGroups.get("and_8"), nodeGroups.get("and_9")]],
+    ["g_and_out_13_1", [nodeGroups.get("and_11"), nodeGroups.get("and_12")]],
+    ["g_and_out_13_2", [nodeGroups.get("and_11"), nodeGroups.get("and_12")]],
+    ["g_or_out_3_1", [nodeGroups.get("or_1"), nodeGroups.get("or_2")]],
+    ["g_or_out_3_2", [nodeGroups.get("or_1"), nodeGroups.get("or_2")]],
+    ["g_or_out_6_1", [nodeGroups.get("or_4"), nodeGroups.get("or_5")]],
+    ["g_or_out_6_2", [nodeGroups.get("or_4"), nodeGroups.get("or_5")]],
+    ["g_or_out_10_1", [nodeGroups.get("or_8"), nodeGroups.get("or_9")]],
+    ["g_or_out_10_2", [nodeGroups.get("or_8"), nodeGroups.get("or_9")]],
+    ["g_or_out_13_1", [nodeGroups.get("or_11"), nodeGroups.get("or_12")]],
+    ["g_or_out_13_2", [nodeGroups.get("or_11"), nodeGroups.get("or_12")]],
   ]))
+
+
 
   // read current state from Context
   const { selectedCableIndex } = useCable();
@@ -51,27 +101,41 @@ export default function Board() {
   };
 
   function getNodeOutput(nodeId) {
-    const inputs = [dependenciesRef.current.get(nodeId)] || []; // which nodes does the selected nodeId depend on?
-    console.log(inputs)
-    const inputValues = inputs.map((id) => usedNodesRef.current.get(id)); // creates an array of corresponding values
-    console.log("Checking node output", nodeId)
-    const splitNodeId = nodeId.split(/_/)
-    if (splitNodeId[0] === "in") {
-      if (splitNodeId[2] === "a") { return userInputRef.current.get("inputA") }
-      if (splitNodeId[2] === "b") { return userInputRef.current.get("inputB") }
-      if (splitNodeId[2] === "c") { return userInputRef.current.get("inputC") }
-      if (splitNodeId[2] === "d") { return userInputRef.current.get("inputD") }
-    } else if (splitNodeId[0] === "g") {
-      if (splitNodeId[1] === "and") { 
-        if (splitNodeId[2] === "in") { return usedNodesRef.current.get(inputs[0]) }
-        else if (splitNodeId[2] === "out") { return inputValues.every(Boolean) } 
-        
-      }
-
-    } else if (nodeId.startsWith("g_or_out")) {
-      return inputValues.some(Boolean);
+    const inputs = dependenciesRef.current.get(nodeId) || []; // which nodes does the selected nodeId depend on?
+    let inputValues = []
+    if (Array.isArray(inputs[0])) {
+      inputValues[0] = inputs[0].some(id => usedNodesRef.current.get(id))
+      inputValues[1] = inputs[1].some(id => usedNodesRef.current.get(id))
+    } else {
+      inputValues = inputs.map((id) => usedNodesRef.current.get(id)); // returns the 
     }
+    console.log("Checking node output", nodeId, inputs, inputValues)
+    const splitNodeId = nodeId.split(/_/)
 
+    // we don't need breaks within this switch as we return out of the function
+    switch (splitNodeId[0]) {
+      case "in": {
+        switch (splitNodeId[2]) {
+          case "a": return userInputRef.current.get("inputA")
+          case "b": return userInputRef.current.get("inputB")
+          case "c": return userInputRef.current.get("inputC")
+          case "d": return userInputRef.current.get("inputD")
+        }
+      }
+      case "g": {
+        // deal with input/gnd/vcc first, as it's the same for all gates
+        switch (splitNodeId[2]) {
+          case "in": return usedNodesRef.current.get(inputs[0])
+          case "gnd": return false
+          case "vcc": return true
+        }
+        // differentiating between gates
+        switch (splitNodeId[1]) {
+          case "and": return inputValues.every(Boolean)
+          case "or": return inputValues.some(Boolean)
+        }
+      }
+    }
     return false; // fallback for unknown node
   }
 
@@ -109,7 +173,7 @@ export default function Board() {
         }
 
         drawLineBetween(fromId, toId, colorClass);
-        dependenciesRef.current.set(toId, fromId)
+        dependenciesRef.current.set(toId, [fromId])
         console.log("Dependencies ref value for id: ", dependenciesRef.current.get(id))
         usedNodesRef.current.set(id, getNodeOutput(id));
         console.log(dependenciesRef, usedNodesRef)
@@ -156,8 +220,8 @@ export default function Board() {
       invisibleLine.setAttribute("class", colorClass + "-invisible");
       invisibleLine.setAttribute("id", `i_line-${fromId}-${toId}`);
 
-      svg.appendChild(invisibleLine);
       svg.appendChild(visibleLine);
+      svg.appendChild(invisibleLine);
     };
 
     // Finds out which element is clicked and runs the corresponding click handler

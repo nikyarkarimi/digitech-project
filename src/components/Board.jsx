@@ -13,8 +13,8 @@ export default function Board() {
   const selectedNodeRef = useRef(null);
   const usedNodesRef = useRef(new Map());
   const userInputRef = useRef(new Map([
-    ['inputA', true],
-    ["inputB", true],
+    ['inputA', false],
+    ["inputB", false],
     ["inputC", false],
     ["inputD", false]
   ]))
@@ -226,6 +226,26 @@ export default function Board() {
 
     // Finds out which element is clicked and runs the corresponding click handler
     const handleClick = (event) => {
+
+      const inputKeys = ["inputA", "inputB", "inputC", "inputD"];
+      const clickedInput = event.target.closest("[id]");
+
+      if (clickedInput && inputKeys.includes(clickedInput.id)) {
+        const key = clickedInput.id;
+        const currentValue = userInputRef.current.get(key);
+        const newValue = !currentValue;
+
+        userInputRef.current.set(key, newValue);
+
+        clickedInput.setAttribute("class", newValue ? "signal-true" : "signal-false");
+
+        console.log(`${key} is ${newValue ? "true" : "false"}`);
+        console.log("All input toggles are...");
+        console.table(Object.fromEntries(userInputRef.current));
+        return;
+      }
+
+
       const line = event.target.closest("line[id]");
       if (line) {
         handleLineClick(line.id);
@@ -245,6 +265,16 @@ export default function Board() {
         if (!containerRef.current) return;
         containerRef.current.innerHTML = svg;
         svgElement = containerRef.current;
+
+        // set initial input colors
+        ["inputA", "inputB", "inputC", "inputD"].forEach((key) => {
+          const el = containerRef.current.querySelector(`#${key}`);
+          const value = userInputRef.current.get(key);
+          if (el) {
+            el.setAttribute("class", value ? "signal-true" : "signal-false");
+          }
+        });
+
 
         svgElement.addEventListener("click", handleClick);
 

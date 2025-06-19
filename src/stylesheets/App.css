@@ -108,6 +108,28 @@ h2 {
   cursor: pointer;
 }
 
+.signal-true {
+  fill: #16b816 !important;
+}
+
+.signal-false {
+  fill: #f84e4e !important;
+}
+
+#inputA, #inputB, #inputC, #inputD {
+  cursor: pointer;
+}
+
+#inputA:hover,
+#inputB:hover,
+#inputC:hover,
+#inputD:hover {
+  filter: drop-shadow(0 0 5px #8a8a8a);
+}
+
+
+
+
 .cable-default { stroke: #4b5059; stroke-width: 1.5; }
 .cable-default-invisible { stroke: #4b5059; opacity: 0; stroke-width: 5; cursor: pointer; }
 

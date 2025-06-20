@@ -20,7 +20,10 @@ export default function Sidebar() {
                 </div>
                 <div>
                     <h2>reset</h2>
-                    <button id={"reset-btn"} onClick={() => {alert("Board reset!")}}>
+                    <button id={"reset-btn"} onClick={() => {
+                        alert("Board reset!");
+                        window.location.reload();
+                    }}>
                         <RotateCcw />
                     </button>
                 </div>

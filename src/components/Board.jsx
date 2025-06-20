@@ -175,7 +175,25 @@ export default function Board() {
         drawLineBetween(fromId, toId, colorClass);
         dependenciesRef.current.set(toId, [fromId])
         console.log("Dependencies ref value for id: ", dependenciesRef.current.get(id))
-        usedNodesRef.current.set(id, getNodeOutput(id));
+
+        /**
+         * ADDED CONSOLE AND ALERT FEEDBACK WITH CHAT-BRO TODO DELETE AFTER LEDs ARE FINISHED!
+         */
+
+        // Chat wanted me to delete this next line...
+        //usedNodesRef.current.set(id, getNodeOutput(id));
+
+        //Chat added these lines...
+        const newValue = getNodeOutput(toId);
+        usedNodesRef.current.set(toId, newValue);
+        if (/^g_(and|or)_out/.test(toId) && newValue === true) {  // by adapting the regex we can also validate other gates
+          console.log(`Output ${toId} is set to TRUE.`);
+          alert(`Output ${toId} is set to TRUE.`);
+        }
+        /**
+         * END
+         */
+
         console.log(dependenciesRef, usedNodesRef)
         selectedNodeRef.current = null;
       }

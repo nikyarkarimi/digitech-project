@@ -19,7 +19,7 @@ export default function Board() {
 
   //pins in einer Zeile gehören zsm
   const nodeGroups = new Map([
-    ["and_1", ["g_and_in_1_1", "g_and_in_1_2"]],  //and in 1_1 und and in 1_2 gehören zusammen in einer zeile
+    ["and_1", ["g_and_in_1_1", "g_and_in_1_2"]],
     ["and_2", ["g_and_in_2_1", "g_and_in_2_2"]],
     ["and_3", ["g_and_out_3_1", "g_and_out_3_2"]],
     ["and_4", ["g_and_in_4_1", "g_and_in_4_2"]],
@@ -62,13 +62,28 @@ export default function Board() {
     ["not_11", ["g_not_in_11_1", "g_not_in_11_2"]],
     ["not_12", ["g_not_out_12_1", "g_not_out_12_2"]],
     ["not_13", ["g_not_in_13_1", "g_not_in_13_2"]],
-    ["not_14", ["g_not_vcc_14_1", "g_not_vcc_14_2"]]
+    ["not_14", ["g_not_vcc_14_1", "g_not_vcc_14_2"]],
+
+    ["nand_1", ["g_nand_in_1_1", "g_nand_in_1_2"]],
+    ["nand_2", ["g_nand_in_2_1", "g_nand_in_2_2"]],
+    ["nand_3", ["g_nand_out_3_1", "g_nand_out_3_2"]],
+    ["nand_4", ["g_nand_in_4_1", "g_nand_in_4_2"]],
+    ["nand_5", ["g_nand_in_5_1", "g_nand_in_5_2"]],
+    ["nand_6", ["g_nand_out_6_1", "g_nand_out_6_2"]],
+    ["nand_7", ["g_nand_gnd_7_1", "g_nand_gnd_7_2"]],
+    ["nand_8", ["g_nand_in_8_1", "g_nand_in_8_2"]],
+    ["nand_9", ["g_nand_in_9_1", "g_nand_in_9_2"]],
+    ["nand_10", ["g_nand_out_10_1", "g_nand_out_10_2"]],
+    ["nand_11", ["g_nand_in_11_1", "g_nand_in_11_2"]],
+    ["nand_12", ["g_nand_in_12_1", "g_nand_in_12_2"]],
+    ["nand_13", ["g_nand_out_13_1", "g_nand_out_13_2"]],
+    ["nand_14", ["g_nand_vcc_14_1", "g_nand_vcc_14_2"]],
   ])
 
   // Fill with all the outs on init, add connections as we input lines?
 
   // Dependencies werden geschaffen 1. out dependet auf and 1 und and 2
-  // Von welchen Eingängen hängt Output ab
+  // FIXME: RECHTE SEITE BEI KEINEM GATE FUNKTIONIERT
   const dependenciesRef = useRef(new Map([
     ["g_and_out_3_1", [nodeGroups.get("and_1"), nodeGroups.get("and_2")]],
     ["g_and_out_3_2", [nodeGroups.get("and_1"), nodeGroups.get("and_2")]],
@@ -100,6 +115,16 @@ export default function Board() {
     ["g_not_out_10_2", nodeGroups.get("not_11")],
     ["g_not_out_12_1", nodeGroups.get("not_13")],
     ["g_not_out_12_2", nodeGroups.get("not_13")],
+
+    // TODO: Tamara fragen, ob Nummerierung, z.B. 11 --> [13, 12] korrekt ist..., also wie am Datenblatt?
+    ["g_nand_out_3_1", [nodeGroups.get("nand_1"), nodeGroups.get("nand_2")]],
+    ["g_nand_out_3_2", [nodeGroups.get("nand_1"), nodeGroups.get("nand_2")]],
+    ["g_nand_out_6_1", [nodeGroups.get("nand_4"), nodeGroups.get("nand_5")]],
+    ["g_nand_out_6_2", [nodeGroups.get("nand_4"), nodeGroups.get("nand_5")]],
+    ["g_nand_out_8_1", [nodeGroups.get("nand_10"), nodeGroups.get("nand_9")]],
+    ["g_nand_out_8_2", [nodeGroups.get("nand_10"), nodeGroups.get("nand_9")]],
+    ["g_nand_out_11_1", [nodeGroups.get("nand_13"), nodeGroups.get("nand_12")]],
+    ["g_nand_out_11_2", [nodeGroups.get("nand_13"), nodeGroups.get("nand_12")]],
   ]))
 
 
@@ -164,6 +189,7 @@ export default function Board() {
           case "or": return inputValues.some(Boolean)
           //important not and nand HERE
           case "not": return !inputValues[0];
+          case "nand": return !(Boolean(inputValues[0]) && Boolean(inputValues[1]));
         }
       }
     }

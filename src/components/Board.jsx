@@ -1,12 +1,6 @@
 import { useRef, useEffect } from "react";
 import { useCable } from "../contexts/CableContext.jsx";
 
-/**
- * TODO Unsichtbare Kabel verhindern, wenn keine Kabel-Farbe ausgewählt wurde
- *
- * Tamaras Comments rein geben
- * */
-
 
 export default function Board() {
   const containerRef = useRef(null);
@@ -21,6 +15,9 @@ export default function Board() {
 
   // Nodes that are connected by design, like islands or same line on gate
   // TODO: Move to different file OR figure out automatization (or both)
+
+
+  //pins in einer Zeile gehören zsm
   const nodeGroups = new Map([
     ["and_1", ["g_and_in_1_1", "g_and_in_1_2"]],
     ["and_2", ["g_and_in_2_1", "g_and_in_2_2"]],
@@ -50,10 +47,43 @@ export default function Board() {
     ["or_11", ["g_or_in_11_1", "g_or_in_11_2"]],
     ["or_12", ["g_or_in_12_1", "g_or_in_12_2"]],
     ["or_13", ["g_or_out_13_1", "g_or_out_13_2"]],
-    ["or_14", ["g_or_vcc_14_1", "g_or_vcc_14_2"]]
+    ["or_14", ["g_or_vcc_14_1", "g_or_vcc_14_2"]],
+
+    ["not_1", ["g_not_in_1_1", "g_not_in_1_2"]],
+    ["not_2", ["g_not_out_2_1", "g_not_out_2_2"]],
+    ["not_3", ["g_not_in_3_1", "g_not_in_3_2"]],
+    ["not_4", ["g_not_out_4_1", "g_not_out_4_2"]],
+    ["not_5", ["g_not_in_5_1", "g_not_in_5_2"]],
+    ["not_6", ["g_not_out_6_1", "g_not_out_6_2"]],
+    ["not_7", ["g_not_gnd_7_1", "g_not_gnd_7_2"]],
+    ["not_8", ["g_not_out_8_1", "g_not_out_8_2"]],
+    ["not_9", ["g_not_in_9_1", "g_not_in_9_2"]],
+    ["not_10", ["g_not_out_10_1", "g_not_out_10_2"]],
+    ["not_11", ["g_not_in_11_1", "g_not_in_11_2"]],
+    ["not_12", ["g_not_out_12_1", "g_not_out_12_2"]],
+    ["not_13", ["g_not_in_13_1", "g_not_in_13_2"]],
+    ["not_14", ["g_not_vcc_14_1", "g_not_vcc_14_2"]],
+
+    ["nand_1", ["g_nand_in_1_1", "g_nand_in_1_2"]],
+    ["nand_2", ["g_nand_in_2_1", "g_nand_in_2_2"]],
+    ["nand_3", ["g_nand_out_3_1", "g_nand_out_3_2"]],
+    ["nand_4", ["g_nand_in_4_1", "g_nand_in_4_2"]],
+    ["nand_5", ["g_nand_in_5_1", "g_nand_in_5_2"]],
+    ["nand_6", ["g_nand_out_6_1", "g_nand_out_6_2"]],
+    ["nand_7", ["g_nand_gnd_7_1", "g_nand_gnd_7_2"]],
+    ["nand_8", ["g_nand_in_8_1", "g_nand_in_8_2"]],
+    ["nand_9", ["g_nand_in_9_1", "g_nand_in_9_2"]],
+    ["nand_10", ["g_nand_out_10_1", "g_nand_out_10_2"]],
+    ["nand_11", ["g_nand_in_11_1", "g_nand_in_11_2"]],
+    ["nand_12", ["g_nand_in_12_1", "g_nand_in_12_2"]],
+    ["nand_13", ["g_nand_out_13_1", "g_nand_out_13_2"]],
+    ["nand_14", ["g_nand_vcc_14_1", "g_nand_vcc_14_2"]],
   ])
 
   // Fill with all the outs on init, add connections as we input lines?
+
+  // Dependencies werden geschaffen 1. out dependet auf and 1 und and 2
+  // FIXME: RECHTE SEITE BEI KEINEM GATE FUNKTIONIERT
   const dependenciesRef = useRef(new Map([
     ["g_and_out_3_1", [nodeGroups.get("and_1"), nodeGroups.get("and_2")]],
     ["g_and_out_3_2", [nodeGroups.get("and_1"), nodeGroups.get("and_2")]],
@@ -63,6 +93,7 @@ export default function Board() {
     ["g_and_out_10_2", [nodeGroups.get("and_8"), nodeGroups.get("and_9")]],
     ["g_and_out_13_1", [nodeGroups.get("and_11"), nodeGroups.get("and_12")]],
     ["g_and_out_13_2", [nodeGroups.get("and_11"), nodeGroups.get("and_12")]],
+
     ["g_or_out_3_1", [nodeGroups.get("or_1"), nodeGroups.get("or_2")]],
     ["g_or_out_3_2", [nodeGroups.get("or_1"), nodeGroups.get("or_2")]],
     ["g_or_out_6_1", [nodeGroups.get("or_4"), nodeGroups.get("or_5")]],
@@ -71,6 +102,29 @@ export default function Board() {
     ["g_or_out_10_2", [nodeGroups.get("or_8"), nodeGroups.get("or_9")]],
     ["g_or_out_13_1", [nodeGroups.get("or_11"), nodeGroups.get("or_12")]],
     ["g_or_out_13_2", [nodeGroups.get("or_11"), nodeGroups.get("or_12")]],
+
+    ["g_not_out_2_1", nodeGroups.get("not_1")],
+    ["g_not_out_2_2", nodeGroups.get("not_1")],
+    ["g_not_out_4_1", nodeGroups.get("not_3")],
+    ["g_not_out_4_2", nodeGroups.get("not_3")],
+    ["g_not_out_6_1", nodeGroups.get("not_5")],
+    ["g_not_out_6_2", nodeGroups.get("not_5")],
+    ["g_not_out_8_1", nodeGroups.get("not_9")],
+    ["g_not_out_8_2", nodeGroups.get("not_9")],
+    ["g_not_out_10_1", nodeGroups.get("not_11")],
+    ["g_not_out_10_2", nodeGroups.get("not_11")],
+    ["g_not_out_12_1", nodeGroups.get("not_13")],
+    ["g_not_out_12_2", nodeGroups.get("not_13")],
+
+    // TODO: Tamara fragen, ob Nummerierung, z.B. 11 --> [13, 12] korrekt ist..., also wie am Datenblatt?
+    ["g_nand_out_3_1", [nodeGroups.get("nand_1"), nodeGroups.get("nand_2")]],
+    ["g_nand_out_3_2", [nodeGroups.get("nand_1"), nodeGroups.get("nand_2")]],
+    ["g_nand_out_6_1", [nodeGroups.get("nand_4"), nodeGroups.get("nand_5")]],
+    ["g_nand_out_6_2", [nodeGroups.get("nand_4"), nodeGroups.get("nand_5")]],
+    ["g_nand_out_8_1", [nodeGroups.get("nand_10"), nodeGroups.get("nand_9")]],
+    ["g_nand_out_8_2", [nodeGroups.get("nand_10"), nodeGroups.get("nand_9")]],
+    ["g_nand_out_11_1", [nodeGroups.get("nand_13"), nodeGroups.get("nand_12")]],
+    ["g_nand_out_11_2", [nodeGroups.get("nand_13"), nodeGroups.get("nand_12")]],
   ]))
 
 
@@ -104,8 +158,8 @@ export default function Board() {
     const inputs = dependenciesRef.current.get(nodeId) || []; // which nodes does the selected nodeId depend on?
     let inputValues = []
     if (Array.isArray(inputs[0])) {
-      inputValues[0] = inputs[0].some(id => usedNodesRef.current.get(id))
-      inputValues[1] = inputs[1].some(id => usedNodesRef.current.get(id))
+      inputValues[0] = inputs[0].some(id => usedNodesRef.current.get(id)) || false;
+      inputValues[1] = inputs[1].some(id => usedNodesRef.current.get(id)) || false;
     } else {
       inputValues = inputs.map((id) => usedNodesRef.current.get(id)); // returns the 
     }
@@ -133,6 +187,9 @@ export default function Board() {
         switch (splitNodeId[1]) {
           case "and": return inputValues.every(Boolean)
           case "or": return inputValues.some(Boolean)
+          //important not and nand HERE
+          case "not": return !inputValues[0];
+          case "nand": return !(Boolean(inputValues[0]) && Boolean(inputValues[1]));
         }
       }
       case "out": {

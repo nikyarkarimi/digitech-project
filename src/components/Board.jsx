@@ -123,7 +123,7 @@ export default function Board() {
         }
       }
       case "g": {
-        // deal with input/gnd/vcc first, as it's the same for all gates
+        // deal with input/gnd/vcc first, as it's the same for all nodes
         switch (splitNodeId[2]) {
           case "in": return usedNodesRef.current.get(inputs[0])
           case "gnd": return false
@@ -135,8 +135,18 @@ export default function Board() {
           case "or": return inputValues.some(Boolean)
         }
       }
+      case "out": {
+        
+        if (usedNodesRef.current.get(inputs[0])) lightLED(splitNodeId[3])
+        return usedNodesRef.current.get(inputs[0])
+      }
+        return false; // fallback for unknown node
     }
-    return false; // fallback for unknown node
+  }
+
+  function lightLED(nodeId) {
+    document.getElementById(`out_led_out_${nodeId}`)?.setAttribute("class", "led-lit")
+    console.log(document.getElementById(`out_led_out_${nodeId}`)?.className)
   }
 
   useEffect(() => {
@@ -269,6 +279,7 @@ export default function Board() {
         handleLineClick(line.id);
         return;
       }
+
 
       const circle = event.target.closest("circle[id]");
       if (circle) {

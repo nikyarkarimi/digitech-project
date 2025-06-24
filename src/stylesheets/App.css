@@ -127,6 +127,10 @@ h2 {
   filter: drop-shadow(0 0 5px #8a8a8a);
 }
 
+.led-lit {
+  fill: #f84e4e;
+}
+
 
 
 

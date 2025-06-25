@@ -7,8 +7,8 @@ export default function Board() {
   const selectedNodeRef = useRef(null);
   const usedNodesRef = useRef(new Map());
   const userInputRef = useRef(new Map([
-    ['inputA', false],
-    ["inputB", false],
+    ['inputA', true],
+    ["inputB", true],
     ["inputC", false],
     ["inputD", false]
   ]))
@@ -19,6 +19,8 @@ export default function Board() {
 
   //pins in einer Zeile gehören zsm
   const nodeGroups = new Map([
+    ["input_1", ["g_and_in_1_1", "g_and_in_1_2"]],
+
     ["and_1", ["g_and_in_1_1", "g_and_in_1_2"]],
     ["and_2", ["g_and_in_2_1", "g_and_in_2_2"]],
     ["and_3", ["g_and_out_3_1", "g_and_out_3_2"]],
@@ -26,7 +28,7 @@ export default function Board() {
     ["and_5", ["g_and_in_5_1", "g_and_in_5_2"]],
     ["and_6", ["g_and_out_6_1", "g_and_out_6_2"]],
     ["and_7", ["g_and_gnd_7_1", "g_and_gnd_7_2"]],
-    
+
     ["and_8", ["g_and_out_8_1", "g_and_out_8_2"]],
     ["and_9", ["g_and_in_9_1", "g_and_in_9_2"]],
     ["and_10", ["g_and_in_10_1", "g_and_in_10_2"]],
@@ -119,7 +121,6 @@ export default function Board() {
     ["g_not_out_12_1", nodeGroups.get("not_13")],
     ["g_not_out_12_2", nodeGroups.get("not_13")],
 
-    // TODO: Tamara fragen, ob Nummerierung, z.B. 11 --> [13, 12] korrekt ist..., also wie am Datenblatt?
     ["g_nand_out_3_1", [nodeGroups.get("nand_1"), nodeGroups.get("nand_2")]],
     ["g_nand_out_3_2", [nodeGroups.get("nand_1"), nodeGroups.get("nand_2")]],
     ["g_nand_out_6_1", [nodeGroups.get("nand_4"), nodeGroups.get("nand_5")]],
@@ -157,6 +158,8 @@ export default function Board() {
     return null;
   };
 
+  
+
   function getNodeOutput(nodeId) {
     const inputs = dependenciesRef.current.get(nodeId) || []; // which nodes does the selected nodeId depend on?
     let inputValues = []
@@ -168,6 +171,7 @@ export default function Board() {
     }
     console.log("Checking node output", nodeId, inputs, inputValues)
     const splitNodeId = nodeId.split(/_/)
+
 
     // we don't need breaks within this switch as we return out of the function
     switch (splitNodeId[0]) {
@@ -182,7 +186,7 @@ export default function Board() {
       case "g": {
         // deal with input/gnd/vcc first, as it's the same for all nodes
         switch (splitNodeId[2]) {
-          case "in": return usedNodesRef.current.get(inputs[0])
+          case "in": return usedNodesRef.current.get(inputs[0]) == true ? true : false
           case "gnd": return false
           case "vcc": return true
         }
@@ -196,7 +200,7 @@ export default function Board() {
         }
       }
       case "out": {
-        
+
         if (usedNodesRef.current.get(inputs[0])) lightLED(splitNodeId[3])
         return usedNodesRef.current.get(inputs[0])
       }
@@ -207,6 +211,14 @@ export default function Board() {
   function lightLED(nodeId) {
     document.getElementById(`out_led_out_${nodeId}`)?.setAttribute("class", "led-lit")
     console.log(document.getElementById(`out_led_out_${nodeId}`)?.className)
+  }
+
+
+  function previousNodeIsToId(previousId) {
+    const splitNodeId = previousId.split(/_/)
+    console.log(splitNodeId)
+    if (splitNodeId[0] === "out" || splitNodeId[2] === "in") return true
+    else return false
   }
 
   useEffect(() => {
@@ -228,9 +240,24 @@ export default function Board() {
       if (selectedNodeRef.current === null) {
         selectedNodeRef.current = id;
         usedNodesRef.current.set(id, getNodeOutput(id));
+        console.log("selected nodes were empty. Our output is", usedNodesRef.current.get(id))
       } else {
-        const fromId = selectedNodeRef.current;
-        const toId = id;
+        let toId, fromId
+        if (!previousNodeIsToId(selectedNodeRef.current)) {
+          fromId = selectedNodeRef.current;
+          toId = id;
+          dependenciesRef.current.set(toId, [fromId])
+
+        } else {
+          fromId = id;
+          toId = selectedNodeRef.current;
+          console.log("To and from were switched. Our current ids were: ", usedNodesRef.current.get(id), usedNodesRef.current.get(fromId))
+
+          dependenciesRef.current.set(toId, [fromId])
+          usedNodesRef.current.set(id, getNodeOutput(fromId));
+          usedNodesRef.current.set(id, getNodeOutput(fromId));
+          console.log("Id is now set to ", usedNodesRef.current.get(id))
+        }
 
         const colorClass = getColorClass(); // Read current colour
 
@@ -243,7 +270,6 @@ export default function Board() {
         }
 
         drawLineBetween(fromId, toId, colorClass);
-        dependenciesRef.current.set(toId, [fromId])
         console.log("Dependencies ref value for id: ", dependenciesRef.current.get(id))
 
         /**

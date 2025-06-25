@@ -131,6 +131,10 @@ export default function Board() {
     ["g_nand_out_11_2", [nodeGroups.get("nand_13"), nodeGroups.get("nand_12")]],
   ]))
 
+  const forwardDependenciesRef = useRef(new Map([
+    ["inputA", ["in_pos_a_top_1", "in_pos_a_top_2", "in_pos_a_top_3", "in_pos_a_top_4"]]
+  ]))
+
 
 
   // read current state from Context
@@ -158,7 +162,7 @@ export default function Board() {
     return null;
   };
 
-  
+
 
   function getNodeOutput(nodeId) {
     const inputs = dependenciesRef.current.get(nodeId) || []; // which nodes does the selected nodeId depend on?
@@ -201,15 +205,17 @@ export default function Board() {
       }
       case "out": {
 
-        if (usedNodesRef.current.get(inputs[0])) lightLED(splitNodeId[3])
+        if (usedNodesRef.current.get(inputs[0])) lightLED(splitNodeId[3], true)
+        else lightLED(splitNodeId[3], false)
         return usedNodesRef.current.get(inputs[0])
       }
         return false; // fallback for unknown node
     }
   }
 
-  function lightLED(nodeId) {
-    document.getElementById(`out_led_out_${nodeId}`)?.setAttribute("class", "led-lit")
+  function lightLED(nodeId, on) {
+    if (on) document.getElementById(`out_led_out_${nodeId}`)?.setAttribute("class", "led-lit")
+    else document.getElementById(`out_led_out_${nodeId}`)?.removeAttribute("class", "led-lit")
     console.log(document.getElementById(`out_led_out_${nodeId}`)?.className)
   }
 
@@ -219,6 +225,22 @@ export default function Board() {
     console.log(splitNodeId)
     if (splitNodeId[0] === "out" || splitNodeId[2] === "in") return true
     else return false
+  }
+
+  function propagateChanges(nodeId, visited) {
+    console.log("we check changes")
+    if (!forwardDependenciesRef.current.get(nodeId)) return
+    console.log("yes changes")
+    for (const dep of forwardDependenciesRef.current.get(nodeId)) {
+      if (visited.has(dep)) return
+      if (usedNodesRef.current.get(dep) != null) {
+        usedNodesRef.current.set(dep, getNodeOutput(dep))
+      }
+
+      visited.add(dep);
+      propagateChanges(dep, visited);
+    }
+
   }
 
   useEffect(() => {
@@ -255,9 +277,10 @@ export default function Board() {
 
           dependenciesRef.current.set(toId, [fromId])
           usedNodesRef.current.set(id, getNodeOutput(fromId));
-          usedNodesRef.current.set(id, getNodeOutput(fromId));
-          console.log("Id is now set to ", usedNodesRef.current.get(id))
         }
+
+        forwardDependenciesRef.current.set(fromId, [toId])
+        console.log(forwardDependenciesRef)
 
         const colorClass = getColorClass(); // Read current colour
 
@@ -352,10 +375,8 @@ export default function Board() {
         userInputRef.current.set(key, newValue);
 
         clickedInput.setAttribute("class", newValue ? "signal-true" : "signal-false");
-
-        console.log(`${key} is ${newValue ? "true" : "false"}`);
-        console.log("All input toggles are...");
-        console.table(Object.fromEntries(userInputRef.current));
+        console.log("This is our propagate id", clickedInput.id)
+        propagateChanges(clickedInput.id, new Set())
         return;
       }
 
@@ -363,6 +384,8 @@ export default function Board() {
       const line = event.target.closest("line[id]");
       if (line) {
         handleLineClick(line.id);
+        console.log("This is our propagate id", clickedInput.id)
+        propagateChanges(clickedInput.id, new Set())
         return;
       }
 
@@ -370,6 +393,8 @@ export default function Board() {
       const circle = event.target.closest("circle[id]");
       if (circle) {
         handleNodeClick(circle.id);
+        console.log("This is our propagate id", clickedInput.id)
+        propagateChanges(clickedInput.id, new Set())
       }
     };
 

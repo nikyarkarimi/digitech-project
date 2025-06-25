@@ -26,12 +26,13 @@ export default function Board() {
     ["and_5", ["g_and_in_5_1", "g_and_in_5_2"]],
     ["and_6", ["g_and_out_6_1", "g_and_out_6_2"]],
     ["and_7", ["g_and_gnd_7_1", "g_and_gnd_7_2"]],
-    ["and_8", ["g_and_in_8_1", "g_and_in_8_2"]],
+    
+    ["and_8", ["g_and_out_8_1", "g_and_out_8_2"]],
     ["and_9", ["g_and_in_9_1", "g_and_in_9_2"]],
-    ["and_10", ["g_and_out_10_1", "g_and_out_10_2"]],
-    ["and_11", ["g_and_in_11_1", "g_and_in_11_2"]],
+    ["and_10", ["g_and_in_10_1", "g_and_in_10_2"]],
+    ["and_11", ["g_and_out_11_1", "g_and_out_11_2"]],
     ["and_12", ["g_and_in_12_1", "g_and_in_12_2"]],
-    ["and_13", ["g_and_out_13_1", "g_and_out_13_2"]],
+    ["and_13", ["g_and_in_13_1", "g_and_in_13_2"]],
     ["and_14", ["g_and_vcc_14_1", "g_and_vcc_14_2"]],
 
     ["or_1", ["g_or_in_1_1", "g_or_in_1_2"]],
@@ -41,12 +42,13 @@ export default function Board() {
     ["or_5", ["g_or_in_5_1", "g_or_in_5_2"]],
     ["or_6", ["g_or_out_6_1", "g_or_out_6_2"]],
     ["or_7", ["g_or_gnd_7_1", "g_or_gnd_7_2"]],
-    ["or_8", ["g_or_in_8_1", "g_or_in_8_2"]],
+
+    ["or_8", ["g_or_out_8_1", "g_or_out_8_2"]],
     ["or_9", ["g_or_in_9_1", "g_or_in_9_2"]],
-    ["or_10", ["g_or_out_10_1", "g_or_out_10_2"]],
-    ["or_11", ["g_or_in_11_1", "g_or_in_11_2"]],
+    ["or_10", ["g_or_in_10_1", "g_or_in_10_2"]],
+    ["or_11", ["g_or_out_11_1", "g_or_out_11_2"]],
     ["or_12", ["g_or_in_12_1", "g_or_in_12_2"]],
-    ["or_13", ["g_or_out_13_1", "g_or_out_13_2"]],
+    ["or_13", ["g_or_in_13_1", "g_or_in_13_2"]],
     ["or_14", ["g_or_vcc_14_1", "g_or_vcc_14_2"]],
 
     ["not_1", ["g_not_in_1_1", "g_not_in_1_2"]],
@@ -71,12 +73,13 @@ export default function Board() {
     ["nand_5", ["g_nand_in_5_1", "g_nand_in_5_2"]],
     ["nand_6", ["g_nand_out_6_1", "g_nand_out_6_2"]],
     ["nand_7", ["g_nand_gnd_7_1", "g_nand_gnd_7_2"]],
-    ["nand_8", ["g_nand_in_8_1", "g_nand_in_8_2"]],
+
+    ["nand_8", ["g_nand_out_8_1", "g_nand_out_8_2"]],
     ["nand_9", ["g_nand_in_9_1", "g_nand_in_9_2"]],
-    ["nand_10", ["g_nand_out_10_1", "g_nand_out_10_2"]],
-    ["nand_11", ["g_nand_in_11_1", "g_nand_in_11_2"]],
+    ["nand_10", ["g_nand_in_10_1", "g_nand_in_10_2"]],
+    ["nand_11", ["g_nand_out_11_1", "g_nand_out_11_2"]],
     ["nand_12", ["g_nand_in_12_1", "g_nand_in_12_2"]],
-    ["nand_13", ["g_nand_out_13_1", "g_nand_out_13_2"]],
+    ["nand_13", ["g_nand_in_13_1", "g_nand_in_13_2"]],
     ["nand_14", ["g_nand_vcc_14_1", "g_nand_vcc_14_2"]],
   ])
 
@@ -89,19 +92,19 @@ export default function Board() {
     ["g_and_out_3_2", [nodeGroups.get("and_1"), nodeGroups.get("and_2")]],
     ["g_and_out_6_1", [nodeGroups.get("and_4"), nodeGroups.get("and_5")]],
     ["g_and_out_6_2", [nodeGroups.get("and_4"), nodeGroups.get("and_5")]],
-    ["g_and_out_10_1", [nodeGroups.get("and_8"), nodeGroups.get("and_9")]],
-    ["g_and_out_10_2", [nodeGroups.get("and_8"), nodeGroups.get("and_9")]],
-    ["g_and_out_13_1", [nodeGroups.get("and_11"), nodeGroups.get("and_12")]],
-    ["g_and_out_13_2", [nodeGroups.get("and_11"), nodeGroups.get("and_12")]],
+    ["g_and_out_8_1", [nodeGroups.get("and_10"), nodeGroups.get("and_9")]],
+    ["g_and_out_8_2", [nodeGroups.get("and_10"), nodeGroups.get("and_9")]],
+    ["g_and_out_11_1", [nodeGroups.get("and_13"), nodeGroups.get("and_12")]],
+    ["g_and_out_11_2", [nodeGroups.get("and_13"), nodeGroups.get("and_12")]],
 
     ["g_or_out_3_1", [nodeGroups.get("or_1"), nodeGroups.get("or_2")]],
     ["g_or_out_3_2", [nodeGroups.get("or_1"), nodeGroups.get("or_2")]],
     ["g_or_out_6_1", [nodeGroups.get("or_4"), nodeGroups.get("or_5")]],
     ["g_or_out_6_2", [nodeGroups.get("or_4"), nodeGroups.get("or_5")]],
-    ["g_or_out_10_1", [nodeGroups.get("or_8"), nodeGroups.get("or_9")]],
-    ["g_or_out_10_2", [nodeGroups.get("or_8"), nodeGroups.get("or_9")]],
-    ["g_or_out_13_1", [nodeGroups.get("or_11"), nodeGroups.get("or_12")]],
-    ["g_or_out_13_2", [nodeGroups.get("or_11"), nodeGroups.get("or_12")]],
+    ["g_or_out_8_1", [nodeGroups.get("or_10"), nodeGroups.get("or_9")]],
+    ["g_or_out_8_2", [nodeGroups.get("or_10"), nodeGroups.get("or_9")]],
+    ["g_or_out_11_1", [nodeGroups.get("or_13"), nodeGroups.get("or_12")]],
+    ["g_or_out_11_2", [nodeGroups.get("or_13"), nodeGroups.get("or_12")]],
 
     ["g_not_out_2_1", nodeGroups.get("not_1")],
     ["g_not_out_2_2", nodeGroups.get("not_1")],
@@ -161,7 +164,7 @@ export default function Board() {
       inputValues[0] = inputs[0].some(id => usedNodesRef.current.get(id)) || false;
       inputValues[1] = inputs[1].some(id => usedNodesRef.current.get(id)) || false;
     } else {
-      inputValues = inputs.map((id) => usedNodesRef.current.get(id)); // returns the 
+      inputValues = inputs.map((id) => usedNodesRef.current.get(id)); // ensures single input still is an array
     }
     console.log("Checking node output", nodeId, inputs, inputValues)
     const splitNodeId = nodeId.split(/_/)

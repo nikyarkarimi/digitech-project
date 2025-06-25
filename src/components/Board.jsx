@@ -88,7 +88,7 @@ export default function Board() {
   // Fill with all the outs on init, add connections as we input lines?
 
   // Dependencies werden geschaffen 1. out dependet auf and 1 und and 2
-  // FIXME: RECHTE SEITE BEI KEINEM GATE FUNKTIONIERT
+
   const dependenciesRef = useRef(new Map([
     ["g_and_out_3_1", [nodeGroups.get("and_1"), nodeGroups.get("and_2")]],
     ["g_and_out_3_2", [nodeGroups.get("and_1"), nodeGroups.get("and_2")]],
@@ -326,6 +326,12 @@ export default function Board() {
       dependenciesRef.current.delete(fromId)
       usedNodesRef.current.delete(fromId);
       usedNodesRef.current.delete(toId);
+
+      if (toId.includes("led")) {
+        const splitNodeId = toId.split(/_/)
+        lightLED(splitNodeId[3], false)}
+    
+      propagateChanges(toId, new Set())
     };
 
     // Draws line between nodes, including the selected css class
@@ -375,7 +381,6 @@ export default function Board() {
         userInputRef.current.set(key, newValue);
 
         clickedInput.setAttribute("class", newValue ? "signal-true" : "signal-false");
-        console.log("This is our propagate id", clickedInput.id)
         propagateChanges(clickedInput.id, new Set())
         return;
       }
@@ -384,8 +389,6 @@ export default function Board() {
       const line = event.target.closest("line[id]");
       if (line) {
         handleLineClick(line.id);
-        console.log("This is our propagate id", clickedInput.id)
-        propagateChanges(clickedInput.id, new Set())
         return;
       }
 
@@ -393,7 +396,6 @@ export default function Board() {
       const circle = event.target.closest("circle[id]");
       if (circle) {
         handleNodeClick(circle.id);
-        console.log("This is our propagate id", clickedInput.id)
         propagateChanges(clickedInput.id, new Set())
       }
     };

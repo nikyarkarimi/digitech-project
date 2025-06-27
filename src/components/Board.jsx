@@ -87,6 +87,7 @@ export default function Board() {
           //important not and nand HERE
           case "not": return !inputValues[0];
           case "nand": return !(Boolean(inputValues[0]) && Boolean(inputValues[1]));
+          case "xor": return inputValues[0] !== inputValues[1];
         }
       }
       case "out": {

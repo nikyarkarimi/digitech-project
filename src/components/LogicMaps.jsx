@@ -1,3 +1,5 @@
+
+// Maps for each output pin exactly those input pins that logically determine its value.
 export const initialDependencies = new Map([
     ["g_and_out_3_1", [["g_and_in_1_1", "g_and_in_1_2"], ["g_and_in_2_1", "g_and_in_2_2"]]],
     ["g_and_out_3_2", [["g_and_in_1_1", "g_and_in_1_2"], ["g_and_in_2_1", "g_and_in_2_2"]]],
@@ -38,8 +40,16 @@ export const initialDependencies = new Map([
     ["g_nand_out_8_2", [["g_nand_in_10_1", "g_nand_in_10_2"], ["g_nand_in_9_1", "g_nand_in_9_2"]]],
     ["g_nand_out_11_1", [["g_nand_in_13_1", "g_nand_in_13_2"], ["g_nand_in_12_1", "g_nand_in_12_2"]]],
     ["g_nand_out_11_2", [["g_nand_in_13_1", "g_nand_in_13_2"], ["g_nand_in_12_1", "g_nand_in_12_2"]]],
-  ])
-  
+
+    ["g_xor_out_3_1", [["g_xor_in_1_1", "g_xor_in_1_2"], ["g_xor_in_2_1", "g_xor_in_2_2"]]],
+    ["g_xor_out_3_2", [["g_xor_in_1_1", "g_xor_in_1_2"], ["g_xor_in_2_1", "g_xor_in_2_2"]]],
+    ["g_xor_out_6_1", [["g_xor_in_4_1", "g_xor_in_4_2"], ["g_xor_in_5_1", "g_xor_in_5_2"]]],
+    ["g_xor_out_6_2", [["g_xor_in_4_1", "g_xor_in_4_2"], ["g_xor_in_5_1", "g_xor_in_5_2"]]],
+    ["g_xor_out_8_1", [["g_xor_in_10_1", "g_xor_in_10_2"], ["g_xor_in_9_1", "g_xor_in_9_2"]]],
+    ["g_xor_out_8_2", [["g_xor_in_10_1", "g_xor_in_10_2"], ["g_xor_in_9_1", "g_xor_in_9_2"]]],
+    ["g_xor_out_11_1", [["g_xor_in_13_1", "g_xor_in_13_2"], ["g_xor_in_12_1", "g_xor_in_12_2"]]],
+    ["g_xor_out_11_2", [["g_xor_in_13_1", "g_xor_in_13_2"], ["g_xor_in_12_1", "g_xor_in_12_2"]]],
+  ]);
 
 export const initialForwardDependencies = new Map([
     // INPUT

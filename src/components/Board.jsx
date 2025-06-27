@@ -18,12 +18,12 @@ export default function Board() {
   for (const [target, sources] of initialDependencies.entries()) {
     const flatSources = sources.flat(); // In case sources contain arrays of nodes
     for (const source of flatSources) {
-        if (!forwardDependenciesRef.current.has(source)) {
-            forwardDependenciesRef.current.set(source, []);
-        }
-        forwardDependenciesRef.current.get(source).push(target);
+      if (!forwardDependenciesRef.current.has(source)) {
+        forwardDependenciesRef.current.set(source, []);
+      }
+      forwardDependenciesRef.current.get(source).push(target);
     }
-}
+  }
 
   // read current state from Context
   const { selectedCableIndex } = useCable();
@@ -49,8 +49,6 @@ export default function Board() {
     }
     return null;
   };
-
-
 
   function getNodeOutput(nodeId) {
     const inputs = dependenciesRef.current.get(nodeId) || []; // which nodes does the selected nodeId depend on?
@@ -179,27 +177,7 @@ export default function Board() {
         }
 
         drawLineBetween(fromId, toId, colorClass);
-        console.log("Dependencies ref value for id: ", dependenciesRef.current.get(id))
-
-        /**
-         * ADDED CONSOLE AND ALERT FEEDBACK WITH CHAT-BRO TODO DELETE AFTER LEDs ARE FINISHED!
-         */
-
-        // Chat wanted me to delete this next line...
-        //usedNodesRef.current.set(id, getNodeOutput(id));
-
-        //Chat added these lines...
-        const newValue = getNodeOutput(toId);
-        usedNodesRef.current.set(toId, newValue);
-        if (/^g_(and|or)_out/.test(toId) && newValue === true) {  // by adapting the regex we can also validate other gates
-          console.log(`Output ${toId} is set to TRUE.`);
-          alert(`Output ${toId} is set to TRUE.`);
-        }
-        /**
-         * END
-         */
-
-        console.log(dependenciesRef, usedNodesRef)
+        usedNodesRef.current.set(id, getNodeOutput(id))
         selectedNodeRef.current = null;
       }
     };
@@ -209,14 +187,16 @@ export default function Board() {
       const [_, fromId, toId] = lineId.split("-");
       document.getElementById(lineId)?.remove();
       document.getElementById(`v_line-${fromId}-${toId}`)?.remove();
-      dependenciesRef.current.delete(fromId)
+      dependenciesRef.current.delete(toId)
+      forwardDependenciesRef.current.delete(fromId)
       usedNodesRef.current.delete(fromId);
       usedNodesRef.current.delete(toId);
 
       if (toId.includes("led")) {
         const splitNodeId = toId.split(/_/)
-        lightLED(splitNodeId[3], false)}
-    
+        lightLED(splitNodeId[3], false)
+      }
+
       propagateChanges(toId, new Set())
     };
 

@@ -59,7 +59,6 @@ export default function Board() {
     } else {
       inputValues = inputs.map((id) => usedNodesRef.current.get(id)); // ensures single input still is an array
     }
-    console.log("Checking node output", nodeId, inputs, inputValues)
     const splitNodeId = nodeId.split(/_/)
 
 
@@ -99,24 +98,19 @@ export default function Board() {
   }
 
   function shouldLEDBeLit(currentNode) {
-    console.log("Checking LED for ", `out_led_out_${currentNode}`)
     const inputs = dependenciesRef.current.get(`out_led_out_${currentNode}`) || []; // which nodes does the selected nodeId depend on?
     let inputValues = inputs.map((id) => usedNodesRef.current.get(id));
-    console.log("LED inputs: ", inputs, "Values: ", usedNodesRef)
     if (inputValues.some(Boolean)) return true
     else return false
   }
 
   function lightLED(nodeId, on) {
-    console.log(on)
     if (on) document.getElementById(`out_led_out_${nodeId}`)?.setAttribute("class", "led-lit")
     else document.getElementById(`out_led_out_${nodeId}`)?.removeAttribute("class", "led-lit")
-    console.log("We changed things into ", nodeId, on)
   }
 
   function previousNodeIsToId(previousId) {
     const splitNodeId = previousId.split(/_/)
-    console.log(splitNodeId)
     if (splitNodeId[0] === "out" || splitNodeId[2] === "in") return true
     else return false
   }
@@ -132,7 +126,6 @@ export default function Board() {
       visited.add(dep);
 
       if (nodeId.includes("led")) {
-        console.log("We're propagating to LED")
         const splitNodeId = nodeId.split(/_/)
         lightLED(splitNodeId[3], shouldLEDBeLit(splitNodeId[3]))
       }
@@ -166,18 +159,16 @@ export default function Board() {
           fromId = selectedNodeRef.current;
           toId = id;
           dependenciesRef.current.get(toId) ? dependenciesRef.current.get(toId).push(fromId) : dependenciesRef.current.set(toId, [fromId])
-
         } else {
           fromId = id;
           toId = selectedNodeRef.current;
-          console.log("To and from were switched. Our current ids were: ", usedNodesRef.current.get(id), usedNodesRef.current.get(fromId))
+          console.log("To and from were switched. Our current ids were: ",)
 
           dependenciesRef.current.get(toId) ? dependenciesRef.current.get(toId).push(fromId) : dependenciesRef.current.set(toId, [fromId])
           usedNodesRef.current.set(fromId, getNodeOutput(fromId));
         }
 
         forwardDependenciesRef.current.get(fromId) ? forwardDependenciesRef.current.get(fromId).push(toId) : forwardDependenciesRef.current.set(fromId, [toId])
-        console.log(forwardDependenciesRef.current.get(fromId))
         const colorClass = getColorClass(); // Read current colour
 
         if (!colorClass) {
@@ -188,10 +179,8 @@ export default function Board() {
           return;
         }
 
-        drawLineBetween(fromId, toId, colorClass);
         usedNodesRef.current.set(toId, getNodeOutput(toId))
-        console.log("Our selected nodes: ", usedNodesRef.current)
-
+        drawLineBetween(fromId, toId, colorClass);
         if (toId.includes("led")) {
           const splitNodeId = toId.split(/_/)
           lightLED(splitNodeId[3], shouldLEDBeLit(splitNodeId[3]))
@@ -206,13 +195,12 @@ export default function Board() {
       const [_, fromId, toId] = lineId.split("-");
       document.getElementById(lineId)?.remove();
       document.getElementById(`v_line-${fromId}-${toId}`)?.remove();
-      dependenciesRef.current.get(toId)?.length > 1 ? console.log("We're poppin", dependenciesRef.current.get(toId).pop()) : dependenciesRef.current.delete(toId)
+      dependenciesRef.current.get(toId)?.length > 1 ? dependenciesRef.current.get(toId).pop() : dependenciesRef.current.delete(toId)
       forwardDependenciesRef.current.get(fromId)?.length > 1 ? forwardDependenciesRef.current.get(fromId).pop() : forwardDependenciesRef.current.delete(fromId)
       usedNodesRef.current.delete(fromId);
       usedNodesRef.current.delete(toId);
 
       if (toId.includes("led")) {
-        console.log("We're deleting an LED line")
         const splitNodeId = toId.split(/_/)
         lightLED(splitNodeId[3], shouldLEDBeLit(splitNodeId[3]))
       }
@@ -251,7 +239,6 @@ export default function Board() {
 
       svg.appendChild(visibleLine);
       svg.appendChild(invisibleLine);
-      console.log("Line drawn between", fromId, toId)
     };
 
     // Finds out which element is clicked and runs the corresponding click handler

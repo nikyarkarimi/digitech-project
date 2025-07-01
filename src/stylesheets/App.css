@@ -131,6 +131,21 @@ h2 {
   fill: #f84e4e;
 }
 
+#inputButton {
+  fill: #f84e4e;
+  cursor: pointer;
+  transition: fill 0.2s ease;
+}
+
+#inputButton:hover {
+  fill: #f60a0a;
+  filter: drop-shadow(0 0 5px #3a3a3a);
+}
+
+#inputButton:active {
+  fill: #4caf50; /* Grün bei gedrückter Maus */
+  filter: drop-shadow(0 0 7px #3a3a3a);
+}
 
 
 

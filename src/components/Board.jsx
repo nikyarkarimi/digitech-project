@@ -274,6 +274,14 @@ export default function Board() {
         return;
       }
 
+      // Input Button on Board
+      const inputButton = event.target.closest("#inputButton");
+      if (inputButton) {
+        alert("InputButton wurde gedrückt!");
+        return;
+      }
+
+
 
       const line = event.target.closest("line[id]");
       if (line) {

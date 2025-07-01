@@ -5,21 +5,21 @@ export default function Sidebar() {
     return(
         <>
             <div id="sidebar">
-                <h2>cables</h2>
+                <h2>Cables</h2>
                 <Cable/>
                 <div>
-                    <h2>jumper</h2>
+                    <h2>Jumper</h2>
 
                 </div>
                 <div>
-                    <h2>show:</h2>
-                    <input type="radio" id="info" name="show" />
-                    <label htmlFor="info">info</label><br />
-                    <input type="radio" id="info" name="color" />
-                    <label htmlFor="info">color</label>
+                    <h2>Show:</h2>
+                    <input type="checkbox" id="radio-info" name="show" />
+                    <label htmlFor="radio-info">Info</label><br />
+                    <input type="checkbox" id="radio-color" name="show" />
+                    <label htmlFor="radio-color">Color</label>
                 </div>
                 <div>
-                    <h2>reset</h2>
+                    <h2>Reset</h2>
                     <button id={"reset-btn"} onClick={() => {
                         alert("Board reset!");
                         window.location.reload();

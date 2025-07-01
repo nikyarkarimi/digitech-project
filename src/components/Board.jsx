@@ -91,20 +91,28 @@ export default function Board() {
         }
       }
       case "out": {
-        if (usedNodesRef.current.get(inputs[0])) lightLED(splitNodeId[3], true)
-        else lightLED(splitNodeId[3], false)
+        lightLED(splitNodeId[3], shouldLEDBeLit(splitNodeId[3]))
         return usedNodesRef.current.get(inputs[0])
       }
         return false; // fallback for unknown node
     }
   }
 
-  function lightLED(nodeId, on) {
-    if (on) document.getElementById(`out_led_out_${nodeId}`)?.setAttribute("class", "led-lit")
-    else document.getElementById(`out_led_out_${nodeId}`)?.removeAttribute("class", "led-lit")
-    console.log(document.getElementById(`out_led_out_${nodeId}`)?.className)
+  function shouldLEDBeLit(currentNode) {
+    console.log("Checking LED for ", `out_led_out_${currentNode}`)
+    const inputs = dependenciesRef.current.get(`out_led_out_${currentNode}`) || []; // which nodes does the selected nodeId depend on?
+    let inputValues = inputs.map((id) => usedNodesRef.current.get(id));
+    console.log("LED inputs: ", inputs, "Values: ", usedNodesRef)
+    if (inputValues.some(Boolean)) return true
+    else return false
   }
 
+  function lightLED(nodeId, on) {
+    console.log(on)
+    if (on) document.getElementById(`out_led_out_${nodeId}`)?.setAttribute("class", "led-lit")
+    else document.getElementById(`out_led_out_${nodeId}`)?.removeAttribute("class", "led-lit")
+    console.log("We changed things into ", nodeId, on)
+  }
 
   function previousNodeIsToId(previousId) {
     const splitNodeId = previousId.split(/_/)
@@ -114,18 +122,22 @@ export default function Board() {
   }
 
   function propagateChanges(nodeId, visited) {
-    console.log("we check changes")
+    console.log("we check changes for", nodeId)
     if (!forwardDependenciesRef.current.get(nodeId)) return
-    console.log("yesss things to be changed")
     for (const dep of forwardDependenciesRef.current.get(nodeId)) {
       if (visited.has(dep)) return
       if (usedNodesRef.current.get(dep) != null) {
         usedNodesRef.current.set(dep, getNodeOutput(dep))
       }
       visited.add(dep);
+
+      if (nodeId.includes("led")) {
+        console.log("We're propagating to LED")
+        const splitNodeId = nodeId.split(/_/)
+        lightLED(splitNodeId[3], shouldLEDBeLit(splitNodeId[3]))
+      }
       propagateChanges(dep, visited);
     }
-
   }
 
   useEffect(() => {
@@ -153,20 +165,19 @@ export default function Board() {
         if (!previousNodeIsToId(selectedNodeRef.current)) {
           fromId = selectedNodeRef.current;
           toId = id;
-          dependenciesRef.current.set(toId, [fromId])
+          dependenciesRef.current.get(toId) ? dependenciesRef.current.get(toId).push(fromId) : dependenciesRef.current.set(toId, [fromId])
 
         } else {
           fromId = id;
           toId = selectedNodeRef.current;
           console.log("To and from were switched. Our current ids were: ", usedNodesRef.current.get(id), usedNodesRef.current.get(fromId))
 
-          dependenciesRef.current.set(toId, [fromId])
-          usedNodesRef.current.set(id, getNodeOutput(fromId));
+          dependenciesRef.current.get(toId) ? dependenciesRef.current.get(toId).push(fromId) : dependenciesRef.current.set(toId, [fromId])
+          usedNodesRef.current.set(fromId, getNodeOutput(fromId));
         }
 
-        forwardDependenciesRef.current.set(fromId, [toId])
-        console.log(forwardDependenciesRef)
-
+        forwardDependenciesRef.current.get(fromId) ? forwardDependenciesRef.current.get(fromId).push(toId) : forwardDependenciesRef.current.set(fromId, [toId])
+        console.log(forwardDependenciesRef.current.get(fromId))
         const colorClass = getColorClass(); // Read current colour
 
         if (!colorClass) {
@@ -178,7 +189,14 @@ export default function Board() {
         }
 
         drawLineBetween(fromId, toId, colorClass);
-        usedNodesRef.current.set(id, getNodeOutput(id))
+        usedNodesRef.current.set(toId, getNodeOutput(toId))
+        console.log("Our selected nodes: ", usedNodesRef.current)
+
+        if (toId.includes("led")) {
+          const splitNodeId = toId.split(/_/)
+          lightLED(splitNodeId[3], shouldLEDBeLit(splitNodeId[3]))
+        }
+
         selectedNodeRef.current = null;
       }
     };
@@ -188,14 +206,15 @@ export default function Board() {
       const [_, fromId, toId] = lineId.split("-");
       document.getElementById(lineId)?.remove();
       document.getElementById(`v_line-${fromId}-${toId}`)?.remove();
-      dependenciesRef.current.delete(toId)
-      forwardDependenciesRef.current.delete(fromId)
+      dependenciesRef.current.get(toId)?.length > 1 ? console.log("We're poppin", dependenciesRef.current.get(toId).pop()) : dependenciesRef.current.delete(toId)
+      forwardDependenciesRef.current.get(fromId)?.length > 1 ? forwardDependenciesRef.current.get(fromId).pop() : forwardDependenciesRef.current.delete(fromId)
       usedNodesRef.current.delete(fromId);
       usedNodesRef.current.delete(toId);
 
       if (toId.includes("led")) {
+        console.log("We're deleting an LED line")
         const splitNodeId = toId.split(/_/)
-        lightLED(splitNodeId[3], false)
+        lightLED(splitNodeId[3], shouldLEDBeLit(splitNodeId[3]))
       }
 
       propagateChanges(toId, new Set())
@@ -232,6 +251,7 @@ export default function Board() {
 
       svg.appendChild(visibleLine);
       svg.appendChild(invisibleLine);
+      console.log("Line drawn between", fromId, toId)
     };
 
     // Finds out which element is clicked and runs the corresponding click handler
@@ -239,6 +259,8 @@ export default function Board() {
 
       const inputKeys = ["inputA", "inputB", "inputC", "inputD"];
       const clickedInput = event.target.closest("[id]");
+
+
 
       if (clickedInput && inputKeys.includes(clickedInput.id)) {
         const key = clickedInput.id;

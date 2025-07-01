@@ -49,6 +49,17 @@ export const initialDependencies = new Map([
     ["g_xor_out_8_2", [["g_xor_in_10_1", "g_xor_in_10_2"], ["g_xor_in_9_1", "g_xor_in_9_2"]]],
     ["g_xor_out_11_1", [["g_xor_in_13_1", "g_xor_in_13_2"], ["g_xor_in_12_1", "g_xor_in_12_2"]]],
     ["g_xor_out_11_2", [["g_xor_in_13_1", "g_xor_in_13_2"], ["g_xor_in_12_1", "g_xor_in_12_2"]]],
+
+    ["out_led_out_1", ["out_led_in_1_1","out_led_in_1_2"]],
+    ["out_led_out_2", ["out_led_in_2_1","out_led_in_2_2"]],
+    ["out_led_out_3", ["out_led_in_3_1","out_led_in_3_2"]],
+    ["out_led_out_4", ["out_led_in_4_1","out_led_in_4_2"]],
+    ["out_led_out_5", ["out_led_in_5_1","out_led_in_5_2"]],
+    ["out_led_out_6", ["out_led_in_6_1","out_led_in_6_2"]],
+    ["out_led_out_7", ["out_led_in_7_1","out_led_in_7_2"]],
+    ["out_led_out_8", ["out_led_in_8_1","out_led_in_8_2"]],
+    ["out_led_out_9", ["out_led_in_9_1","out_led_in_9_2"]],
+    ["out_led_out_10", ["out_led_in_10_1","out_led_in_10_2"]],
   ]);
 
 export const initialForwardDependencies = new Map([

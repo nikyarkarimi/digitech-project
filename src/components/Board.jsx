@@ -10,7 +10,8 @@ export default function Board() {
     ['inputA', true],
     ["inputB", true],
     ["inputC", false],
-    ["inputD", false]
+    ["inputD", false],
+    ['inputButton', false],
   ]))
   const dependenciesRef = useRef(initialDependencies)
   const forwardDependenciesRef = useRef(initialForwardDependencies)
@@ -50,6 +51,31 @@ export default function Board() {
     return null;
   };
 
+
+  // D FLIP FLOP
+  const dffMemory = new Map();
+
+  function dFlipFlopEval(nodeId, [dataIn, clock, outputEnable]) {
+    const baseId = nodeId.split("_").slice(0, 4).join("_");
+    const prevClock = dffMemory.get(`${baseId}_clock`) || false;
+    const storedValue = dffMemory.get(`${baseId}_value`) || false;
+    const risingEdge = !prevClock && clock;
+
+    if (risingEdge) {
+      dffMemory.set(`${baseId}_value`, dataIn);
+    }
+
+    dffMemory.set(`${baseId}_clock`, clock);
+
+    if (outputEnable) {
+      return dffMemory.get(`${baseId}_value`);
+    }
+
+    return false;
+  }
+
+
+
   function getNodeOutput(nodeId) {
     const inputs = dependenciesRef.current.get(nodeId) || []; // which nodes does the selected nodeId depend on?
     let inputValues = []
@@ -66,11 +92,16 @@ export default function Board() {
     // we don't need breaks within this switch as we return out of the function
     switch (splitNodeId[0]) {
       case "in": {
-        switch (splitNodeId[2]) {
-          case "a": return userInputRef.current.get("inputA")
-          case "b": return userInputRef.current.get("inputB")
-          case "c": return userInputRef.current.get("inputC")
-          case "d": return userInputRef.current.get("inputD")
+        switch (splitNodeId[1]) {
+          case "pos":
+            switch (splitNodeId[2]) {
+              case "a": return userInputRef.current.get("inputA");
+              case "b": return userInputRef.current.get("inputB");
+              case "c": return userInputRef.current.get("inputC");
+              case "d": return userInputRef.current.get("inputD");
+            }
+          case "but":
+            return userInputRef.current.get("inputButton");
         }
       }
       case "g": {
@@ -88,6 +119,7 @@ export default function Board() {
           case "not": return !inputValues[0];
           case "nand": return !(Boolean(inputValues[0]) && Boolean(inputValues[1]));
           case "xor": return inputValues[0] !== inputValues[1];
+          case "dff": return dFlipFlopEval(nodeId, inputValues);
         }
       }
       case "out": {
@@ -141,6 +173,9 @@ export default function Board() {
   }
 
   useEffect(() => {
+    // Clear D-Flip-Flop memory
+    dffMemory.clear();
+
     let svgElement;
 
     const hasNodeBeenUsed = (id) => {
@@ -258,6 +293,36 @@ export default function Board() {
     const handleClick = (event) => {
 
       const inputKeys = ["inputA", "inputB", "inputC", "inputD"];
+
+      // Input Button on Board
+      /*const inputButton = event.target.closest("#inputButton");
+      if (inputButton) {
+        const current = userInputRef.current.get("inputButton");
+        const newValue = !current;
+        userInputRef.current.set("inputButton", newValue);
+
+        console.log("Button-Toggle: ", newValue);
+
+
+        // Give signal to pins
+        const targets = forwardDependenciesRef.current.get("inputButton") || [];
+        targets.forEach((id) => {
+          usedNodesRef.current.set(id, newValue);
+        });
+
+        // Signalverbreitung auslösen
+        targets.forEach((id) => {
+          propagateChanges(id, new Set());
+        });
+
+        //Loggeing the state of each pin
+        targets.forEach((id) => {
+          console.log(`Zustand von Pin ${id}:`, usedNodesRef.current.get(id));
+        });
+        return;
+      }
+      */
+
       const clickedInput = event.target.closest("[id]");
 
 
@@ -271,13 +336,6 @@ export default function Board() {
 
         clickedInput.setAttribute("class", newValue ? "signal-true" : "signal-false");
         propagateChanges(clickedInput.id, new Set())
-        return;
-      }
-
-      // Input Button on Board
-      const inputButton = event.target.closest("#inputButton");
-      if (inputButton) {
-        alert("InputButton wurde gedrückt!");
         return;
       }
 
@@ -316,6 +374,41 @@ export default function Board() {
 
 
         svgElement.addEventListener("click", handleClick);
+
+        // input button hold
+        const buttonEl = svgElement.querySelector("#inputButton");
+        if (buttonEl) {
+          buttonEl.addEventListener("mousedown", () => {
+            userInputRef.current.set("inputButton", true);
+            const targets = forwardDependenciesRef.current.get("inputButton") || [];
+            targets.forEach((id) => {
+              usedNodesRef.current.set(id, true);
+              propagateChanges(id, new Set());
+            });
+            console.log("Button clicked");
+          });
+
+          buttonEl.addEventListener("mouseup", () => {
+            userInputRef.current.set("inputButton", false);
+            const targets = forwardDependenciesRef.current.get("inputButton") || [];
+            targets.forEach((id) => {
+              usedNodesRef.current.set(id, false);
+              propagateChanges(id, new Set());
+            });
+            console.log("Button click over");
+          });
+
+          buttonEl.addEventListener("mouseleave", () => {
+            userInputRef.current.set("inputButton", false);
+            const targets = forwardDependenciesRef.current.get("inputButton") || [];
+            targets.forEach((id) => {
+              usedNodesRef.current.set(id, false);
+              propagateChanges(id, new Set());
+            });
+            console.log("Button mouseover finished");
+          });
+        }
+
 
         return () => {
           svgElement?.removeEventListener("click", handleClick);

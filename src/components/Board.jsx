@@ -60,7 +60,7 @@ export default function Board() {
     const prevClock = dffMemory.get(`${baseId}_clock`) || false;
     const storedValue = dffMemory.get(`${baseId}_value`) || false;
     const risingEdge = !prevClock && clock;
-
+ 
     if (risingEdge) {
       dffMemory.set(`${baseId}_value`, dataIn);
     }
@@ -325,9 +325,7 @@ export default function Board() {
 
       const clickedInput = event.target.closest("[id]");
 
-
-
-      if (clickedInput && inputKeys.includes(clickedInput.id)) {
+      if (inputKeys.includes(clickedInput.id)) {
         const key = clickedInput.id;
         const currentValue = userInputRef.current.get(key);
         const newValue = !currentValue;
@@ -339,14 +337,11 @@ export default function Board() {
         return;
       }
 
-
-
       const line = event.target.closest("line[id]");
       if (line) {
         handleLineClick(line.id);
         return;
       }
-
 
       const circle = event.target.closest("circle[id]");
       if (circle) {
@@ -363,6 +358,7 @@ export default function Board() {
         containerRef.current.innerHTML = svg;
         svgElement = containerRef.current;
 
+        // TODO: Set class to false from the start for production, remove this
         // set initial input colors
         ["inputA", "inputB", "inputC", "inputD"].forEach((key) => {
           const el = containerRef.current.querySelector(`#${key}`);
@@ -408,7 +404,6 @@ export default function Board() {
             console.log("Button mouseover finished");
           });
         }
-
 
         return () => {
           svgElement?.removeEventListener("click", handleClick);

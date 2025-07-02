@@ -60,7 +60,26 @@ export const initialDependencies = new Map([
     ["out_led_out_8", ["out_led_in_8_1","out_led_in_8_2"]],
     ["out_led_out_9", ["out_led_in_9_1","out_led_in_9_2"]],
     ["out_led_out_10", ["out_led_in_10_1","out_led_in_10_2"]],
-  ]);
+
+    // D-Flip-Flop
+    ["g_dff_out_1_1", [["g_dff_in_1_1", "g_dff_in_1_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_1_2", [["g_dff_in_1_1", "g_dff_in_1_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_2_1", [["g_dff_in_2_1", "g_dff_in_2_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_2_2", [["g_dff_in_2_1", "g_dff_in_2_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_3_1", [["g_dff_in_3_1", "g_dff_in_3_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_3_2", [["g_dff_in_3_1", "g_dff_in_3_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_4_1", [["g_dff_in_4_1", "g_dff_in_4_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_4_2", [["g_dff_in_4_1", "g_dff_in_4_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_5_1", [["g_dff_in_5_1", "g_dff_in_5_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_5_2", [["g_dff_in_5_1", "g_dff_in_5_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_6_1", [["g_dff_in_6_1", "g_dff_in_6_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_6_2", [["g_dff_in_6_1", "g_dff_in_6_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_7_1", [["g_dff_in_7_1", "g_dff_in_7_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_7_2", [["g_dff_in_7_1", "g_dff_in_7_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_8_1", [["g_dff_in_8_1", "g_dff_in_8_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_8_2", [["g_dff_in_8_1", "g_dff_in_8_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+
+]);
 
 export const initialForwardDependencies = new Map([
     // INPUT
@@ -80,6 +99,10 @@ export const initialForwardDependencies = new Map([
     ["inputD", ["in_pos_d_top_1", "in_pos_d_top_2", "in_pos_d_top_3", "in_pos_d_top_4",
         "in_pos_d_mid_1", "in_pos_d_mid_2", "in_pos_d_mid_3", "in_pos_d_mid_4",
         "in_pos_d_bot_1", "in_pos_d_bot_2", "in_pos_d_bot_3", "in_pos_d_bot_4"]],
+
+    // INPUT-BUTTON
+    ["inputButton", ["in_but_1", "in_but_2", "in_but_3", "in_but_4"]],
+
 
     // GATES
     // AND

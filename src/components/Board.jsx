@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react";
 import { useCable } from "../contexts/CableContext.jsx";
-import { initialDependencies, initialForwardDependencies } from "./LogicMaps.jsx";
+import { initialDependencies, initialForwardDependencies, nodeGroups } from "./LogicMaps.jsx";
 
 export default function Board() {
   const containerRef = useRef(null);
@@ -60,7 +60,7 @@ export default function Board() {
     const prevClock = dffMemory.get(`${baseId}_clock`) || false;
     const storedValue = dffMemory.get(`${baseId}_value`) || false;
     const risingEdge = !prevClock && clock;
- 
+
     if (risingEdge) {
       dffMemory.set(`${baseId}_value`, dataIn);
     }
@@ -77,30 +77,42 @@ export default function Board() {
 
 
   function getNodeOutput(nodeId) {
-    const inputs = dependenciesRef.current.get(nodeId) || []; // which nodes does the selected nodeId depend on?
+    let inputs = []
+    const splitNodeId = nodeId.split(/_/)
+    if (!nodeId.includes("io")) {
+      inputs = dependenciesRef.current.get(nodeId) || []; // which nodes does the selected nodeId depend on?
+    } else {
+      inputs = dependenciesRef.current.get(splitNodeId[1]) || [];
+      const value = dependenciesRef.current.get(nodeId)?.[0]
+      if (!inputs.includes(value) && value != null) inputs.push(value)
+    }
+    if (inputs.some(value => value?.includes("io"))) {
+
+    }
     let inputValues = []
     if (Array.isArray(inputs[0])) {
       inputValues[0] = inputs[0].some(id => usedNodesRef.current.get(id)) || false;
       inputValues[1] = inputs[1].some(id => usedNodesRef.current.get(id)) || false;
+    } else if (inputs[0]?.length <= 2) { // because our io groups all get grouped together into ids of 1-2 characters
+      // we do not check the values of the connected nodes, because otherwise if one node is true it'll get stuck forever
+      // instead we check the values of connected dependencies!!
+      inputValues = nodeGroups.get(inputs[0])?.map((id) => usedNodesRef.current.get(dependenciesRef.current.get(id)?.[0]))
+      console.log("We fill inputs array with", inputValues, inputs, nodeGroups.get(inputs[0])?.map((id) => dependenciesRef.current.get(id)),
+        "Dependencies array for 1:", nodeGroups.get(inputs[0])?.map((id) => dependenciesRef.current.get(id))
+      )
     } else {
       inputValues = inputs.map((id) => usedNodesRef.current.get(id)); // ensures single input still is an array
     }
-    const splitNodeId = nodeId.split(/_/)
-
 
     // we don't need breaks within this switch as we return out of the function
     switch (splitNodeId[0]) {
       case "in": {
         switch (splitNodeId[1]) {
-          case "pos":
-            switch (splitNodeId[2]) {
-              case "a": return userInputRef.current.get("inputA");
-              case "b": return userInputRef.current.get("inputB");
-              case "c": return userInputRef.current.get("inputC");
-              case "d": return userInputRef.current.get("inputD");
-            }
-          case "but":
-            return userInputRef.current.get("inputButton");
+          case "a": return userInputRef.current.get("inputA");
+          case "b": return userInputRef.current.get("inputB");
+          case "c": return userInputRef.current.get("inputC");
+          case "d": return userInputRef.current.get("inputD");
+          case "but": return userInputRef.current.get("inputButton");
         }
       }
       case "g": {
@@ -123,7 +135,11 @@ export default function Board() {
       }
       case "out": {
         lightLED(splitNodeId[3], shouldLEDBeLit(splitNodeId[3]))
-        return usedNodesRef.current.get(inputs[0])
+        return inputValues.some(Boolean)
+      }
+      case "io": {
+        console.log("Io dependencies: ", inputs, inputValues, inputValues.some(Boolean))
+        return inputValues.some(Boolean) 
       }
         return false; // fallback for unknown node
     }
@@ -131,7 +147,11 @@ export default function Board() {
 
   function shouldLEDBeLit(currentNode) {
     const inputs = dependenciesRef.current.get(`out_led_out_${currentNode}`) || []; // which nodes does the selected nodeId depend on?
-    let inputValues = inputs.map((id) => usedNodesRef.current.get(id));
+    let inputValues
+    if (inputs[0]?.length <= 2) {
+      inputValues = nodeGroups.get(inputs[0])?.map((id) => usedNodesRef.current.get(id))
+    } else inputValues = inputs.map((id) => usedNodesRef.current.get(id));
+
     if (inputValues.some(Boolean)) return true
     else return false
   }
@@ -148,21 +168,35 @@ export default function Board() {
   }
 
   function propagateChanges(nodeId, visited) {
-    console.log("we check changes for", nodeId)
-    if (!forwardDependenciesRef.current.get(nodeId)) return
-    for (const dep of forwardDependenciesRef.current.get(nodeId)) {
+
+    if (!forwardDependenciesRef.current.get(nodeId) && !nodeId.includes("io")) return
+    console.log("Currently checking top level node: ", nodeId, usedNodesRef.current.get(nodeId))
+    let fwDependencies = []
+    const splitNodeId = nodeId.split(/_/)
+    fwDependencies = nodeId.includes("io") ? getIoFwDependencies(splitNodeId[1]) : forwardDependenciesRef.current.get(nodeId)
+    for (const dep of fwDependencies) {
+      console.log("Now we're checking: ", dep)
       if (visited.has(dep)) return
       if (usedNodesRef.current.get(dep) != null) {
         usedNodesRef.current.set(dep, getNodeOutput(dep))
       }
       visited.add(dep);
-
       if (nodeId.includes("led")) {
-        const splitNodeId = nodeId.split(/_/)
         lightLED(splitNodeId[3], shouldLEDBeLit(splitNodeId[3]))
       }
       propagateChanges(dep, visited);
     }
+  }
+
+  function getIoFwDependencies(ioKey) {
+    console.log("Does thy node not include io?")
+    const fwNodes = [...forwardDependenciesRef.current.keys()].filter(key => key.includes(`io_${ioKey}`))
+    let fwDependentNodes = []
+    for (const node of fwNodes) {
+      fwDependentNodes.push(forwardDependenciesRef.current.get(node))
+    }
+    console.log("Computed fw nodes: ", fwDependentNodes.flat())
+    return fwDependentNodes.flat()
   }
 
   useEffect(() => {
@@ -185,8 +219,8 @@ export default function Board() {
       if (hasNodeBeenUsed(id)) return
 
       if (selectedNodeRef.current === null) {
-        selectedNodeRef.current = id;
         usedNodesRef.current.set(id, getNodeOutput(id));
+        selectedNodeRef.current = id;
         console.log("selected nodes were empty. Our output is", usedNodesRef.current.get(id))
       } else {
         let toId, fromId
@@ -202,6 +236,21 @@ export default function Board() {
           dependenciesRef.current.get(toId) ? dependenciesRef.current.get(toId).push(fromId) : dependenciesRef.current.set(toId, [fromId])
           usedNodesRef.current.set(fromId, getNodeOutput(fromId));
         }
+
+        if (toId.includes("io")) {
+          const splitNodeId = toId.split(/_/)
+          dependenciesRef.current.get(splitNodeId[1]).push(fromId)
+          //dependenciesRef.current.get(toId).push(fromId)
+        }
+
+        // if it's an io node, we remove the node name from dependencies and instead add the group
+        if (fromId.includes("io")) {
+          const splitNodeId = fromId.split(/_/)
+          dependenciesRef.current.get(toId)?.pop(fromId)
+          dependenciesRef.current.get(toId).push(splitNodeId[1])
+        }
+
+        console.log("Dependencies for ", toId, dependenciesRef.current.get(toId))
 
         forwardDependenciesRef.current.get(fromId) ? forwardDependenciesRef.current.get(fromId).push(toId) : forwardDependenciesRef.current.set(fromId, [toId])
         const colorClass = getColorClass(); // Read current colour
@@ -234,6 +283,11 @@ export default function Board() {
       forwardDependenciesRef.current.get(fromId)?.length > 1 ? forwardDependenciesRef.current.get(fromId).pop() : forwardDependenciesRef.current.delete(fromId)
       usedNodesRef.current.delete(fromId);
       usedNodesRef.current.delete(toId);
+
+      if (toId.includes("io")) {
+        const splitNodeId = toId.split(/_/)
+        dependenciesRef.current.get(splitNodeId[1]).pop(toId)
+      }
 
       if (toId.includes("led")) {
         const splitNodeId = toId.split(/_/)
@@ -278,38 +332,7 @@ export default function Board() {
 
     // Finds out which element is clicked and runs the corresponding click handler
     const handleClick = (event) => {
-
       const inputKeys = ["inputA", "inputB", "inputC", "inputD"];
-
-      // Input Button on Board
-      /*const inputButton = event.target.closest("#inputButton");
-      if (inputButton) {
-        const current = userInputRef.current.get("inputButton");
-        const newValue = !current;
-        userInputRef.current.set("inputButton", newValue);
-
-        console.log("Button-Toggle: ", newValue);
-
-
-        // Give signal to pins
-        const targets = forwardDependenciesRef.current.get("inputButton") || [];
-        targets.forEach((id) => {
-          usedNodesRef.current.set(id, newValue);
-        });
-
-        // Signalverbreitung auslösen
-        targets.forEach((id) => {
-          propagateChanges(id, new Set());
-        });
-
-        //Loggeing the state of each pin
-        targets.forEach((id) => {
-          console.log(`Zustand von Pin ${id}:`, usedNodesRef.current.get(id));
-        });
-        return;
-      }
-      */
-
       const clickedInput = event.target.closest("[id]");
 
       if (inputKeys.includes(clickedInput.id)) {
@@ -324,15 +347,13 @@ export default function Board() {
         return;
       }
 
-      const line = event.target.closest("line[id]");
-      if (line) {
-        handleLineClick(line.id);
+      if (clickedInput.id.includes("line")) {
+        handleLineClick(clickedInput.id);
         return;
       }
 
-      const circle = event.target.closest("circle[id]");
-      if (circle) {
-        handleNodeClick(circle.id);
+      if (clickedInput.id.includes("_")) {     // Neither button nor the switches have underscores in the name
+        handleNodeClick(clickedInput.id);      // It's not pretty but it works
         propagateChanges(clickedInput.id, new Set())
       }
     };

@@ -96,18 +96,6 @@ h2 {
   cursor: pointer;
 }
 
-.cable-red {
-  stroke: red;
-  stroke-width: 1.5;
-}
-
-.cable-red-invisible {
-  stroke: red;
-  opacity: 0;
-  stroke-width: 5;
-  cursor: pointer;
-}
-
 .signal-true {
   fill: #16b816 !important;
 }
@@ -145,6 +133,13 @@ h2 {
 #inputButton:active {
   fill: #4caf50; /* Grün bei gedrückter Maus */
   filter: drop-shadow(0 0 7px #3a3a3a);
+}
+
+
+.preview-line {
+  stroke: red;
+  stroke-width: 2;
+  pointer-events: none;
 }
 
 

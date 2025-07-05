@@ -15,6 +15,7 @@ export default function Board() {
   ]))
   const dependenciesRef = useRef(initialDependencies)
   const forwardDependenciesRef = useRef(initialForwardDependencies)
+  const previewLineRef = useRef(null)
 
   for (const [target, sources] of initialDependencies.entries()) {
     const flatSources = sources.flat(); // In case sources contain arrays of nodes
@@ -97,9 +98,6 @@ export default function Board() {
       // we do not check the values of the connected nodes, because otherwise if one node is true it'll get stuck forever
       // instead we check the values of connected dependencies!!
       inputValues = nodeGroups.get(inputs[0])?.map((id) => usedNodesRef.current.get(dependenciesRef.current.get(id)?.[0]))
-      console.log("We fill inputs array with", inputValues, inputs, nodeGroups.get(inputs[0])?.map((id) => dependenciesRef.current.get(id)),
-        "Dependencies array for 1:", nodeGroups.get(inputs[0])?.map((id) => dependenciesRef.current.get(id))
-      )
     } else {
       inputValues = inputs.map((id) => usedNodesRef.current.get(id)); // ensures single input still is an array
     }
@@ -139,7 +137,7 @@ export default function Board() {
       }
       case "io": {
         console.log("Io dependencies: ", inputs, inputValues, inputValues.some(Boolean))
-        return inputValues.some(Boolean) 
+        return inputValues.some(Boolean)
       }
         return false; // fallback for unknown node
     }
@@ -221,7 +219,8 @@ export default function Board() {
       if (selectedNodeRef.current === null) {
         usedNodesRef.current.set(id, getNodeOutput(id));
         selectedNodeRef.current = id;
-        console.log("selected nodes were empty. Our output is", usedNodesRef.current.get(id))
+        startPreviewLine(id);
+        console.log("First node is set!")
       } else {
         let toId, fromId
         if (!previousNodeIsToId(selectedNodeRef.current)) {
@@ -263,6 +262,7 @@ export default function Board() {
           return;
         }
 
+        stopPreviewLine();
         usedNodesRef.current.set(toId, getNodeOutput(toId))
         drawLineBetween(fromId, toId, colorClass);
         if (toId.includes("led")) {
@@ -357,6 +357,51 @@ export default function Board() {
         propagateChanges(clickedInput.id, new Set())
       }
     };
+
+    // Start Code by ChatGPT
+    function startPreviewLine(fromId) {
+      const svg = containerRef.current.querySelector("svg");
+      const from = svg.querySelector(`#${fromId}`);
+      if (!from) return;
+
+      const x1 = parseFloat(from.getAttribute("cx"));
+      const y1 = parseFloat(from.getAttribute("cy"));
+
+      const previewLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      previewLine.setAttribute("x1", x1);
+      previewLine.setAttribute("y1", y1);
+      previewLine.setAttribute("x2", x1); // initially same as start
+      previewLine.setAttribute("y2", y1);
+      previewLine.setAttribute("class", "preview-line");
+      previewLine.setAttribute("id", "preview-line");
+
+      svg.appendChild(previewLine);
+      previewLineRef.current = previewLine;
+
+      svg.addEventListener("mousemove", handleMouseMove);
+    }
+
+    function stopPreviewLine() {
+      const svg = containerRef.current.querySelector("svg");
+      svg.removeEventListener("mousemove", handleMouseMove);
+      previewLineRef.current?.remove();
+      previewLineRef.current = null;
+    }
+
+    function handleMouseMove(event) {
+      const svg = containerRef.current.querySelector("svg");
+      const pt = svg.createSVGPoint();
+      pt.x = event.clientX;
+      pt.y = event.clientY;
+      const cursorPoint = pt.matrixTransform(svg.getScreenCTM().inverse());
+
+      if (previewLineRef.current) {
+        previewLineRef.current.setAttribute("x2", cursorPoint.x);
+        previewLineRef.current.setAttribute("y2", cursorPoint.y);
+      }
+    }
+    // End Code by ChatGPT
+
 
     // Fetches the SVG, adds its content to the DOM & makes the whole thing clickable
     fetch("src/assets/Digitech.svg")

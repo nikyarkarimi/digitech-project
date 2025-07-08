@@ -28,6 +28,7 @@ export default function Board() {
   const previewLineRef = useRef(null)
   const nodeIntervalRef = useRef(null)
   const clockNodesRef = useRef(new Set())
+  const dffMemory = useRef(new Map())
 
   for (const [target, sources] of initialDependencies.entries()) {
     const flatSources = sources.flat(); // In case sources contain arrays of nodes
@@ -65,14 +66,9 @@ export default function Board() {
   };
 
 
-  // D FLIP FLOP
-  const dffMemory = new Map();
-
-
 
 
   function getNodeOutput(nodeId) {
-    console.log(forwardDependenciesRef.current.get("g_dff_oe_1"))
     let inputs = []
     const splitNodeId = nodeId.split(/_/)
     if (!nodeId.includes("io")) {
@@ -134,54 +130,21 @@ export default function Board() {
           case "nor": return !inputValues.some(Boolean)
           case "dff": {
             switch (splitNodeId[2]) {
-              case "oe": return usedNodesRef.current.get(inputs[0]) == true ? true : false
+              case "oe": return usedNodesRef.current.get(inputs[0]) == true ? false : true //because oe is negative 
               case "in": return usedNodesRef.current.get(inputs[0]) == true ? true : false
-              case "cp": return nodeGroups.get(`dff_out_${splitNodeId[3]}_${splitNodeId[4]}`)?.forEach(out => (usedNodesRef.current.set(out, getNodeOutput(out)), propagateChanges(out, new Set())));
-              case "out": return (dependenciesRef.current.get(nodeId) || []).every(id => usedNodesRef.current.get(id));
-            }
-            const dataGroup = Array.isArray(inputs[0]) ? inputs[0] : [inputs[0]];
-            const cpGroup = Array.isArray(inputs[1]) ? inputs[1] : [inputs[1]];
-            const oeGroup = Array.isArray(inputs[2]) ? inputs[2] : [inputs[2]];
-
-            const dataValue = dataGroup.some(id => usedNodesRef.current.get(id)) || false;
-            const cpValue = cpGroup.some(id => usedNodesRef.current.get(id)) || false;
-            const oeValue = oeGroup.some(id => usedNodesRef.current.get(id)) || false;
-
-            console.log(inputValues, dataValue, cpValue, oeValue)
-
-            console.log(oeValue)
-
-            const getInputSource = (ids) => {
-              for (let id of ids) {
-                for (let [inputKey, outputPins] of forwardDependenciesRef.current.entries()) {
-                  if (outputPins.includes(id)) return inputKey;
+              case "cp": {
+                return inputs[0]
+              }
+              case "out": {
+                console.log("Our dffMemory is currently based on ", inputs, inputValues)
+                console.log("Should it be false: ", usedNodesRef.current.get("g_dff_oe_1") === false, !usedNodesRef.current.get("g_dff_oe_2") === false)
+                if (usedNodesRef.current.get("g_dff_oe_1") === false || !usedNodesRef.current.get("g_dff_oe_2") === false) return false
+                else {
+                  dffMemory.current.set(splitNodeId[3], inputValues.every(Boolean))
+                  return usedNodesRef.current.get(nodeId)
                 }
               }
-              return null;
             }
-
-            const dataSource = getInputSource(dataGroup);
-            const cpSource = getInputSource(cpGroup);
-            const oeSource = getInputSource(oeGroup);
-            if (!oeSource) return false
-            console.log("datasource etc:", dataSource, cpSource, oeSource)
-            console.log("Inputs:", inputs)
-
-            const dffId = `${splitNodeId[3]}_${splitNodeId[4]}`;
-            const memory = dffMemory.get(dffId) || false;
-
-            const oeConnected = oeGroup.some(id => usedNodesRef.current.has(id));
-
-            if (
-              cpValue && oeConnected && !oeValue &&
-              dataSource !== cpSource &&
-              dataSource !== oeSource
-            ) {
-              dffMemory.set(dffId, dataValue);
-              return dataValue;
-            }
-
-            return memory;
           }
         }
       }
@@ -202,7 +165,7 @@ export default function Board() {
     if (inputs[0]?.length <= 2) {
       inputValues = nodeGroups.get(inputs[0])?.map((id) => usedNodesRef.current.get(id))
     } else inputValues = inputs.map((id) => usedNodesRef.current.get(id));
-
+    console.log("Our led inputs for _ are", inputs, inputValues)
     if (inputValues.some(Boolean)) return true
     else return false
   }
@@ -220,16 +183,25 @@ export default function Board() {
   }
 
   function propagateChanges(nodeId, visited) {
-
     if (!forwardDependenciesRef.current.get(nodeId) && !nodeId.includes("io")) return
+    console.log("We're propagating, baby:", nodeId, usedNodesRef.current.get(nodeId), forwardDependenciesRef.current.get(nodeId))
+    if (nodeId.includes("dff_out") && usedNodesRef.current.get("g_dff_oe_1") === false || usedNodesRef.current.get("g_dff_oe_2") === false) usedNodesRef.current.set(nodeId, false)
+    else if (nodeId.includes("dff_out") && usedNodesRef.current.get("in_but_1")) {
+      const splitNodeDep = nodeId.split(/_/)
+      console.log(dffMemory.current)
+      usedNodesRef.current.set(nodeId, dffMemory.current.get(splitNodeDep[3]))
+    }
     let fwDependencies = []
     const splitNodeId = nodeId.split(/_/)
     fwDependencies = nodeId.includes("io") ? getIoFwDependencies(splitNodeId[1]) : forwardDependenciesRef.current.get(nodeId)
     for (const dep of fwDependencies) {
       if (visited.has(dep)) return
-      if (usedNodesRef.current.get(dep) != null) {
-        usedNodesRef.current.set(dep, getNodeOutput(dep))
-      }
+      if (usedNodesRef.current.has(dep) && usedNodesRef.current.get("in_but_1")) {
+        console.log("Current dep", dep)
+        if (dep.includes("dff_out")) {
+          console.log("We're going into dff memory", dep)
+        }
+      } else if (!dep.includes("dff_out")) usedNodesRef.current.set(dep, getNodeOutput(dep))
       visited.add(dep);
       if (nodeId.includes("led")) {
         lightLED(splitNodeId[3], shouldLEDBeLit(splitNodeId[3]))
@@ -249,7 +221,7 @@ export default function Board() {
 
   useEffect(() => {
     // Clear D-Flip-Flop memory
-    dffMemory.clear();
+    //dffMemory.clear();
 
     let svgElement;
 
@@ -271,6 +243,7 @@ export default function Board() {
 
       if (selectedNodeRef.current === null) {
         usedNodesRef.current.set(id, getNodeOutput(id));
+        console.log("Our node is now: ", id, usedNodesRef.current.get(id))
         selectedNodeRef.current = id;
         startPreviewLine(id);
       } else {
@@ -339,13 +312,13 @@ export default function Board() {
         const splitNodeId = toId.split(/_/)
         dependenciesRef.current.get(splitNodeId[1]).pop(toId)
       }
-      
-      if (fromId.includes("clk")) clockNodesRef.delete(fromId)
 
-      if (toId.includes("led")) {
-        const splitNodeId = toId.split(/_/)
-        lightLED(splitNodeId[3], shouldLEDBeLit(splitNodeId[3]))
-      }
+      if (toId.includes("dff"))
+
+        if (toId.includes("led")) {
+          const splitNodeId = toId.split(/_/)
+          lightLED(splitNodeId[3], shouldLEDBeLit(splitNodeId[3]))
+        }
 
       propagateChanges(toId, new Set())
     };
@@ -483,8 +456,9 @@ export default function Board() {
           buttonEl.addEventListener("mousedown", () => {
             userInputRef.current.set("inputButton", true);
             const targets = forwardDependenciesRef.current.get("inputButton") || [];
+            console.log("Targets for button propagation:", targets)
             targets.forEach((id) => {
-              usedNodesRef.current.set(id, true);
+              usedNodesRef.current.set(id, true)
               propagateChanges(id, new Set());
             });
             console.log("Button clicked");
@@ -501,12 +475,14 @@ export default function Board() {
           });
 
           buttonEl.addEventListener("mouseleave", () => {
-            userInputRef.current.set("inputButton", false);
-            const targets = forwardDependenciesRef.current.get("inputButton") || [];
-            targets.forEach((id) => {
-              usedNodesRef.current.set(id, false);
-              propagateChanges(id, new Set());
-            });
+            if (userInputRef.current.get("inputButton")) {
+              userInputRef.current.set("inputButton", false);
+              const targets = forwardDependenciesRef.current.get("inputButton") || [];
+              targets.forEach((id) => {
+                usedNodesRef.current.set(id, false);
+                propagateChanges(id, new Set());
+              });
+            }
             console.log("Button mouseover finished");
           });
         }

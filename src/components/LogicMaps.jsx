@@ -9,7 +9,7 @@ export const initialDependencies = new Map([
     ["g_and_out_8_2", [["g_and_in_10_1", "g_and_in_10_2"], ["g_and_in_9_1", "g_and_in_9_2"]]],
     ["g_and_out_11_1", [["g_and_in_13_1", "g_and_in_13_2"], ["g_and_in_12_1", "g_and_in_12_2"]]],
     ["g_and_out_11_2", [["g_and_in_13_1", "g_and_in_13_2"], ["g_and_in_12_1", "g_and_in_12_2"]]],
-  
+
     ["g_or_out_3_1", [["g_or_in_1_1", "g_or_in_1_2"], ["g_or_in_2_1", "g_or_in_2_2"]]],
     ["g_or_out_3_2", [["g_or_in_1_1", "g_or_in_1_2"], ["g_or_in_2_1", "g_or_in_2_2"]]],
     ["g_or_out_6_1", [["g_or_in_4_1", "g_or_in_4_2"], ["g_or_in_5_1", "g_or_in_5_2"]]],
@@ -18,7 +18,7 @@ export const initialDependencies = new Map([
     ["g_or_out_8_2", [["g_or_in_10_1", "g_or_in_10_2"], ["g_or_in_9_1", "g_or_in_9_2"]]],
     ["g_or_out_11_1", [["g_or_in_13_1", "g_or_in_13_2"], ["g_or_in_12_1", "g_or_in_12_2"]]],
     ["g_or_out_11_2", [["g_or_in_13_1", "g_or_in_13_2"], ["g_or_in_12_1", "g_or_in_12_2"]]],
-  
+
     ["g_not_out_2_1", ["g_not_in_1_1", "g_not_in_1_2"]],
     ["g_not_out_2_2", ["g_not_in_1_1", "g_not_in_1_2"]],
     ["g_not_out_4_1", ["g_not_in_3_1", "g_not_in_3_2"]],
@@ -31,7 +31,7 @@ export const initialDependencies = new Map([
     ["g_not_out_10_2", ["g_not_in_11_1", "g_not_in_11_2"]],
     ["g_not_out_12_1", ["g_not_in_13_1", "g_not_in_13_2"]],
     ["g_not_out_12_2", ["g_not_in_13_1", "g_not_in_13_2"]],
-  
+
     ["g_nand_out_3_1", [["g_nand_in_1_1", "g_nand_in_1_2"], ["g_nand_in_2_1", "g_nand_in_2_2"]]],
     ["g_nand_out_3_2", [["g_nand_in_1_1", "g_nand_in_1_2"], ["g_nand_in_2_1", "g_nand_in_2_2"]]],
     ["g_nand_out_6_1", [["g_nand_in_4_1", "g_nand_in_4_2"], ["g_nand_in_5_1", "g_nand_in_5_2"]]],
@@ -50,16 +50,16 @@ export const initialDependencies = new Map([
     ["g_xor_out_11_1", [["g_xor_in_13_1", "g_xor_in_13_2"], ["g_xor_in_12_1", "g_xor_in_12_2"]]],
     ["g_xor_out_11_2", [["g_xor_in_13_1", "g_xor_in_13_2"], ["g_xor_in_12_1", "g_xor_in_12_2"]]],
 
-    ["out_led_out_1", ["out_led_in_1_1","out_led_in_1_2"]],
-    ["out_led_out_2", ["out_led_in_2_1","out_led_in_2_2"]],
-    ["out_led_out_3", ["out_led_in_3_1","out_led_in_3_2"]],
-    ["out_led_out_4", ["out_led_in_4_1","out_led_in_4_2"]],
-    ["out_led_out_5", ["out_led_in_5_1","out_led_in_5_2"]],
-    ["out_led_out_6", ["out_led_in_6_1","out_led_in_6_2"]],
-    ["out_led_out_7", ["out_led_in_7_1","out_led_in_7_2"]],
-    ["out_led_out_8", ["out_led_in_8_1","out_led_in_8_2"]],
-    ["out_led_out_9", ["out_led_in_9_1","out_led_in_9_2"]],
-    ["out_led_out_10", ["out_led_in_10_1","out_led_in_10_2"]],
+    ["out_led_out_1", ["out_led_in_1_1", "out_led_in_1_2"]],
+    ["out_led_out_2", ["out_led_in_2_1", "out_led_in_2_2"]],
+    ["out_led_out_3", ["out_led_in_3_1", "out_led_in_3_2"]],
+    ["out_led_out_4", ["out_led_in_4_1", "out_led_in_4_2"]],
+    ["out_led_out_5", ["out_led_in_5_1", "out_led_in_5_2"]],
+    ["out_led_out_6", ["out_led_in_6_1", "out_led_in_6_2"]],
+    ["out_led_out_7", ["out_led_in_7_1", "out_led_in_7_2"]],
+    ["out_led_out_8", ["out_led_in_8_1", "out_led_in_8_2"]],
+    ["out_led_out_9", ["out_led_in_9_1", "out_led_in_9_2"]],
+    ["out_led_out_10", ["out_led_in_10_1", "out_led_in_10_2"]],
 
     // D-Flip-Flop
     ["g_dff_out_1_1", [["g_dff_in_1_1", "g_dff_in_1_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
@@ -83,10 +83,10 @@ export const initialDependencies = new Map([
 
     // BLANK ARRAYS FOR CONNECTED NODES
     // NEGATIVE INPUT
-    ["a", []], 
-    ["b", []], 
-    ["c", []], 
-    ["d", []], 
+    ["a", []],
+    ["b", []],
+    ["c", []],
+    ["d", []],
 
     // ISLANDS
     ["1", []],
@@ -125,17 +125,33 @@ export const initialForwardDependencies = new Map([
     // INPUT-BUTTON
     ["inputButton", ["in_but_1", "in_but_2", "in_but_3", "in_but_4"]],
 
+    ["g_dff_cp_1", ["g_dff_out_1_1", "g_dff_out_1_2",
+        "g_dff_out_2_1", "g_dff_out_2_2",
+        "g_dff_out_3_1", "g_dff_out_3_2",
+        "g_dff_out_4_1", "g_dff_out_4_2",
+        "g_dff_out_5_1", "g_dff_out_5_2",
+        "g_dff_out_6_1", "g_dff_out_6_2",
+        "g_dff_out_7_1", "g_dff_out_7_2",
+        "g_dff_out_8_1", "g_dff_out_8_2"]],
 
+    ["g_dff_cp_2", ["g_dff_out_1_1", "g_dff_out_1_2",
+        "g_dff_out_2_1", "g_dff_out_2_2",
+        "g_dff_out_3_1", "g_dff_out_3_2",
+        "g_dff_out_4_1", "g_dff_out_4_2",
+        "g_dff_out_5_1", "g_dff_out_5_2",
+        "g_dff_out_6_1", "g_dff_out_6_2",
+        "g_dff_out_7_1", "g_dff_out_7_2",
+        "g_dff_out_8_1", "g_dff_out_8_2"]],
 
     // GATES
     // AND
-      
+
 ])
 
 
 // Nodes that are connected by design, islands or negative inputs
 export const nodeGroups = new Map([
-    
+
     // INPUT 
     // A
     ["a", ["io_a_top_1", "io_a_top_2", "io_a_top_3", "io_a_top_4",
@@ -155,7 +171,7 @@ export const nodeGroups = new Map([
         "io_d_bot_1", "io_d_bot_2", "io_d_bot_3", "io_d_bot_4"]],
 
 
-        
+
     ["1", ["io_1_1", "io_1_2", "io_1_3", "io_1_4"]],
     ["2", ["io_2_1", "io_2_2", "io_2_3", "io_2_4"]],
     ["3", ["io_3_1", "io_3_2", "io_3_3", "io_3_4"]],

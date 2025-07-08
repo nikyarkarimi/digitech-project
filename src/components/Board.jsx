@@ -26,6 +26,8 @@ export default function Board() {
   const dependenciesRef = useRef(initialDependencies)
   const forwardDependenciesRef = useRef(initialForwardDependencies)
   const previewLineRef = useRef(null)
+  const nodeIntervalRef = useRef(null)
+  const clockNodesRef = useRef(new Set())
 
   for (const [target, sources] of initialDependencies.entries()) {
     const flatSources = sources.flat(); // In case sources contain arrays of nodes
@@ -107,6 +109,11 @@ export default function Board() {
           case "c": return userInputRef.current.get("inputC");
           case "d": return userInputRef.current.get("inputD");
           case "but": return userInputRef.current.get("inputButton");
+          case "clk": {
+            clockNodesRef.current.add(nodeId)
+            startNodeInterval()
+            return
+          }
         }
       }
       case "g": {
@@ -206,7 +213,7 @@ export default function Board() {
   }
 
   function previousNodeIsToId(previousId, currentId) {
-    const splitNodeIdCurrent= currentId.split(/_/)
+    const splitNodeIdCurrent = currentId.split(/_/)
     const splitNodeId = previousId.split(/_/)
     if (splitNodeIdCurrent[0] === "in" || splitNodeId[0] === "out" || splitNodeId[2] === "in") return true
     else return false
@@ -257,7 +264,10 @@ export default function Board() {
     }
 
     const handleNodeClick = (id) => {
-      if (hasNodeBeenUsed(id)) return
+      if (hasNodeBeenUsed(id)) {
+        stopPreviewLine()
+        return
+      }
 
       if (selectedNodeRef.current === null) {
         usedNodesRef.current.set(id, getNodeOutput(id));
@@ -329,6 +339,8 @@ export default function Board() {
         const splitNodeId = toId.split(/_/)
         dependenciesRef.current.get(splitNodeId[1]).pop(toId)
       }
+      
+      if (fromId.includes("clk")) clockNodesRef.delete(fromId)
 
       if (toId.includes("led")) {
         const splitNodeId = toId.split(/_/)

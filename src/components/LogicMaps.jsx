@@ -62,22 +62,22 @@ export const initialDependencies = new Map([
     ["out_led_out_10", ["out_led_in_10_1","out_led_in_10_2"]],
 
     // D-Flip-Flop
-    ["g_dff_out_1_1", [["g_dff_in_1_1", "g_dff_in_1_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
-    ["g_dff_out_1_2", [["g_dff_in_1_1", "g_dff_in_1_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
-    ["g_dff_out_2_1", [["g_dff_in_2_1", "g_dff_in_2_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
-    ["g_dff_out_2_2", [["g_dff_in_2_1", "g_dff_in_2_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
-    ["g_dff_out_3_1", [["g_dff_in_3_1", "g_dff_in_3_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
-    ["g_dff_out_3_2", [["g_dff_in_3_1", "g_dff_in_3_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
-    ["g_dff_out_4_1", [["g_dff_in_4_1", "g_dff_in_4_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
-    ["g_dff_out_4_2", [["g_dff_in_4_1", "g_dff_in_4_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
-    ["g_dff_out_5_1", [["g_dff_in_5_1", "g_dff_in_5_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
-    ["g_dff_out_5_2", [["g_dff_in_5_1", "g_dff_in_5_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
-    ["g_dff_out_6_1", [["g_dff_in_6_1", "g_dff_in_6_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
-    ["g_dff_out_6_2", [["g_dff_in_6_1", "g_dff_in_6_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
-    ["g_dff_out_7_1", [["g_dff_in_7_1", "g_dff_in_7_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
-    ["g_dff_out_7_2", [["g_dff_in_7_1", "g_dff_in_7_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
-    ["g_dff_out_8_1", [["g_dff_in_8_1", "g_dff_in_8_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
-    ["g_dff_out_8_2", [["g_dff_in_8_1", "g_dff_in_8_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_1_1", [["g_dff_in_1_1", "g_dff_in_1_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_1_2", [["g_dff_in_1_1", "g_dff_in_1_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_2_1", [["g_dff_in_2_1", "g_dff_in_2_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_2_2", [["g_dff_in_2_1", "g_dff_in_2_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_3_1", [["g_dff_in_3_1", "g_dff_in_3_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_3_2", [["g_dff_in_3_1", "g_dff_in_3_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_4_1", [["g_dff_in_4_1", "g_dff_in_4_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_4_2", [["g_dff_in_4_1", "g_dff_in_4_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_5_1", [["g_dff_in_5_1", "g_dff_in_5_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_5_2", [["g_dff_in_5_1", "g_dff_in_5_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_6_1", [["g_dff_in_6_1", "g_dff_in_6_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_6_2", [["g_dff_in_6_1", "g_dff_in_6_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_7_1", [["g_dff_in_7_1", "g_dff_in_7_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_7_2", [["g_dff_in_7_1", "g_dff_in_7_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_8_1", [["g_dff_in_8_1", "g_dff_in_8_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
+    ["g_dff_out_8_2", [["g_dff_in_8_1", "g_dff_in_8_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
 
 
 
@@ -126,6 +126,7 @@ export const initialForwardDependencies = new Map([
     ["inputButton", ["in_but_1", "in_but_2", "in_but_3", "in_but_4"]],
 
 
+
     // GATES
     // AND
       
@@ -167,4 +168,17 @@ export const nodeGroups = new Map([
     ["10", ["io_10_1", "io_10_2", "io_10_3", "io_10_4"]],
     ["11", ["io_11_1", "io_11_2", "io_11_3", "io_11_4"]],
     ["12", ["io_12_1", "io_12_2", "io_12_3", "io_12_4"]],
+
+
+    ["dff_out", [
+        "g_dff_out_1_1", "g_dff_out_1_2",
+        "g_dff_out_2_1", "g_dff_out_2_2",
+        "g_dff_out_3_1", "g_dff_out_3_2",
+        "g_dff_out_4_1", "g_dff_out_4_2",
+        "g_dff_out_5_1", "g_dff_out_5_2",
+        "g_dff_out_6_1", "g_dff_out_6_2",
+        "g_dff_out_7_1", "g_dff_out_7_2",
+        "g_dff_out_8_1", "g_dff_out_8_2"
+    ]],
+
 ])

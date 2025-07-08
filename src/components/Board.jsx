@@ -56,24 +56,6 @@ export default function Board() {
   // D FLIP FLOP
   const dffMemory = new Map();
 
-  function dFlipFlopEval(nodeId, [dataIn, clock, outputEnable]) {
-    const baseId = nodeId.split("_").slice(0, 4).join("_");
-    const prevClock = dffMemory.get(`${baseId}_clock`) || false;
-    const storedValue = dffMemory.get(`${baseId}_value`) || false;
-    const risingEdge = !prevClock && clock;
-
-    if (risingEdge) {
-      dffMemory.set(`${baseId}_value`, dataIn);
-    }
-
-    dffMemory.set(`${baseId}_clock`, clock);
-
-    if (outputEnable) {
-      return dffMemory.get(`${baseId}_value`);
-    }
-
-    return false;
-  }
 
 
 
@@ -128,7 +110,44 @@ export default function Board() {
           case "not": return !inputValues[0];
           case "nand": return !(Boolean(inputValues[0]) && Boolean(inputValues[1]));
           case "xor": return inputValues[0] !== inputValues[1];
-          case "dff": return dFlipFlopEval(nodeId, inputValues);
+          case "dff": {
+            const dataGroup = Array.isArray(inputs[0]) ? inputs[0] : [inputs[0]];
+            const cpGroup = Array.isArray(inputs[1]) ? inputs[1] : [inputs[1]];
+            const oeGroup = Array.isArray(inputs[2]) ? inputs[2] : [inputs[2]];
+
+            const dataValue = dataGroup.some(id => usedNodesRef.current.get(id)) || false;
+            const cpValue = cpGroup.some(id => usedNodesRef.current.get(id)) || false;
+            const oeValue = oeGroup.some(id => usedNodesRef.current.get(id)) || false;
+
+            const getInputSource = (ids) => {
+              for (let id of ids) {
+                for (let [inputKey, outputPins] of forwardDependenciesRef.current.entries()) {
+                  if (outputPins.includes(id)) return inputKey;
+                }
+              }
+              return null;
+            };
+
+            const dataSource = getInputSource(dataGroup);
+            const cpSource = getInputSource(cpGroup);
+            const oeSource = getInputSource(oeGroup);
+
+            const dffId = `${splitNodeId[3]}_${splitNodeId[4]}`;
+            const memory = dffMemory.get(dffId) || false;
+
+            const oeConnected = oeGroup.some(id => usedNodesRef.current.has(id));
+
+            if (
+                cpValue && oeConnected && !oeValue &&
+                dataSource !== cpSource &&
+                dataSource !== oeSource
+            ) {
+              dffMemory.set(dffId, dataValue);
+              return dataValue;
+            }
+
+            return memory;
+          }
         }
       }
       case "out": {

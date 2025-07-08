@@ -2698,67 +2698,67 @@
             <rect id="out_led_out_1" x="527.59" y="366.47" width="6.08" height="4.2" />
         </g>
         <g id="_7s_pins_1">
-            <circle id="out_led_in_4_2-2" cx="611.62" cy="292.1" r="2.95" />
-            <circle id="out_led_in_4_1-2" cx="611.62" cy="283.79" r="2.95" />
-            <circle id="out_led_in_5_2-2" cx="603.8" cy="292.1" r="2.95" />
-            <circle id="out_led_in_5_1-2" cx="603.8" cy="283.79" r="2.95" />
-            <circle id="out_led_in_6_2-2" cx="595.47" cy="292.1" r="2.95" />
-            <circle id="out_led_in_6_1-2" cx="595.47" cy="283.79" r="2.95" />
-            <circle id="out_led_in_7_2-2" cx="587.45" cy="292.1" r="2.95" />
-            <circle id="out_led_in_7_1-2" cx="587.45" cy="283.79" r="2.95" />
-            <circle id="out_led_in_8_2-2" cx="579.11" cy="292.1" r="2.95" />
-            <circle id="out_led_in_8_1-2" cx="579.11" cy="283.79" r="2.95" />
-            <circle id="out_led_in_9_2-2" cx="570.93" cy="292.1" r="2.95" />
-            <circle id="out_led_in_9_1-2" cx="570.93" cy="283.79" r="2.95" />
-            <circle id="out_led_in_10_2-2" cx="562.9" cy="292.1" r="2.95" />
-            <circle id="out_led_in_10_1-2" cx="562.9" cy="283.79" r="2.95" />
+            <circle id="out_7s_in_1g_2" cx="611.62" cy="292.1" r="2.95" />
+            <circle id="out_7s_in_1g_1" cx="611.62" cy="283.79" r="2.95" />
+            <circle id="out_7s_in_1f_2" cx="603.8" cy="292.1" r="2.95" />
+            <circle id="out_7s_in_1f_1" cx="603.8" cy="283.79" r="2.95" />
+            <circle id="out_7s_in_1e_2" cx="595.47" cy="292.1" r="2.95" />
+            <circle id="out_7s_in_1e_1" cx="595.47" cy="283.79" r="2.95" />
+            <circle id="out_7s_in_1d_2" cx="587.45" cy="292.1" r="2.95" />
+            <circle id="out_7s_in_1d_1" cx="587.45" cy="283.79" r="2.95" />
+            <circle id="out_7s_in_1c_2" cx="579.11" cy="292.1" r="2.95" />
+            <circle id="out_7s_in_1c_1" cx="579.11" cy="283.79" r="2.95" />
+            <circle id="out_7s_in_1b_2" cx="570.93" cy="292.1" r="2.95" />
+            <circle id="out_7s_in_1b_1" cx="570.93" cy="283.79" r="2.95" />
+            <circle id="out_7s_in_1a_2" cx="562.9" cy="292.1" r="2.95" />
+            <circle id="out_7s_in_1a_1" cx="562.9" cy="283.79" r="2.95" />
         </g>
-        <g id="_7s_pins_1-2">
-            <circle id="out_led_in_4_2-3" cx="676.89" cy="292.1" r="2.95" />
-            <circle id="out_led_in_4_1-3" cx="676.89" cy="283.79" r="2.95" />
-            <circle id="out_led_in_5_2-3" cx="669.07" cy="292.1" r="2.95" />
-            <circle id="out_led_in_5_1-3" cx="669.07" cy="283.79" r="2.95" />
-            <circle id="out_led_in_6_2-3" cx="660.74" cy="292.1" r="2.95" />
-            <circle id="out_led_in_6_1-3" cx="660.74" cy="283.79" r="2.95" />
-            <circle id="out_led_in_7_2-3" cx="652.72" cy="292.1" r="2.95" />
-            <circle id="out_led_in_7_1-3" cx="652.72" cy="283.79" r="2.95" />
-            <circle id="out_led_in_8_2-3" cx="644.38" cy="292.1" r="2.95" />
-            <circle id="out_led_in_8_1-3" cx="644.38" cy="283.79" r="2.95" />
-            <circle id="out_led_in_9_2-3" cx="636.2" cy="292.1" r="2.95" />
-            <circle id="out_led_in_9_1-3" cx="636.2" cy="283.79" r="2.95" />
-            <circle id="out_led_in_10_2-3" cx="628.17" cy="292.1" r="2.95" />
-            <circle id="out_led_in_10_1-3" cx="628.17" cy="283.79" r="2.95" />
+        <g id="_7s_pins_2">
+            <circle id="out_7s_in_2g_2" cx="676.94" cy="292.1" r="2.95" />
+            <circle id="out_7s_in_2g_1" cx="676.94" cy="283.79" r="2.95" />
+            <circle id="out_7s_in_2f_2" cx="669.12" cy="292.1" r="2.95" />
+            <circle id="out_7s_in_2f_1" cx="669.12" cy="283.79" r="2.95" />
+            <circle id="out_7s_in_2e_2" cx="660.78" cy="292.1" r="2.95" />
+            <circle id="out_7s_in_2e_1" cx="660.78" cy="283.79" r="2.95" />
+            <circle id="out_7s_in_2d_2" cx="652.76" cy="292.1" r="2.95" />
+            <circle id="out_7s_in_2d_1" cx="652.76" cy="283.79" r="2.95" />
+            <circle id="out_7s_in_2c_2" cx="644.43" cy="292.1" r="2.95" />
+            <circle id="out_7s_in_2c_1" cx="644.43" cy="283.79" r="2.95" />
+            <circle id="out_7s_in_2b_2" cx="636.25" cy="292.1" r="2.95" />
+            <circle id="out_7s_in_2b_1" cx="636.25" cy="283.79" r="2.95" />
+            <circle id="out_7s_in_2a_2" cx="628.22" cy="292.1" r="2.95" />
+            <circle id="out_7s_in_2a_1" cx="628.22" cy="283.79" r="2.95" />
         </g>
         <g id="_7s_lights_1">
-            <polygon id="out_7s_out_1_g" class="cls-16"
+            <polygon id="out_7s_out_1g" class="cls-16"
                 points="598.86 361.58 597.21 360.13 589.65 360.13 589.65 360.14 585.58 360.14 583.92 361.63 585.57 363.08 593.13 363.08 593.13 363.07 597.2 363.07 598.86 361.58" />
-            <polygon id="out_7s_out_1_f" class="cls-16"
+            <polygon id="out_7s_out_1f" class="cls-16"
                 points="586.45 342.71 584.16 359.8 582.61 361.16 581.59 361.16 583.71 344.19 585.41 342.71 586.45 342.71" />
-            <polygon id="out_7s_out_1_e" class="cls-16"
+            <polygon id="out_7s_out_1e" class="cls-16"
                 points="581.47 362.07 579.47 379 581.34 380.5 582.16 380.5 584.16 363.5 582.51 362.07 581.47 362.07" />
-            <polygon id="out_7s_out_1_d" class="cls-16"
+            <polygon id="out_7s_out_1d" class="cls-16"
                 points="583.92 377.7 583.56 380.51 594.88 380.51 595.32 377.7 583.92 377.7" />
-            <polygon id="out_7s_out_1_c" class="cls-16"
+            <polygon id="out_7s_out_1c" class="cls-16"
                 points="596.33 380.5 598.61 363.42 600.3 362.07 601.32 362.07 599.07 379.02 597.37 380.5 596.33 380.5" />
-            <polygon id="out_7s_out_1_b" class="cls-16"
+            <polygon id="out_7s_out_1b" class="cls-16"
                 points="601.36 361.21 603.35 344.37 601.44 342.71 600.61 342.71 598.61 359.72 600.33 361.21 601.36 361.21" />
-            <polygon id="out_7s_out_1_a" class="cls-16"
+            <polygon id="out_7s_out_1a" class="cls-16"
                 points="587.81 342.71 587.36 345.52 598.83 345.52 599.21 342.71 587.81 342.71" />
         </g>
         <g id="_7s_lights_2">
-            <polygon id="out_7s_out_2_g" class="cls-16"
+            <polygon id="out_7s_out_2g" class="cls-16"
                 points="656.09 361.58 654.44 360.13 646.88 360.13 646.88 360.14 642.81 360.14 641.14 361.63 642.79 363.08 650.35 363.08 650.36 363.07 654.42 363.07 656.09 361.58" />
-            <polygon id="out_7s_out_2_f" class="cls-16"
+            <polygon id="out_7s_out_2f" class="cls-16"
                 points="643.67 342.71 641.39 359.8 639.84 361.16 638.82 361.16 640.94 344.19 642.64 342.71 643.67 342.71" />
-            <polygon id="out_7s_out_2_e" class="cls-16"
+            <polygon id="out_7s_out_2e" class="cls-16"
                 points="638.7 362.07 636.7 379 638.57 380.5 639.39 380.5 641.39 363.5 639.73 362.07 638.7 362.07" />
-            <polygon id="out_7s_out_2_d" class="cls-16"
+            <polygon id="out_7s_out_2d" class="cls-16"
                 points="641.14 377.7 640.79 380.51 652.11 380.51 652.55 377.7 641.14 377.7" />
-            <polygon id="out_7s_out_2_c" class="cls-16"
+            <polygon id="out_7s_out_2c" class="cls-16"
                 points="653.56 380.5 655.84 363.42 657.53 362.07 658.55 362.07 656.29 379.02 654.59 380.5 653.56 380.5" />
-            <polygon id="out_7s_out_2_b" class="cls-16"
+            <polygon id="out_7s_out_2b" class="cls-16"
                 points="658.59 361.21 660.58 344.37 658.66 342.71 657.84 342.71 655.84 359.72 657.55 361.21 658.59 361.21" />
-            <polygon id="out_7s_out_2_a" class="cls-16"
+            <polygon id="out_7s_out_2a" class="cls-16"
                 points="645.03 342.71 644.58 345.52 656.06 345.52 656.44 342.71 645.03 342.71" />
         </g>
     </g>

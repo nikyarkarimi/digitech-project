@@ -1,3 +1,13 @@
+/* TODO:
+  - Add remaining fixed jumpers to svg
+  - Try fixing color on preview line?
+  - Add jumper logic
+  - Clicking an occupied node - move end of cable
+  - 1-in-8 & 7-segment
+ */ 
+// const colorClass = getColorClass() // somehow it bugs out once I use this instead of preview-line
+      
+
 import { useRef, useEffect } from "react";
 import { useCable } from "../contexts/CableContext.jsx";
 import { initialDependencies, initialForwardDependencies, nodeGroups } from "./LogicMaps.jsx";
@@ -155,7 +165,6 @@ export default function Board() {
         return inputValues.some(Boolean)
       }
       case "io": {
-        console.log("Io dependencies: ", inputs, inputValues, inputValues.some(Boolean))
         return inputValues.some(Boolean)
       }
         return false; // fallback for unknown node
@@ -187,12 +196,10 @@ export default function Board() {
   function propagateChanges(nodeId, visited) {
 
     if (!forwardDependenciesRef.current.get(nodeId) && !nodeId.includes("io")) return
-    console.log("Currently checking top level node: ", nodeId, usedNodesRef.current.get(nodeId))
     let fwDependencies = []
     const splitNodeId = nodeId.split(/_/)
     fwDependencies = nodeId.includes("io") ? getIoFwDependencies(splitNodeId[1]) : forwardDependenciesRef.current.get(nodeId)
     for (const dep of fwDependencies) {
-      console.log("Now we're checking: ", dep)
       if (visited.has(dep)) return
       if (usedNodesRef.current.get(dep) != null) {
         usedNodesRef.current.set(dep, getNodeOutput(dep))
@@ -206,13 +213,11 @@ export default function Board() {
   }
 
   function getIoFwDependencies(ioKey) {
-    console.log("Does thy node not include io?")
     const fwNodes = [...forwardDependenciesRef.current.keys()].filter(key => key.includes(`io_${ioKey}`))
     let fwDependentNodes = []
     for (const node of fwNodes) {
       fwDependentNodes.push(forwardDependenciesRef.current.get(node))
     }
-    console.log("Computed fw nodes: ", fwDependentNodes.flat())
     return fwDependentNodes.flat()
   }
 
@@ -239,7 +244,6 @@ export default function Board() {
         usedNodesRef.current.set(id, getNodeOutput(id));
         selectedNodeRef.current = id;
         startPreviewLine(id);
-        console.log("First node is set!")
       } else {
         let toId, fromId
         if (!previousNodeIsToId(selectedNodeRef.current)) {

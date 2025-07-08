@@ -129,9 +129,8 @@ export default function Board() {
             switch (splitNodeId[2]) {
               case "oe": return usedNodesRef.current.get(inputs[0]) == true ? true : false
               case "in": return usedNodesRef.current.get(inputs[0]) == true ? true : false
-              /*case "out": return {
-
-              }*/
+              case "cp": return nodeGroups.get(`dff_out_${splitNodeId[3]}_${splitNodeId[4]}`)?.forEach(out => (usedNodesRef.current.set(out, getNodeOutput(out)), propagateChanges(out, new Set())));
+              case "out": return (dependenciesRef.current.get(nodeId) || []).every(id => usedNodesRef.current.get(id));
             }
             const dataGroup = Array.isArray(inputs[0]) ? inputs[0] : [inputs[0]];
             const cpGroup = Array.isArray(inputs[1]) ? inputs[1] : [inputs[1]];

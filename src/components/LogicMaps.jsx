@@ -79,9 +79,6 @@ export const initialDependencies = new Map([
     ["g_dff_out_8_1", [["g_dff_in_8_1", "g_dff_in_8_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
     ["g_dff_out_8_2", [["g_dff_in_8_1", "g_dff_in_8_2"], ["g_dff_cp_1", "g_dff_cp_2"], ["g_dff_oe_1", "g_dff_oe_2"]]],
 
-    // Clock-Leitungen vom Button
-    ["g_dff_cp_1", ["inputButton"]],
-    ["g_dff_cp_2", ["inputButton"]],
 
 
     // BLANK ARRAYS FOR CONNECTED NODES

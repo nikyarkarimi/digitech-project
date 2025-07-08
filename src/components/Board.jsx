@@ -4,9 +4,9 @@
   - Add jumper logic
   - Clicking an occupied node - move end of cable
   - 1-in-8 & 7-segment
- */ 
+ */
 // const colorClass = getColorClass() // somehow it bugs out once I use this instead of preview-line
-      
+
 
 import { useRef, useEffect } from "react";
 import { useCable } from "../contexts/CableContext.jsx";
@@ -70,6 +70,7 @@ export default function Board() {
 
 
   function getNodeOutput(nodeId) {
+    console.log(forwardDependenciesRef.current.get("g_dff_oe_1"))
     let inputs = []
     const splitNodeId = nodeId.split(/_/)
     if (!nodeId.includes("io")) {
@@ -84,8 +85,11 @@ export default function Board() {
     }
     let inputValues = []
     if (Array.isArray(inputs[0])) {
-      inputValues[0] = inputs[0].some(id => usedNodesRef.current.get(id)) || false;
-      inputValues[1] = inputs[1].some(id => usedNodesRef.current.get(id)) || false;
+      let count = 0
+      for (let i of inputs) {
+        inputValues[count++] = i.some(id => usedNodesRef.current.get(id)) || false;
+        console.log("Input values for", inputValues, i)
+      }
     } else if (inputs[0]?.length <= 2) { // because our io groups all get grouped together into ids of 1-2 characters
       // we do not check the values of the connected nodes, because otherwise if one node is true it'll get stuck forever
       // instead we check the values of connected dependencies!!
@@ -120,7 +124,15 @@ export default function Board() {
           case "not": return !inputValues[0];
           case "nand": return !(Boolean(inputValues[0]) && Boolean(inputValues[1]));
           case "xor": return inputValues[0] !== inputValues[1];
+          case "nor": return !inputValues.some(Boolean)
           case "dff": {
+            switch (splitNodeId[2]) {
+              case "oe": return usedNodesRef.current.get(inputs[0]) == true ? true : false
+              case "in": return usedNodesRef.current.get(inputs[0]) == true ? true : false
+              /*case "out": return {
+
+              }*/
+            }
             const dataGroup = Array.isArray(inputs[0]) ? inputs[0] : [inputs[0]];
             const cpGroup = Array.isArray(inputs[1]) ? inputs[1] : [inputs[1]];
             const oeGroup = Array.isArray(inputs[2]) ? inputs[2] : [inputs[2]];
@@ -129,6 +141,10 @@ export default function Board() {
             const cpValue = cpGroup.some(id => usedNodesRef.current.get(id)) || false;
             const oeValue = oeGroup.some(id => usedNodesRef.current.get(id)) || false;
 
+            console.log(inputValues, dataValue, cpValue, oeValue)
+
+            console.log(oeValue)
+
             const getInputSource = (ids) => {
               for (let id of ids) {
                 for (let [inputKey, outputPins] of forwardDependenciesRef.current.entries()) {
@@ -136,11 +152,14 @@ export default function Board() {
                 }
               }
               return null;
-            };
+            }
 
             const dataSource = getInputSource(dataGroup);
             const cpSource = getInputSource(cpGroup);
             const oeSource = getInputSource(oeGroup);
+            if (!oeSource) return false
+            console.log("datasource etc:", dataSource, cpSource, oeSource)
+            console.log("Inputs:", inputs)
 
             const dffId = `${splitNodeId[3]}_${splitNodeId[4]}`;
             const memory = dffMemory.get(dffId) || false;
@@ -148,9 +167,9 @@ export default function Board() {
             const oeConnected = oeGroup.some(id => usedNodesRef.current.has(id));
 
             if (
-                cpValue && oeConnected && !oeValue &&
-                dataSource !== cpSource &&
-                dataSource !== oeSource
+              cpValue && oeConnected && !oeValue &&
+              dataSource !== cpSource &&
+              dataSource !== oeSource
             ) {
               dffMemory.set(dffId, dataValue);
               return dataValue;
@@ -187,9 +206,10 @@ export default function Board() {
     else document.getElementById(`out_led_out_${nodeId}`)?.removeAttribute("class", "led-lit")
   }
 
-  function previousNodeIsToId(previousId) {
+  function previousNodeIsToId(previousId, currentId) {
+    const splitNodeIdCurrent= currentId.split(/_/)
     const splitNodeId = previousId.split(/_/)
-    if (splitNodeId[0] === "out" || splitNodeId[2] === "in") return true
+    if (splitNodeIdCurrent[0] === "in" || splitNodeId[0] === "out" || splitNodeId[2] === "in") return true
     else return false
   }
 
@@ -246,14 +266,14 @@ export default function Board() {
         startPreviewLine(id);
       } else {
         let toId, fromId
-        if (!previousNodeIsToId(selectedNodeRef.current)) {
+        if (!previousNodeIsToId(selectedNodeRef.current, id)) {
           fromId = selectedNodeRef.current;
           toId = id;
           dependenciesRef.current.get(toId) ? dependenciesRef.current.get(toId).push(fromId) : dependenciesRef.current.set(toId, [fromId])
         } else {
           fromId = id;
           toId = selectedNodeRef.current;
-          console.log("To and from were switched. Our current ids were: ",)
+          console.log("To and from were switched.")
 
           dependenciesRef.current.get(toId) ? dependenciesRef.current.get(toId).push(fromId) : dependenciesRef.current.set(toId, [fromId])
           usedNodesRef.current.set(fromId, getNodeOutput(fromId));
@@ -262,7 +282,6 @@ export default function Board() {
         if (toId.includes("io")) {
           const splitNodeId = toId.split(/_/)
           dependenciesRef.current.get(splitNodeId[1]).push(fromId)
-          //dependenciesRef.current.get(toId).push(fromId)
         }
 
         // if it's an io node, we remove the node name from dependencies and instead add the group

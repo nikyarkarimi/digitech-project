@@ -135,11 +135,11 @@ export default function Board() {
               case "cp": return inputValues[0]
               case "out": {
                 const key = `dff_${splitNodeId[3]}`
-                const state = dffState[key]
+                const state = dffStateRef.current[key]
                 console.log("Our dffMemory is currently based on ", inputs, inputValues)
                 if (usedNodesRef.current.get("g_dff_oe_1") === false || !usedNodesRef.current.get("g_dff_oe_2") === false) return false
                 else if (usedNodesRef.current.get("g_dff_oe_1") === true || !usedNodesRef.current.get("g_dff_oe_2") === true) {
-                  console.log(state)
+                  console.log("State of node:", state)
                   state.D = inputValues[0]
                 }
                 return state.Q
@@ -186,18 +186,21 @@ export default function Board() {
 
     if (!forwardDependenciesRef.current.get(nodeId) && !nodeId.includes("io") || !usedNodesRef.current.has(nodeId) && !nodeId.includes("input")) return
     console.log("We're propagating, baby:", nodeId, usedNodesRef.current.get(nodeId), forwardDependenciesRef.current.get(nodeId))
-    const splitNodeId = nodeId.split(/_/)
-    if (nodeId.includes("dff_out") && usedNodesRef.current.get("g_dff_oe_1") === false || usedNodesRef.current.get("g_dff_oe_2") === false) usedNodesRef.current.set(nodeId, false)
-    else if (nodeId.includes("dff_out") && usedNodesRef.current.get("in_but_1")) {
-      console.log("Dff state: ", dffState)
-      const state = dffState[`dff_${splitNodeId[3]}`]
-      state.Q = state.D
-      usedNodesRef.current.set(nodeId, getNodeOutput(nodeId))
-    }
+    
+
     let fwDependencies = []
+    let splitNodeId = nodeId.split(/_/)
     fwDependencies = nodeId.includes("io") ? getIoFwDependencies(splitNodeId[1]) : forwardDependenciesRef.current.get(nodeId)
     for (const dep of fwDependencies) {
+      splitNodeId = dep.split(/_/)
       if (visited.has(dep)) return
+      if (dep.includes("dff_out") && usedNodesRef.current.get("g_dff_oe_1") === false || usedNodesRef.current.get("g_dff_oe_2") === false) usedNodesRef.current.set(dep, false)
+      else if (dep.includes("dff_out") && usedNodesRef.current.get("in_but_1")) {
+        console.log("Dff state: ", dffStateRef.current)
+        const state = dffStateRef.current[`dff_${splitNodeId[3]}`]
+        state.Q = state.D
+        usedNodesRef.current.set(dep, getNodeOutput(nodeId))
+      }
       if (usedNodesRef.current.has(dep)) usedNodesRef.current.set(dep, getNodeOutput(dep))
       visited.add(dep);
       if (nodeId.includes("led")) {
@@ -217,9 +220,6 @@ export default function Board() {
   }
 
   useEffect(() => {
-    // Clear D-Flip-Flop memory
-    //dffMemory.clear();
-
     let svgElement;
 
     const hasNodeBeenUsed = (id) => {

@@ -10,7 +10,7 @@
 
 import { useRef, useEffect } from "react";
 import { useCable } from "../contexts/CableContext.jsx";
-import { initialDependencies, initialForwardDependencies, nodeGroups } from "./LogicMaps.jsx";
+import { initialDependencies, initialForwardDependencies, nodeGroups, dffState } from "./LogicMaps.jsx";
 
 export default function Board() {
   const containerRef = useRef(null);
@@ -28,7 +28,7 @@ export default function Board() {
   const previewLineRef = useRef(null)
   const nodeIntervalRef = useRef(null)
   const clockNodesRef = useRef(new Set())
-  const dffMemory = useRef(new Map())
+  const dffStateRef = useRef(dffState)
 
   for (const [target, sources] of initialDependencies.entries()) {
     const flatSources = sources.flat(); // In case sources contain arrays of nodes
@@ -132,17 +132,17 @@ export default function Board() {
             switch (splitNodeId[2]) {
               case "oe": return usedNodesRef.current.get(inputs[0]) == true ? false : true //because oe is negative 
               case "in": return usedNodesRef.current.get(inputs[0]) == true ? true : false
-              case "cp": {
-                return inputs[0]
-              }
+              case "cp": return inputValues[0]
               case "out": {
+                const key = `dff_${splitNodeId[3]}`
+                const state = dffState[key]
                 console.log("Our dffMemory is currently based on ", inputs, inputValues)
-                console.log("Should it be false: ", usedNodesRef.current.get("g_dff_oe_1") === false, !usedNodesRef.current.get("g_dff_oe_2") === false)
                 if (usedNodesRef.current.get("g_dff_oe_1") === false || !usedNodesRef.current.get("g_dff_oe_2") === false) return false
-                else {
-                  dffMemory.current.set(splitNodeId[3], inputValues.every(Boolean))
-                  return usedNodesRef.current.get(nodeId)
+                else if (usedNodesRef.current.get("g_dff_oe_1") === true || !usedNodesRef.current.get("g_dff_oe_2") === true) {
+                  console.log(state)
+                  state.D = inputValues[0]
                 }
+                return state.Q
               }
             }
           }
@@ -183,25 +183,22 @@ export default function Board() {
   }
 
   function propagateChanges(nodeId, visited) {
-    if (!forwardDependenciesRef.current.get(nodeId) && !nodeId.includes("io")) return
+
+    if (!forwardDependenciesRef.current.get(nodeId) && !nodeId.includes("io") || !usedNodesRef.current.has(nodeId) && !nodeId.includes("input")) return
     console.log("We're propagating, baby:", nodeId, usedNodesRef.current.get(nodeId), forwardDependenciesRef.current.get(nodeId))
+    const splitNodeId = nodeId.split(/_/)
     if (nodeId.includes("dff_out") && usedNodesRef.current.get("g_dff_oe_1") === false || usedNodesRef.current.get("g_dff_oe_2") === false) usedNodesRef.current.set(nodeId, false)
     else if (nodeId.includes("dff_out") && usedNodesRef.current.get("in_but_1")) {
-      const splitNodeDep = nodeId.split(/_/)
-      console.log(dffMemory.current)
-      usedNodesRef.current.set(nodeId, dffMemory.current.get(splitNodeDep[3]))
+      console.log("Dff state: ", dffState)
+      const state = dffState[`dff_${splitNodeId[3]}`]
+      state.Q = state.D
+      usedNodesRef.current.set(nodeId, getNodeOutput(nodeId))
     }
     let fwDependencies = []
-    const splitNodeId = nodeId.split(/_/)
     fwDependencies = nodeId.includes("io") ? getIoFwDependencies(splitNodeId[1]) : forwardDependenciesRef.current.get(nodeId)
     for (const dep of fwDependencies) {
       if (visited.has(dep)) return
-      if (usedNodesRef.current.has(dep) && usedNodesRef.current.get("in_but_1")) {
-        console.log("Current dep", dep)
-        if (dep.includes("dff_out")) {
-          console.log("We're going into dff memory", dep)
-        }
-      } else if (!dep.includes("dff_out")) usedNodesRef.current.set(dep, getNodeOutput(dep))
+      if (usedNodesRef.current.has(dep)) usedNodesRef.current.set(dep, getNodeOutput(dep))
       visited.add(dep);
       if (nodeId.includes("led")) {
         lightLED(splitNodeId[3], shouldLEDBeLit(splitNodeId[3]))
@@ -241,6 +238,7 @@ export default function Board() {
         return
       }
 
+      console.log("Node has been clicked")
       if (selectedNodeRef.current === null) {
         usedNodesRef.current.set(id, getNodeOutput(id));
         console.log("Our node is now: ", id, usedNodesRef.current.get(id))
@@ -313,12 +311,10 @@ export default function Board() {
         dependenciesRef.current.get(splitNodeId[1]).pop(toId)
       }
 
-      if (toId.includes("dff"))
-
-        if (toId.includes("led")) {
-          const splitNodeId = toId.split(/_/)
-          lightLED(splitNodeId[3], shouldLEDBeLit(splitNodeId[3]))
-        }
+      if (toId.includes("led")) {
+        const splitNodeId = toId.split(/_/)
+        lightLED(splitNodeId[3], shouldLEDBeLit(splitNodeId[3]))
+      }
 
       propagateChanges(toId, new Set())
     };
@@ -360,7 +356,7 @@ export default function Board() {
     const handleClick = (event) => {
       const inputKeys = ["inputA", "inputB", "inputC", "inputD"];
       const clickedInput = event.target.closest("[id]");
-
+      console.log(clickedInput.id, "has been clicked")
       if (inputKeys.includes(clickedInput.id)) {
         const key = clickedInput.id;
         const currentValue = userInputRef.current.get(key);

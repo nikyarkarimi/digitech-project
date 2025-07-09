@@ -50,6 +50,15 @@ export const initialDependencies = new Map([
     ["g_xor_out_11_1", [["g_xor_in_13_1", "g_xor_in_13_2"], ["g_xor_in_12_1", "g_xor_in_12_2"]]],
     ["g_xor_out_11_2", [["g_xor_in_13_1", "g_xor_in_13_2"], ["g_xor_in_12_1", "g_xor_in_12_2"]]],
 
+    ["g_nor_out_3_1", [["g_nor_in_1_1", "g_nor_in_1_2"], ["g_nor_in_2_1", "g_nor_in_2_2"]]],
+    ["g_nor_out_3_2", [["g_nor_in_1_1", "g_nor_in_1_2"], ["g_nor_in_2_1", "g_nor_in_2_2"]]],
+    ["g_nor_out_6_1", [["g_nor_in_4_1", "g_nor_in_4_2"], ["g_nor_in_5_1", "g_nor_in_5_2"]]],
+    ["g_nor_out_6_2", [["g_nor_in_4_1", "g_nor_in_4_2"], ["g_nor_in_5_1", "g_nor_in_5_2"]]],
+    ["g_nor_out_8_1", [["g_nor_in_10_1", "g_nor_in_10_2"], ["g_nor_in_9_1", "g_nor_in_9_2"]]],
+    ["g_nor_out_8_2", [["g_nor_in_10_1", "g_nor_in_10_2"], ["g_nor_in_9_1", "g_nor_in_9_2"]]],
+    ["g_nor_out_11_1", [["g_nor_in_13_1", "g_nor_in_13_2"], ["g_nor_in_12_1", "g_nor_in_12_2"]]],
+    ["g_nor_out_11_2", [["g_nor_in_13_1", "g_nor_in_13_2"], ["g_nor_in_12_1", "g_nor_in_12_2"]]],
+
     ["out_led_out_1", ["out_led_in_1_1", "out_led_in_1_2"]],
     ["out_led_out_2", ["out_led_in_2_1", "out_led_in_2_2"]],
     ["out_led_out_3", ["out_led_in_3_1", "out_led_in_3_2"]],
@@ -185,16 +194,15 @@ export const nodeGroups = new Map([
     ["11", ["io_11_1", "io_11_2", "io_11_3", "io_11_4"]],
     ["12", ["io_12_1", "io_12_2", "io_12_3", "io_12_4"]],
 
-
-    ["dff_out", [
-        "g_dff_out_1_1", "g_dff_out_1_2",
-        "g_dff_out_2_1", "g_dff_out_2_2",
-        "g_dff_out_3_1", "g_dff_out_3_2",
-        "g_dff_out_4_1", "g_dff_out_4_2",
-        "g_dff_out_5_1", "g_dff_out_5_2",
-        "g_dff_out_6_1", "g_dff_out_6_2",
-        "g_dff_out_7_1", "g_dff_out_7_2",
-        "g_dff_out_8_1", "g_dff_out_8_2"
-    ]],
-
 ])
+
+export const dffState = {
+    dff_1: { D: false, Q: false },
+    dff_2: { D: false, Q: false },
+    dff_3: { D: false, Q: false },
+    dff_4: { D: false, Q: false },
+    dff_5: { D: false, Q: false },
+    dff_6: { D: false, Q: false },
+    dff_7: { D: false, Q: false },
+    dff_8: { D: false, Q: false },
+}

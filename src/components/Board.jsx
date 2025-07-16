@@ -67,10 +67,9 @@ export default function Board() {
 
 
 
-
-  function getNodeOutput(nodeId) {
+  function getInputValues(nodeId, splitNodeId) {
     let inputs = []
-    const splitNodeId = nodeId.split(/_/)
+
     if (!nodeId.includes("io")) {
       inputs = dependenciesRef.current.get(nodeId) || []; // which nodes does the selected nodeId depend on?
     } else {
@@ -79,7 +78,7 @@ export default function Board() {
       if (!inputs.includes(value) && value != null) inputs.push(value)
     }
     if (inputs.some(value => value?.includes("io"))) {
-
+      // TODO: Did I want to do something here?
     }
     let inputValues = []
     if (Array.isArray(inputs[0])) {
@@ -95,6 +94,18 @@ export default function Board() {
     } else {
       inputValues = inputs.map((id) => usedNodesRef.current.get(id)); // ensures single input still is an array
     }
+    return inputValues
+  }
+
+
+  /**
+   * Computes the correct output value/state for the selected node
+   * @param {String} nodeId The ID of the corresponding vector path/node of our board
+   * @returns {Boolean} 
+   */
+  function getNodeOutput(nodeId) {
+    const splitNodeId = nodeId.split(/_/)
+    let inputValues = getInputValues(nodeId, splitNodeId)
 
     // we don't need breaks within this switch as we return out of the function
     switch (splitNodeId[0]) {
@@ -115,7 +126,7 @@ export default function Board() {
       case "g": {
         // deal with input/gnd/vcc first, as it's the same for all nodes
         switch (splitNodeId[2]) {
-          case "in": return usedNodesRef.current.get(inputs[0]) == true ? true : false
+          case "in": return inputValues[0] == true ? true : false
           case "gnd": return false
           case "vcc": return true
         }
@@ -123,16 +134,15 @@ export default function Board() {
         switch (splitNodeId[1]) {
           case "and": return inputValues.every(Boolean)
           case "or": return inputValues.some(Boolean)
-          //important not and nand HERE
           case "not": return !inputValues[0];
-          case "nand": return !(Boolean(inputValues[0]) && Boolean(inputValues[1]));
+          case "nand": return !inputValues.every(Boolean)
           case "xor": return inputValues[0] !== inputValues[1];
           case "nor": return !inputValues.some(Boolean)
           case "dff": {
             switch (splitNodeId[2]) {
-              case "oe": return usedNodesRef.current.get(inputs[0]) == true ? false : true //because oe is negative 
-              case "in": return usedNodesRef.current.get(inputs[0]) == true ? true : false
-              case "cp": return inputValues[0]
+              case "oe": return inputValues[0] == true ? false : true //because oe is negative 
+              case "in": return inputValues[0] == true ? true : false
+              case "cp": return inputValues[0] == true ? true : false
               case "out": {
                 const key = `dff_${splitNodeId[3]}`
                 const state = dffStateRef.current[key]
@@ -155,7 +165,7 @@ export default function Board() {
       case "io": {
         return inputValues.some(Boolean)
       }
-        return false; // fallback for unknown node
+      default: return false // fallback for unknown node
     }
   }
 
@@ -183,10 +193,8 @@ export default function Board() {
   }
 
   function propagateChanges(nodeId, visited) {
-
     if (!forwardDependenciesRef.current.get(nodeId) && !nodeId.includes("io") || !usedNodesRef.current.has(nodeId) && !nodeId.includes("input")) return
     console.log("We're propagating, baby:", nodeId, usedNodesRef.current.get(nodeId), forwardDependenciesRef.current.get(nodeId))
-    
 
     let fwDependencies = []
     let splitNodeId = nodeId.split(/_/)
@@ -219,18 +227,18 @@ export default function Board() {
     return fwDependentNodes.flat()
   }
 
+  function hasNodeBeenUsed(id) {
+    if (usedNodesRef.current.has(id)) {
+      if (selectedNodeRef.current === id) {
+        usedNodesRef.current.delete(id);
+        selectedNodeRef.current = null;
+      }
+      return true;
+    }
+  }
+
   useEffect(() => {
     let svgElement;
-
-    const hasNodeBeenUsed = (id) => {
-      if (usedNodesRef.current.has(id)) {
-        if (selectedNodeRef.current === id) {
-          usedNodesRef.current.delete(id);
-          selectedNodeRef.current = null;
-        }
-        return true;
-      }
-    }
 
     const handleNodeClick = (id) => {
       if (hasNodeBeenUsed(id)) {
@@ -354,10 +362,9 @@ export default function Board() {
 
     // Finds out which element is clicked and runs the corresponding click handler
     const handleClick = (event) => {
-      const inputKeys = ["inputA", "inputB", "inputC", "inputD"];
       const clickedInput = event.target.closest("[id]");
       console.log(clickedInput.id, "has been clicked")
-      if (inputKeys.includes(clickedInput.id)) {
+      if (clickedInput.id.includes("input")) {
         const key = clickedInput.id;
         const currentValue = userInputRef.current.get(key);
         const newValue = !currentValue;

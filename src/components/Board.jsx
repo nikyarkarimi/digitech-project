@@ -237,36 +237,95 @@ export default function Board() {
     }
   }
 
-  useEffect(() => {
-    let svgElement;
+  // Draws line between nodes, including the selected css class
+  function drawLineBetween(fromId, toId, colorClass) {
+    const svg = containerRef.current.querySelector("svg");
+    const from = svg.querySelector(`#${fromId}`);
+    const to = svg.querySelector(`#${toId}`);
+    if (!from || !to) return;
 
-    const handleNodeClick = (id) => {
-      if (hasNodeBeenUsed(id)) {
-        stopPreviewLine()
-        return
+    const x1 = parseFloat(from.getAttribute("cx"));
+    const y1 = parseFloat(from.getAttribute("cy"));
+    const x2 = parseFloat(to.getAttribute("cx"));
+    const y2 = parseFloat(to.getAttribute("cy"));
+
+    const visibleLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    visibleLine.setAttribute("x1", x1);
+    visibleLine.setAttribute("y1", y1);
+    visibleLine.setAttribute("x2", x2);
+    visibleLine.setAttribute("y2", y2);
+    visibleLine.setAttribute("class", colorClass);
+    visibleLine.setAttribute("id", `v_line-${fromId}-${toId}`);
+
+    // Creates invisible line to have a larger clickable area
+    const invisibleLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    invisibleLine.setAttribute("x1", x1);
+    invisibleLine.setAttribute("y1", y1);
+    invisibleLine.setAttribute("x2", x2);
+    invisibleLine.setAttribute("y2", y2);
+    invisibleLine.setAttribute("class", colorClass + "-invisible");
+    invisibleLine.setAttribute("id", `i_line-${fromId}-${toId}`);
+
+    svg.appendChild(visibleLine);
+    svg.appendChild(invisibleLine);
+  };
+
+  /**
+   * Finds out which element is clicked and runs the corresponding click handler
+   * @param {*} event Click event
+   * @returns _nothing_
+   */
+  function handleClick(event) {
+    const clickedInput = event.target.closest("[id]");
+    // console.log(clickedInput.id, "has been clicked")
+    if (clickedInput.id.includes("input")) {
+      handleInputClick(clickedInput);
+      propagateChanges(clickedInput.id, new Set());
+      return;
+    }
+
+    if (clickedInput.id.includes("line")) {
+      handleLineClick(clickedInput.id);
+      return;
+    }
+
+    if (clickedInput.id.includes("_")) {     // Neither button nor the switches have underscores in the name
+      handleNodeClick(clickedInput.id);      // It's not pretty but it works
+      propagateChanges(clickedInput.id, new Set())
+    }
+  };
+
+  /**
+   * 
+   * @param {String} id 
+   * @returns 
+   */
+  function handleNodeClick(id) {
+    if (hasNodeBeenUsed(id)) {
+      stopPreviewLine()
+      return
+    }
+    console.log("Node has been clicked")
+    if (selectedNodeRef.current === null) {
+      usedNodesRef.current.set(id, getNodeOutput(id));
+      console.log("Our node is now: ", id, usedNodesRef.current.get(id))
+      selectedNodeRef.current = id;
+      startPreviewLine(id);
+    } else {
+      let toId, fromId
+      if (!previousNodeIsToId(selectedNodeRef.current, id)) {
+        fromId = selectedNodeRef.current;
+        toId = id;
+        dependenciesRef.current.get(toId) ? dependenciesRef.current.get(toId).push(fromId) : dependenciesRef.current.set(toId, [fromId])
+      } else {
+        fromId = id;
+        toId = selectedNodeRef.current;
+        console.log("To and from were switched.")
+        dependenciesRef.current.get(toId) ? dependenciesRef.current.get(toId).push(fromId) : dependenciesRef.current.set(toId, [fromId])
+        usedNodesRef.current.set(fromId, getNodeOutput(fromId));
       }
 
-      console.log("Node has been clicked")
-      if (selectedNodeRef.current === null) {
-        usedNodesRef.current.set(id, getNodeOutput(id));
-        console.log("Our node is now: ", id, usedNodesRef.current.get(id))
-        selectedNodeRef.current = id;
-        startPreviewLine(id);
-      } else {
-        let toId, fromId
-        if (!previousNodeIsToId(selectedNodeRef.current, id)) {
-          fromId = selectedNodeRef.current;
-          toId = id;
-          dependenciesRef.current.get(toId) ? dependenciesRef.current.get(toId).push(fromId) : dependenciesRef.current.set(toId, [fromId])
-        } else {
-          fromId = id;
-          toId = selectedNodeRef.current;
-          console.log("To and from were switched.")
-
-          dependenciesRef.current.get(toId) ? dependenciesRef.current.get(toId).push(fromId) : dependenciesRef.current.set(toId, [fromId])
-          usedNodesRef.current.set(fromId, getNodeOutput(fromId));
-        }
-
+      
         if (toId.includes("io")) {
           const splitNodeId = toId.split(/_/)
           dependenciesRef.current.get(splitNodeId[1]).push(fromId)
@@ -279,158 +338,136 @@ export default function Board() {
           dependenciesRef.current.get(toId).push(splitNodeId[1])
         }
 
-        console.log("Dependencies for ", toId, dependenciesRef.current.get(toId))
-
-        forwardDependenciesRef.current.get(fromId) ? forwardDependenciesRef.current.get(fromId).push(toId) : forwardDependenciesRef.current.set(fromId, [toId])
-        const colorClass = getColorClass(); // Read current colour
-
-        if (!colorClass) {
-          console.warn("No valid cable color = no connection...");
-          usedNodesRef.current.delete(fromId); // Removes selected nodes if no line can be drawn
-          usedNodesRef.current.delete(toId);
-          selectedNodeRef.current = null;
-          return;
-        }
-
-        stopPreviewLine();
-        usedNodesRef.current.set(toId, getNodeOutput(toId))
-        drawLineBetween(fromId, toId, colorClass);
-        if (toId.includes("led")) {
-          const splitNodeId = toId.split(/_/)
-          lightLED(splitNodeId[3], shouldLEDBeLit(splitNodeId[3]))
-        }
-
+      if (fromId.includes("io") || toId.includes("io")) handleIoDependencies(fromId, toId)
+      
+      console.log("Dependencies for ", toId, dependenciesRef.current.get(toId))
+      forwardDependenciesRef.current.get(fromId) ? forwardDependenciesRef.current.get(fromId).push(toId) : forwardDependenciesRef.current.set(fromId, [toId])
+      usedNodesRef.current.set(toId, getNodeOutput(toId))
+      const colorClass = getColorClass(); // Read current colour
+      /*
+      if (!colorClass) {
+        console.warn("No valid cable color = no connection...");
+        usedNodesRef.current.delete(fromId); // Removes selected nodes if no line can be drawn
+        usedNodesRef.current.delete(toId);
         selectedNodeRef.current = null;
+        return;
       }
-    };
-
-    // If an existing line is clicked, it is deleted
-    const handleLineClick = (lineId) => {
-      const [_, fromId, toId] = lineId.split("-");
-      document.getElementById(lineId)?.remove();
-      document.getElementById(`v_line-${fromId}-${toId}`)?.remove();
-      dependenciesRef.current.get(toId)?.length > 1 ? dependenciesRef.current.get(toId).pop() : dependenciesRef.current.delete(toId)
-      forwardDependenciesRef.current.get(fromId)?.length > 1 ? forwardDependenciesRef.current.get(fromId).pop() : forwardDependenciesRef.current.delete(fromId)
-      usedNodesRef.current.delete(fromId);
-      usedNodesRef.current.delete(toId);
-
-      if (toId.includes("io")) {
-        const splitNodeId = toId.split(/_/)
-        dependenciesRef.current.get(splitNodeId[1]).pop(toId)
-      }
-
+      */
+      stopPreviewLine();
+      drawLineBetween(fromId, toId, colorClass);
       if (toId.includes("led")) {
-        const splitNodeId = toId.split(/_/)
+      const splitNodeId = toId.split(/_/)
         lightLED(splitNodeId[3], shouldLEDBeLit(splitNodeId[3]))
       }
+      selectedNodeRef.current = null;
+    }
+  };
 
-      propagateChanges(toId, new Set())
-    };
-
-    // Draws line between nodes, including the selected css class
-    const drawLineBetween = (fromId, toId, colorClass) => {
-      const svg = containerRef.current.querySelector("svg");
-      const from = svg.querySelector(`#${fromId}`);
-      const to = svg.querySelector(`#${toId}`);
-      if (!from || !to) return;
-
-      const x1 = parseFloat(from.getAttribute("cx"));
-      const y1 = parseFloat(from.getAttribute("cy"));
-      const x2 = parseFloat(to.getAttribute("cx"));
-      const y2 = parseFloat(to.getAttribute("cy"));
-
-      const visibleLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-      visibleLine.setAttribute("x1", x1);
-      visibleLine.setAttribute("y1", y1);
-      visibleLine.setAttribute("x2", x2);
-      visibleLine.setAttribute("y2", y2);
-      visibleLine.setAttribute("class", colorClass);
-      visibleLine.setAttribute("id", `v_line-${fromId}-${toId}`);
-
-      // Creates invisible line to have a larger clickable area
-      const invisibleLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-      invisibleLine.setAttribute("x1", x1);
-      invisibleLine.setAttribute("y1", y1);
-      invisibleLine.setAttribute("x2", x2);
-      invisibleLine.setAttribute("y2", y2);
-      invisibleLine.setAttribute("class", colorClass + "-invisible");
-      invisibleLine.setAttribute("id", `i_line-${fromId}-${toId}`);
-
-      svg.appendChild(visibleLine);
-      svg.appendChild(invisibleLine);
-    };
-
-    // Finds out which element is clicked and runs the corresponding click handler
-    const handleClick = (event) => {
-      const clickedInput = event.target.closest("[id]");
-      console.log(clickedInput.id, "has been clicked")
-      if (clickedInput.id.includes("input")) {
-        const key = clickedInput.id;
-        const currentValue = userInputRef.current.get(key);
-        const newValue = !currentValue;
-
-        userInputRef.current.set(key, newValue);
-
-        clickedInput.setAttribute("class", newValue ? "signal-true" : "signal-false");
-        propagateChanges(clickedInput.id, new Set())
-        return;
+  /**
+   * 
+   * @param {String} fromId 
+   * @param {String} toId 
+   */
+  function handleIoDependencies(fromId, toId) {
+    if (toId.includes("io")) {
+        const splitNodeId = toId.split(/_/)
+        dependenciesRef.current.get(splitNodeId[1]).push(fromId)
+      }
+      // if it's an io node, we remove the node name from dependencies and instead add the group
+      if (fromId.includes("io")) {
+        const splitNodeId = fromId.split(/_/)
+        dependenciesRef.current.get(toId)?.pop(fromId)
+        dependenciesRef.current.get(toId).push(splitNodeId[1])
       }
 
-      if (clickedInput.id.includes("line")) {
-        handleLineClick(clickedInput.id);
-        return;
-      }
+  }
 
-      if (clickedInput.id.includes("_")) {     // Neither button nor the switches have underscores in the name
-        handleNodeClick(clickedInput.id);      // It's not pretty but it works
-        propagateChanges(clickedInput.id, new Set())
-      }
-    };
+  /**
+   * Deletes any existing line and removes dependencies
+   * @param {*} lineId 
+   */
+  function handleLineClick(lineId) {
+    const [_, fromId, toId] = lineId.split("-");
+    document.getElementById(lineId)?.remove();
+    document.getElementById(`v_line-${fromId}-${toId}`)?.remove();
+    dependenciesRef.current.get(toId)?.length > 1 ? dependenciesRef.current.get(toId).pop() : dependenciesRef.current.delete(toId);
+    forwardDependenciesRef.current.get(fromId)?.length > 1 ? forwardDependenciesRef.current.get(fromId).pop() : forwardDependenciesRef.current.delete(fromId);
+    usedNodesRef.current.delete(fromId);
+    usedNodesRef.current.delete(toId);
 
-    // Start Code by ChatGPT
-    function startPreviewLine(fromId) {
-      const svg = containerRef.current.querySelector("svg");
-      const from = svg.querySelector(`#${fromId}`);
-      if (!from) return;
-
-      const x1 = parseFloat(from.getAttribute("cx"));
-      const y1 = parseFloat(from.getAttribute("cy"));
-
-      const previewLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-      previewLine.setAttribute("x1", x1);
-      previewLine.setAttribute("y1", y1);
-      previewLine.setAttribute("x2", x1); // initially same as start
-      previewLine.setAttribute("y2", y1);
-      previewLine.setAttribute("class", "preview-line");
-      previewLine.setAttribute("id", "preview-line");
-
-      svg.appendChild(previewLine);
-      previewLineRef.current = previewLine;
-
-      svg.addEventListener("mousemove", handleMouseMove);
+    if (toId.includes("io")) {
+      const splitNodeId = toId.split(/_/)
+      dependenciesRef.current.get(splitNodeId[1]).pop(toId)
     }
 
-    function stopPreviewLine() {
-      const svg = containerRef.current.querySelector("svg");
-      svg.removeEventListener("mousemove", handleMouseMove);
-      previewLineRef.current?.remove();
-      previewLineRef.current = null;
+    if (toId.includes("led")) {
+      const splitNodeId = toId.split(/_/)
+      lightLED(splitNodeId[3], shouldLEDBeLit(splitNodeId[3]))
     }
 
-    function handleMouseMove(event) {
-      const svg = containerRef.current.querySelector("svg");
-      const pt = svg.createSVGPoint();
-      pt.x = event.clientX;
-      pt.y = event.clientY;
-      const cursorPoint = pt.matrixTransform(svg.getScreenCTM().inverse());
+    propagateChanges(toId, new Set())
+  };
 
-      if (previewLineRef.current) {
-        previewLineRef.current.setAttribute("x2", cursorPoint.x);
-        previewLineRef.current.setAttribute("y2", cursorPoint.y);
-      }
+  /**
+   * Reverses value of corresponding input id and updates switch color
+   * @param {String} inputId 
+   */
+  function handleInputClick(clickedInput) {
+    const inputId = clickedInput.id;
+    const currentValue = userInputRef.current.get(inputId);
+    const newValue = !currentValue;
+    userInputRef.current.set(inputId, newValue);
+    clickedInput.setAttribute("class", newValue ? "signal-true" : "signal-false");
+  }
+
+
+  // Start Code by ChatGPT
+  function startPreviewLine(fromId) {
+    const svg = containerRef.current.querySelector("svg");
+    const from = svg.querySelector(`#${fromId}`);
+    if (!from) return;
+
+    const x1 = parseFloat(from.getAttribute("cx"));
+    const y1 = parseFloat(from.getAttribute("cy"));
+
+    const previewLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    previewLine.setAttribute("x1", x1);
+    previewLine.setAttribute("y1", y1);
+    previewLine.setAttribute("x2", x1); // initially same as start
+    previewLine.setAttribute("y2", y1);
+    previewLine.setAttribute("class", "preview-line");
+    previewLine.setAttribute("id", "preview-line");
+
+    svg.appendChild(previewLine);
+    previewLineRef.current = previewLine;
+
+    svg.addEventListener("mousemove", handleMouseMove);
+  }
+
+  function stopPreviewLine() {
+    const svg = containerRef.current.querySelector("svg");
+    svg.removeEventListener("mousemove", handleMouseMove);
+    previewLineRef.current?.remove();
+    previewLineRef.current = null;
+  }
+
+  function handleMouseMove(event) {
+    const svg = containerRef.current.querySelector("svg");
+    const pt = svg.createSVGPoint();
+    pt.x = event.clientX;
+    pt.y = event.clientY;
+    const cursorPoint = pt.matrixTransform(svg.getScreenCTM().inverse());
+
+    if (previewLineRef.current) {
+      previewLineRef.current.setAttribute("x2", cursorPoint.x);
+      previewLineRef.current.setAttribute("y2", cursorPoint.y);
     }
-    // End Code by ChatGPT
+  }
+  // End Code by ChatGPT
 
+
+  useEffect(() => {
+    let svgElement;
 
     // Fetches the SVG, adds its content to the DOM & makes the whole thing clickable
     fetch("src/assets/Digitech.svg")
@@ -454,7 +491,7 @@ export default function Board() {
         svgElement.addEventListener("click", handleClick);
 
         // input button hold
-        const buttonEl = svgElement.querySelector("#inputButton");
+        const buttonEl = svgElement.querySelector("inputButton");
         if (buttonEl) {
           buttonEl.addEventListener("mousedown", () => {
             userInputRef.current.set("inputButton", true);

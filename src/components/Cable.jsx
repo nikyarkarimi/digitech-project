@@ -8,12 +8,12 @@ export default function Cable() {
     const { selectedCableIndex, setSelectedCableIndex } = useCable();
 
     const toggleCable = (index) => {
-        if (selectedCableIndex === index) {
-            setSelectedCableIndex(null); // unselect
-        } else {
+        //if (selectedCableIndex === index) {
+          //  setSelectedCableIndex(null); // unselect
+        //} else {
             console.log("Kabel ausgewählt Index:", index);
             setSelectedCableIndex(index); // select
-        }
+        //}
     };
 
     useEffect(()=> {

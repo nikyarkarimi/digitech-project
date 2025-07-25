@@ -4,6 +4,12 @@
   - Add jumper logic
   - Clicking an occupied node - move end of cable
   - 1-in-8 & 7-segment
+
+  --> Verstehen
+  --> Problems fixen
+ --> fehlende Sachen
+  --> Refactoring
+
  */
 // const colorClass = getColorClass() // somehow it bugs out once I use this instead of preview-line
 
@@ -13,9 +19,13 @@ import { useCable } from "../contexts/CableContext.jsx";
 import { initialDependencies, initialForwardDependencies, nodeGroups, dffState } from "./LogicMaps.jsx";
 
 export default function Board() {
+  // Contains the div in which the SVG is loaded
   const containerRef = useRef(null);
+  // Contains the node which the user clicked on
   const selectedNodeRef = useRef(null);
+  // Contains the current logic states (true/false) of the nodes used
   const usedNodesRef = useRef(new Map());
+  // Contains the inputs and the button
   const userInputRef = useRef(new Map([
     ['inputA', true],
     ["inputB", true],
@@ -23,13 +33,17 @@ export default function Board() {
     ["inputD", false],
     ['inputButton', false],
   ]))
+  // Contains which output depends on which inputs
   const dependenciesRef = useRef(initialDependencies)
+  // Contains which inputs are influenced by which output?
   const forwardDependenciesRef = useRef(initialForwardDependencies)
   const previewLineRef = useRef(null)
   const nodeIntervalRef = useRef(null)
   const clockNodesRef = useRef(new Set())
+  // Contains stored values (D and Q) of the D-Flip-Flop
   const dffStateRef = useRef(dffState)
 
+  // The loop builds the forward dependencies ("this input influences these outputs") from the backward dependencies ("this output needs these inputs").
   for (const [target, sources] of initialDependencies.entries()) {
     const flatSources = sources.flat(); // In case sources contain arrays of nodes
     for (const source of flatSources) {
@@ -66,7 +80,7 @@ export default function Board() {
   };
 
 
-
+  // returns the logical states (true or false) of the input nodes on which the passed nodeId directly depends. Only the input values, not the state of the node itself.
   function getInputValues(nodeId, splitNodeId) {
     let inputs = []
 
@@ -117,6 +131,7 @@ export default function Board() {
           case "d": return userInputRef.current.get("inputD");
           case "but": return userInputRef.current.get("inputButton");
           case "clk": {
+            // TODO Fix the clock!
             clockNodesRef.current.add(nodeId)
             startNodeInterval()
             return
@@ -296,9 +311,9 @@ export default function Board() {
   };
 
   /**
-   * 
-   * @param {String} id 
-   * @returns 
+   *
+   * @param {String} id
+   * @returns
    */
   function handleNodeClick(id) {
     if (hasNodeBeenUsed(id)) {
@@ -325,7 +340,7 @@ export default function Board() {
         usedNodesRef.current.set(fromId, getNodeOutput(fromId));
       }
 
-      
+
         if (toId.includes("io")) {
           const splitNodeId = toId.split(/_/)
           dependenciesRef.current.get(splitNodeId[1]).push(fromId)
@@ -339,7 +354,7 @@ export default function Board() {
         }
 
       if (fromId.includes("io") || toId.includes("io")) handleIoDependencies(fromId, toId)
-      
+
       console.log("Dependencies for ", toId, dependenciesRef.current.get(toId))
       forwardDependenciesRef.current.get(fromId) ? forwardDependenciesRef.current.get(fromId).push(toId) : forwardDependenciesRef.current.set(fromId, [toId])
       usedNodesRef.current.set(toId, getNodeOutput(toId))
@@ -364,9 +379,9 @@ export default function Board() {
   };
 
   /**
-   * 
-   * @param {String} fromId 
-   * @param {String} toId 
+   *
+   * @param {String} fromId
+   * @param {String} toId
    */
   function handleIoDependencies(fromId, toId) {
     if (toId.includes("io")) {
@@ -384,7 +399,7 @@ export default function Board() {
 
   /**
    * Deletes any existing line and removes dependencies
-   * @param {*} lineId 
+   * @param {*} lineId
    */
   function handleLineClick(lineId) {
     const [_, fromId, toId] = lineId.split("-");
@@ -410,7 +425,7 @@ export default function Board() {
 
   /**
    * Reverses value of corresponding input id and updates switch color
-   * @param {String} inputId 
+   * @param {String} inputId
    */
   function handleInputClick(clickedInput) {
     const inputId = clickedInput.id;
@@ -430,13 +445,13 @@ export default function Board() {
     const x1 = parseFloat(from.getAttribute("cx"));
     const y1 = parseFloat(from.getAttribute("cy"));
 
-    const previewLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
-    previewLine.setAttribute("x1", x1);
-    previewLine.setAttribute("y1", y1);
-    previewLine.setAttribute("x2", x1); // initially same as start
-    previewLine.setAttribute("y2", y1);
-    previewLine.setAttribute("class", "preview-line");
-    previewLine.setAttribute("id", "preview-line");
+      const previewLine = document.createElementNS("http://www.w3.org/2000/svg", "line");
+      previewLine.setAttribute("x1", x1);
+      previewLine.setAttribute("y1", y1);
+      previewLine.setAttribute("x2", x1); // initially same as start
+      previewLine.setAttribute("y2", y1);
+      previewLine.setAttribute("class", getColorClass());
+      previewLine.setAttribute("id", getColorClass());
 
     svg.appendChild(previewLine);
     previewLineRef.current = previewLine;

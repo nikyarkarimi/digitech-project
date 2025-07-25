@@ -17,8 +17,10 @@ header {
 
 #logo {
   min-height: 80px;
-  height: 10vh;
-  margin-left: 1vw;
+  /*height: 10vh;*/
+  height: auto;
+  width: 140px;
+  margin-left: 2vw;
 }
 
 #content {

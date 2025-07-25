@@ -1,4 +1,4 @@
-import logo from "../../assets/Logo_FH.png";
+import logo from "../../assets/Logo_FH_new.svg";
 
 export default function Header() {
     return (

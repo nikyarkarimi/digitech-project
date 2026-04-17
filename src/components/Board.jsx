@@ -139,6 +139,7 @@ export default function Board() {
         }
       }
       case "g": {
+        console.log("gate has been clicked")
         // deal with input/gnd/vcc first, as it's the same for all nodes
         switch (splitNodeId[2]) {
           case "in": return inputValues[0] == true ? true : false
@@ -161,7 +162,7 @@ export default function Board() {
               case "out": {
                 const key = `dff_${splitNodeId[3]}`
                 const state = dffStateRef.current[key]
-                console.log("Our dffMemory is currently based on ", inputs, inputValues)
+                console.log("Our dffMemory is currently based on ", state, inputValues)
                 if (usedNodesRef.current.get("g_dff_oe_1") === false || !usedNodesRef.current.get("g_dff_oe_2") === false) return false
                 else if (usedNodesRef.current.get("g_dff_oe_1") === true || !usedNodesRef.current.get("g_dff_oe_2") === true) {
                   console.log("State of node:", state)
@@ -190,7 +191,7 @@ export default function Board() {
     if (inputs[0]?.length <= 2) {
       inputValues = nodeGroups.get(inputs[0])?.map((id) => usedNodesRef.current.get(id))
     } else inputValues = inputs.map((id) => usedNodesRef.current.get(id));
-    console.log("Our led inputs for _ are", inputs, inputValues)
+    console.log("Our led inputs for ", currentNode, " are", inputs, inputValues)
     if (inputValues.some(Boolean)) return true
     else return false
   }
@@ -408,19 +409,26 @@ export default function Board() {
     dependenciesRef.current.get(toId)?.length > 1 ? dependenciesRef.current.get(toId).pop() : dependenciesRef.current.delete(toId);
     forwardDependenciesRef.current.get(fromId)?.length > 1 ? forwardDependenciesRef.current.get(fromId).pop() : forwardDependenciesRef.current.delete(fromId);
     usedNodesRef.current.delete(fromId);
-    usedNodesRef.current.delete(toId);
 
     if (toId.includes("io")) {
       const splitNodeId = toId.split(/_/)
       dependenciesRef.current.get(splitNodeId[1]).pop(toId)
     }
 
+    // Recalculate the toId with its remaining inputs before propagating
+    usedNodesRef.current.set(toId, getNodeOutput(toId));
+
     if (toId.includes("led")) {
       const splitNodeId = toId.split(/_/)
       lightLED(splitNodeId[3], shouldLEDBeLit(splitNodeId[3]))
     }
 
-    propagateChanges(toId, new Set())
+    propagateChanges(toId, new Set());
+
+    // Remove toId from usedNodesRef if it no longer has any dependencies
+    if (!dependenciesRef.current.has(toId) || dependenciesRef.current.get(toId)?.length === 0) {
+      usedNodesRef.current.delete(toId);
+    }
   };
 
   /**
@@ -452,6 +460,7 @@ export default function Board() {
       previewLine.setAttribute("y2", y1);
       previewLine.setAttribute("class", getColorClass());
       previewLine.setAttribute("id", getColorClass());
+      previewLine.setAttribute("style", "pointer-events: none");
 
     svg.appendChild(previewLine);
     previewLineRef.current = previewLine;
@@ -506,9 +515,10 @@ export default function Board() {
         svgElement.addEventListener("click", handleClick);
 
         // input button hold
-        const buttonEl = svgElement.querySelector("inputButton");
+        const buttonEl = svgElement.querySelector("#inputButton");
         if (buttonEl) {
-          buttonEl.addEventListener("mousedown", () => {
+          buttonEl.addEventListener("mousedown", (e) => {
+            e.stopPropagation();
             userInputRef.current.set("inputButton", true);
             const targets = forwardDependenciesRef.current.get("inputButton") || [];
             console.log("Targets for button propagation:", targets)
@@ -516,34 +526,33 @@ export default function Board() {
               usedNodesRef.current.set(id, true)
               propagateChanges(id, new Set());
             });
-            console.log("Button clicked");
+            console.log("Button pressed");
           });
 
-          buttonEl.addEventListener("mouseup", () => {
-            userInputRef.current.set("inputButton", false);
-            const targets = forwardDependenciesRef.current.get("inputButton") || [];
-            targets.forEach((id) => {
-              usedNodesRef.current.set(id, false);
-              propagateChanges(id, new Set());
-            });
-            console.log("Button click over");
-          });
-
-          buttonEl.addEventListener("mouseleave", () => {
-            if (userInputRef.current.get("inputButton")) {
-              userInputRef.current.set("inputButton", false);
-              const targets = forwardDependenciesRef.current.get("inputButton") || [];
-              targets.forEach((id) => {
-                usedNodesRef.current.set(id, false);
-                propagateChanges(id, new Set());
-              });
-            }
-            console.log("Button mouseover finished");
+          buttonEl.addEventListener("click", (e) => {
+            e.stopPropagation();
           });
         }
 
+        // Handle mouseup at document level to reset button
+        const handleButtonUp = () => {
+          if (userInputRef.current.get("inputButton")) {
+            userInputRef.current.set("inputButton", undefined);
+            const targets = forwardDependenciesRef.current.get("inputButton") || [];
+            targets.forEach((id) => {
+              usedNodesRef.current.set(id, false)
+              propagateChanges(id, new Set());
+              usedNodesRef.current.delete(id);
+            });
+            console.log("Button released");
+          }
+        };
+
+        document.addEventListener("mouseup", handleButtonUp);
+
         return () => {
           svgElement?.removeEventListener("click", handleClick);
+          document.removeEventListener("mouseup", handleButtonUp);
         };
       });
   }, []);
